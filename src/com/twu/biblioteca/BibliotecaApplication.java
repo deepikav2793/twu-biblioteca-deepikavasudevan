@@ -6,15 +6,15 @@ public class BibliotecaApplication {
     String welcomeMessage = "Hello! Welcome to Bangalore Public Library!";
 
     public void start() {
-        printWelcomeMessage();
-        printListOfBooks();
+        displayWelcomeMessage();
+        displayListOfBooks();
     }
 
-    private void printWelcomeMessage() {
+    private void displayWelcomeMessage() {
         System.out.println(welcomeMessage);
     }
 
-    private void printListOfBooks() {
-        System.out.println ("1.Harry Potter\n2.The Fountainhead\n3.To Kill A Mockingbird");
+    private void displayListOfBooks() {
+        System.out.println("1.Harry Potter\n2.The Fountainhead\n3.To Kill A Mockingbird");
     }
 }
