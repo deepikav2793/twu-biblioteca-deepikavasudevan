@@ -1,0 +1,54 @@
+<?xml version = "1.0"?>
+<project name="TWU-Biblioteca-deepikavasudevan" default="report" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
+
+    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+        <classpath path="lib/jacoco/jacocoant.jar"/>
+    </taskdef>
+
+    <target name="build" depends="clean">
+    <mkdir dir="out"/>
+    <javac destdir="out" debug="true">
+        <src path="src;test"/>
+        <classpath location="lib/junit-4.11.jar"/>
+    </javac>
+    </target>
+
+    <target name="clean" description="clean previous output directory">
+        <delete dir="out" />
+    </target>
+
+    <target name="runTest" depends="build">
+        <jacoco:coverage destfile="./out/jacoco.exec">
+            <junit printsummary="yes" haltonfailure="true" fork="true">
+                <classpath>
+                    <pathelement location="lib/junit-4.11.jar"/>
+                    <pathelement location="lib/hamcrest-core-1.3.jar"/>
+                    <pathelement location="out"/>
+                </classpath>
+
+                <batchtest fork="yes">
+                    <fileset dir="test">
+                        <include name="**/*Test*.java"/>
+                    </fileset>
+                </batchtest>
+            </junit>
+        </jacoco:coverage>
+    </target>
+
+    <target name="report" depends="runTest">
+        <jacoco:report>
+            <executiondata>
+                <file file="out/jacoco.exec"/>
+            </executiondata>
+            <structure name="BibliotecaWithTDD">
+                <classfiles>
+                    <fileset dir="out"/>
+                </classfiles>
+                <sourcefiles encoding="UTF-8">
+                    <fileset dir="src"/>
+                </sourcefiles>
+            </structure>
+            <html destdir="out" />
+        </jacoco:report>
+    </target>
+</project>
