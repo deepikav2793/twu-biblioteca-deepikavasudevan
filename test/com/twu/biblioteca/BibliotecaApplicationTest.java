@@ -23,22 +23,6 @@ public class BibliotecaApplicationTest {
     }
 
     @Test
-    public void shouldPrintAWelcomeMessage() {
-        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication();
-        bibliotecaApplication.printWelcomeMessage();
-
-        assertEquals("Hello! Welcome to Bangalore Public Library!\n", outputContent.toString());
-    }
-
-    @Test
-    public void shouldPrintListOfBooks() {
-        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication();
-        bibliotecaApplication.printListOfBooks();
-
-        assertEquals("1.Harry Potter\n2.The Fountainhead\n3.To Kill A Mockingbird\n", outputContent.toString());
-    }
-
-    @Test
     public void shouldPrintAWelcomeMessageAndListOfBooksWhenBibliotecaApplicationStarts() {
         BibliotecaApplication bibliotecaApplication = new BibliotecaApplication();
         bibliotecaApplication.start();

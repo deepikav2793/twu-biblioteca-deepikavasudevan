@@ -1,4 +1,4 @@
-/*View displays data to the console and gets data from it*/
+/*Biblioteca Application*/
 package com.twu.biblioteca;
 
 public class BibliotecaApplication {
@@ -10,11 +10,11 @@ public class BibliotecaApplication {
         printListOfBooks();
     }
 
-    public void printWelcomeMessage() {
+    private void printWelcomeMessage() {
         System.out.println(welcomeMessage);
     }
 
-    public void printListOfBooks() {
+    private void printListOfBooks() {
         System.out.println ("1.Harry Potter\n2.The Fountainhead\n3.To Kill A Mockingbird");
     }
 }
