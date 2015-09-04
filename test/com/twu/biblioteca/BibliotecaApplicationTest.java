@@ -9,6 +9,7 @@ import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
 
 public class BibliotecaApplicationTest {
+
     private final ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
 
     @Before
@@ -25,6 +26,15 @@ public class BibliotecaApplicationTest {
     public void shouldPrintAWelcomeMessageWhenBibliotecaApplicationStarts() {
         BibliotecaApplication bibliotecaApplication =new BibliotecaApplication();
         bibliotecaApplication.start();
+
         assertEquals("Hello! Welcome to Bangalore Public Library!\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldPrintListOfBooks() {
+        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication();
+        bibliotecaApplication.printListOfBooks();
+
+        assertEquals("1.Harry Potter\n2.The Fountainhead\n3.To Kill A Mockingbird\n", outputContent.toString());
     }
 }

@@ -8,4 +8,8 @@ public class BibliotecaApplication {
     public void start() {
         System.out.println(welcomeMessage);
     }
+
+    public void printListOfBooks() {
+        System.out.println("1.Harry Potter\n2.The Fountainhead\n3.To Kill A Mockingbird");
+    }
 }
