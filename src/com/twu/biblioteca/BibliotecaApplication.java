@@ -7,9 +7,10 @@ public class BibliotecaApplication {
 
     public void start() {
         printWelcomeMessage();
+        printListOfBooks();
     }
 
-    private void printWelcomeMessage() {
+    public void printWelcomeMessage() {
         System.out.println(welcomeMessage);
     }
 
