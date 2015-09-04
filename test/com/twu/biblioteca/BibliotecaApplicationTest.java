@@ -22,7 +22,7 @@ public class BibliotecaApplicationTest {
     }
 
     @Test
-    public void out() {
+    public void shouldPrintAWelcomeMessageWhenBibliotecaApplicationStarts() {
         BibliotecaApplication bibliotecaApplication =new BibliotecaApplication();
         bibliotecaApplication.start();
         assertEquals("Hello! Welcome to Bangalore Public Library!\n", outputContent.toString());

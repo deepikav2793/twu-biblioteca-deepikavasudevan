@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 
 public class BibliotecaApplication {
 
-    String welcomeMessage = "Hello! Welcome to Bangalore Public Library";
+    String welcomeMessage = "Hello! Welcome to Bangalore Public Library!";
 
     public void start() {
         System.out.println(welcomeMessage);
