@@ -3,14 +3,12 @@ package com.twu.biblioteca;
 
 public class BibliotecaApplication {
 
-    String welcomeMessage = "Hello! Welcome to Bangalore Public Library!";
-
     public void start() {
-        displayWelcomeMessage();
+        displayWelcomeMessage("Hello! Welcome to Bangalore Public Library!");
         displayListOfBooks();
     }
 
-    private void displayWelcomeMessage() {
+    private void displayWelcomeMessage(String welcomeMessage) {
         System.out.println(welcomeMessage);
     }
 
