@@ -10,7 +10,7 @@ public class BookList {
         this.bookList = bookList;
     }
 
-    void print() {
+    void display() {
         System.out.println("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION");
 
         for (Book book : bookList) {

@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ public class BookListTest {
         listOfBooks.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         
         BookList bookList = new BookList(listOfBooks);
-        bookList.print();
+        bookList.display();
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
     }
