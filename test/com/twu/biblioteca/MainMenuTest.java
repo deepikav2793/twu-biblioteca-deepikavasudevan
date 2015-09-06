@@ -40,10 +40,10 @@ public class MainMenuTest {
     }
 
     @Test
-    public void shouldTakeOneAsInputInMainMenuForListingBooks() {
+    public void shouldTakeOptionAsInputFromCustomer() {
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         MainMenu mainMenu = new MainMenu(menuOptions);
 
-        mainMenu.option();
+        assertEquals("1", mainMenu.option());
     }
 }

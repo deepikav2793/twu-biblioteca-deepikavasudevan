@@ -24,6 +24,6 @@ public class MainMenu {
 
     public String option() {
         Scanner input = new Scanner(System.in);
-        return input.nextLine();
+        return input.next();
     }
 }
