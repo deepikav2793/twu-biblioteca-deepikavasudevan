@@ -7,12 +7,14 @@ import java.util.Arrays;
 public class BibliotecaApplication {
 
     ArrayList<Book> listOfBooks = new ArrayList<>(Arrays.asList(new Book("Gone Girl", "Gillian Flynn", 2009),
-            new Book("The FountainHead", "Ayn Rand", 1964), new Book("Swann's Way", "Marcel Proust", 1867)));
+            new Book("The FountainHead", "Ayn Rand", 1964), new Book("Swann's Way", "Marcel Proust", 1867 )));
     BookList bookList = new BookList(listOfBooks);
 
     public void start() {
         displayWelcomeMessage("Hello! Welcome to Bangalore Public Library!");
-        bookList.display();
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
+        MainMenu mainMenu = new MainMenu(menuOptions);
+        mainMenu.display();
     }
 
     private void displayWelcomeMessage(String welcomeMessage) {

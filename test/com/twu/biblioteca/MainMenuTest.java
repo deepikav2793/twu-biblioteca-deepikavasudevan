@@ -3,12 +3,15 @@ package com.twu.biblioteca;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
-public class BibliotecaApplicationTest {
+public class MainMenuTest {
 
     private final ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
 
@@ -23,10 +26,12 @@ public class BibliotecaApplicationTest {
     }
 
     @Test
-    public void shouldPrintAWelcomeMessageAndMenuWhenBibliotecaApplicationStarts() {
-        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication();
-        bibliotecaApplication.start();
+    public void shouldPrintMenuOptions(){
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
+        MainMenu mainMenu = new MainMenu(menuOptions);
 
-        assertEquals("Hello! Welcome to Bangalore Public Library!\nMAIN MENU\n1. List Books\n", outputContent.toString());
+        mainMenu.display();
+
+        assertEquals("MAIN MENU\n1. List Books\n", outputContent.toString());
     }
 }
