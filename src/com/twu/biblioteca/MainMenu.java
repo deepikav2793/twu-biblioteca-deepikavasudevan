@@ -20,7 +20,7 @@ public class MainMenu {
            System.out.println(menuOption);
         }
 
-        option();
+        parse();
     }
 
     public String option() {
