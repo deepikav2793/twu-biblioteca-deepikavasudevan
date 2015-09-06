@@ -14,23 +14,12 @@ import static org.junit.Assert.assertEquals;
 
 public class MainMenuTest {
 
-    private ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-    private ByteArrayInputStream inputContent = new ByteArrayInputStream("1".getBytes());
-
-    @Before
-    public void setStreamsWithInitialValue() {
-        System.setOut(new PrintStream(outputContent));
-        System.setIn(inputContent);
-    }
-
-    @After
-    public void cleanUpStreams() {
-        System.setOut(System.out);
-        System.setIn(System.in);
-    }
-
     @Test
     public void shouldPrintMenuOptions(){
+        ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("1".getBytes());
+        System.setIn(inputOptionOne);
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         MainMenu mainMenu = new MainMenu(menuOptions);
 
@@ -41,6 +30,8 @@ public class MainMenuTest {
 
     @Test
     public void shouldTakeOptionAsInputFromCustomer() {
+        ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("1".getBytes());
+        System.setIn(inputOptionOne);
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         MainMenu mainMenu = new MainMenu(menuOptions);
 
@@ -49,11 +40,35 @@ public class MainMenuTest {
 
     @Test
     public void shouldListBooksWhenOptionIsInputtedAsOne() {
+        ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("1".getBytes());
+        System.setIn(inputOptionOne);
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         MainMenu mainMenu = new MainMenu(menuOptions);
 
         mainMenu.parse();
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldGiveAppropriateMessageWhenInvalidOptionIsEntered() {
+        ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("Invalid".getBytes());
+        System.setIn(inputOptionOne);
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
+        MainMenu mainMenu = new MainMenu(menuOptions);
+
+        mainMenu.parse();
+
+        assertEquals("Select a valid option!\n", outputContent.toString());
+    }
+
+    @After
+    public void cleanUpStreams() {
+        System.setOut(System.out);
+        System.setIn(System.in);
     }
 }
