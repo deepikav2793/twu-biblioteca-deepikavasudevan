@@ -2,7 +2,9 @@ package com.twu.biblioteca;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,23 +16,17 @@ import static org.junit.Assert.assertEquals;
 
 public class MainMenuTest {
 
-    @Test
-    public void shouldPrintMenuOptions(){
-        ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("1".getBytes());
-        System.setIn(inputOptionOne);
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+    private ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+    private ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("1".getBytes());
+    private ByteArrayInputStream inputInvalid = new ByteArrayInputStream("Invalid".getBytes());
+
+    @Before
+    public void setStreamsWithInitialValue() {
         System.setOut(new PrintStream(outputContent));
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
-        MainMenu mainMenu = new MainMenu(menuOptions);
-
-        mainMenu.display();
-
-        assertEquals("MAIN MENU\n1. List Books\n", outputContent.toString());
     }
 
     @Test
     public void shouldTakeOptionAsInputFromCustomer() {
-        ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("1".getBytes());
         System.setIn(inputOptionOne);
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         MainMenu mainMenu = new MainMenu(menuOptions);
@@ -40,30 +36,36 @@ public class MainMenuTest {
 
     @Test
     public void shouldListBooksWhenOptionIsInputtedAsOne() {
-        ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("1".getBytes());
         System.setIn(inputOptionOne);
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputContent));
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         MainMenu mainMenu = new MainMenu(menuOptions);
 
-        mainMenu.parse();
+        mainMenu.delegate();
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
     }
 
     @Test
     public void shouldGiveAppropriateMessageWhenInvalidOptionIsEntered() {
-        ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("Invalid".getBytes());
-        System.setIn(inputOptionOne);
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputContent));
+        System.setIn(inputInvalid);
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         MainMenu mainMenu = new MainMenu(menuOptions);
 
-        mainMenu.parse();
+        mainMenu.delegate();
 
         assertEquals("Select a valid option!\n", outputContent.toString());
+    }
+
+    @Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
+
+    @Test
+    public void shouldExitTheApplicationWhenQuitOptionIsEnabled() {
+        ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("2".getBytes());
+        System.setIn(inputOptionOne);
+
+        exit.expectSystemExit();
+        System.exit(0);
     }
 
     @After

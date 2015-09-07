@@ -1,4 +1,4 @@
-/*Biblioteca Application*/
+/*Biblioteca Application displays Welcome Message and Main Menu*/
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ public class BibliotecaApplication {
 
     public void start() {
         displayWelcomeMessage("Hello! Welcome to Bangalore Public Library!");
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Quit"));
         MainMenu mainMenu = new MainMenu(menuOptions);
         mainMenu.display();
     }

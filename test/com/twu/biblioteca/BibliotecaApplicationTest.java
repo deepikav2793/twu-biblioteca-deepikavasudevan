@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -13,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class BibliotecaApplicationTest {
 
     private ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-    private ByteArrayInputStream inputContent = new ByteArrayInputStream("1".getBytes());
+    private ByteArrayInputStream inputContent = new ByteArrayInputStream("Invalid".getBytes());
 
     @Before
     public void setStreamsWithInitialValue() {
@@ -32,6 +31,6 @@ public class BibliotecaApplicationTest {
         BibliotecaApplication bibliotecaApplication = new BibliotecaApplication();
         bibliotecaApplication.start();
 
-        assertEquals("Hello! Welcome to Bangalore Public Library!\nMAIN MENU\n1. List Books\n", outputContent.toString());
+        assertEquals("Hello! Welcome to Bangalore Public Library!\nMAIN MENU\n1. List Books\n2. Quit\nSelect a valid option!\n", outputContent.toString());
     }
 }

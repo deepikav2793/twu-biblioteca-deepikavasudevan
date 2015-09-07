@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 public class BookListTest {
-
     private final ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
 
     @Before
@@ -25,6 +24,8 @@ public class BookListTest {
 
     @Test
     public void shouldPrintListOfBooksInColumnFormat() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
         ArrayList<Book> listOfBooks = new ArrayList<Book>();
         listOfBooks.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         listOfBooks.add(new Book("Gone Girl", "Gillian Flynn", 2000));

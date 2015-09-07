@@ -17,10 +17,10 @@ public class MainMenu {
         System.out.println("MAIN MENU");
 
         for (String menuOption : menuOptions) {
-           System.out.println(menuOption);
+            System.out.println(menuOption);
         }
 
-        parse();
+        delegate();
     }
 
     public String option() {
@@ -28,14 +28,17 @@ public class MainMenu {
         return input.next();
     }
 
-    public void parse() {
-        if(option().equals("1")){
-            ArrayList<Book> listOfBooks = new ArrayList<>(Arrays.asList(new Book("To Kill A Mockingbird", "Harper Lee", 1968),
-                    new Book("Gone Girl", "Gillian Flynn", 2000)));
-            BookList bookList = new BookList(listOfBooks);
-            bookList.display();
-        }
-        else
-            System.out.println("Select a valid option!");
+    public void delegate() {
+            String choice = option();
+
+            if (choice.equals("1")) {
+                ArrayList<Book> listOfBooks = new ArrayList<>(Arrays.asList(new Book("To Kill A Mockingbird", "Harper Lee", 1968),
+                        new Book("Gone Girl", "Gillian Flynn", 2000)));
+                BookList bookList = new BookList(listOfBooks);
+                bookList.display();
+            } else if (choice.equals("2"))
+                System.exit(0);
+            else
+                System.out.println("Select a valid option!");
     }
 }
