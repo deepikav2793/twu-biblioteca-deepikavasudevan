@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BibliotecaApplication {
+    BookList bookList = new BookList();
 
     public void start() {
         displayWelcomeMessage("Hello! Welcome to Bangalore Public Library!");
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Quit"));
         MainMenu mainMenu = new MainMenu(menuOptions);
         mainMenu.display();
+        mainMenu.dispatch(bookList);
     }
 
     private void displayWelcomeMessage(String welcomeMessage) {

@@ -6,8 +6,9 @@ import java.util.ArrayList;
 public class BookList {
     ArrayList<Book> bookList = new ArrayList<Book>();
 
-    BookList(ArrayList<Book> bookList) {
-        this.bookList = bookList;
+    BookList() {
+        bookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
+        bookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
     }
 
     void display() {
