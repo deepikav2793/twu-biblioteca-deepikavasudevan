@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 
 public class MainMenuTest {
 
@@ -38,12 +37,12 @@ public class MainMenuTest {
     @Test
     public void shouldListBooksWhenOptionIsInputtedAsOne() {
         System.setIn(inputOptionOne);
-        BookList bookList = mock(BookList.class);
+        Library library = new Library();
 
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         MainMenu mainMenu = new MainMenu(menuOptions);
 
-        mainMenu.dispatch(bookList);
+        mainMenu.dispatch(library, mainMenu.option());
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
     }
@@ -51,11 +50,11 @@ public class MainMenuTest {
     @Test
     public void shouldGiveAppropriateMessageWhenInvalidOptionIsEntered() {
         System.setIn(inputInvalid);
-        BookList bookList = mock(BookList.class);
+        Library library = new Library();
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         MainMenu mainMenu = new MainMenu(menuOptions);
 
-        mainMenu.dispatch(bookList);
+        mainMenu.dispatch(library, mainMenu.option());
 
         assertEquals("Select a valid option!\n", outputContent.toString());
     }

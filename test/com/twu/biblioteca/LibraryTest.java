@@ -8,7 +8,7 @@ import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class BookListTest {
+public class LibraryTest {
     private final ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
 
     @Before
@@ -26,8 +26,8 @@ public class BookListTest {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
 
-        BookList bookList = new BookList();
-        bookList.display();
+        Library library = new Library();
+        library.listOfBooks();
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
     }

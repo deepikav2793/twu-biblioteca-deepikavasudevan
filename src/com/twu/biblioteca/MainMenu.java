@@ -25,12 +25,11 @@ public class MainMenu {
         return input.next();
     }
 
-    public void dispatch(BookList bookList) {
-            String choice = option();
+    public void dispatch(Library library, String option) {
 
-            if (choice.equals("1")) {
-                bookList.display();
-            } else if (choice.equals("Quit"))
+            if (option.equals("1")) {
+                library.listOfBooks();
+            } else if (option.equals("Quit"))
                 System.exit(0);
             else
                 System.out.println("Select a valid option!");
