@@ -5,20 +5,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BibliotecaApplication {
+
     Library library = new Library();
+    ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "Quit"));
+    MainMenu mainMenu = new MainMenu(menuOptions);
+    ConsoleInput consoleInput = new ConsoleInput();
 
     public void start() {
         displayWelcomeMessage("Hello! Welcome to Bangalore Public Library!");
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Quit"));
 
         for (; ; ) {
-            MainMenu mainMenu = new MainMenu(menuOptions);
             mainMenu.display();
-            mainMenu.dispatch(library, mainMenu.option());
+            mainMenu.dispatch(library, consoleInput.getInput());
         }
     }
 
-    private void displayWelcomeMessage(String welcomeMessage) {
+    public void displayWelcomeMessage(String welcomeMessage) {
         System.out.println(welcomeMessage);
     }
 

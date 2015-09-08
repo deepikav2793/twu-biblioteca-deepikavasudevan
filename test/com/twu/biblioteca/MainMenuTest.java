@@ -26,23 +26,24 @@ public class MainMenuTest {
     }
 
     @Test
-    public void shouldTakeOptionAsInputFromCustomer() {
-        System.setIn(inputOptionOne);
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
+    public void shouldDisplayListOfOptionsInMainMenu() {
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "Quit"));
         MainMenu mainMenu = new MainMenu(menuOptions);
 
-        assertEquals("1", mainMenu.option());
+        mainMenu.display();
+
+        assertEquals("MAIN MENU\n1. List Books\nQuit\n", outputContent.toString());
     }
 
     @Test
     public void shouldListBooksWhenOptionIsInputtedAsOne() {
         System.setIn(inputOptionOne);
         Library library = new Library();
-
+        ConsoleInput consoleInput = new ConsoleInput();
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         MainMenu mainMenu = new MainMenu(menuOptions);
 
-        mainMenu.dispatch(library, mainMenu.option());
+        mainMenu.dispatch(library, consoleInput.getInput());
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
     }
@@ -53,8 +54,9 @@ public class MainMenuTest {
         Library library = new Library();
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         MainMenu mainMenu = new MainMenu(menuOptions);
+        ConsoleInput consoleInput = new ConsoleInput();
 
-        mainMenu.dispatch(library, mainMenu.option());
+        mainMenu.dispatch(library, consoleInput.getInput());
 
         assertEquals("Select a valid option!\n", outputContent.toString());
     }

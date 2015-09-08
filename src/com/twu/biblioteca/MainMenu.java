@@ -20,13 +20,7 @@ public class MainMenu {
         }
     }
 
-    public String option() {
-        Scanner input = new Scanner(System.in);
-        return input.next();
-    }
-
     public void dispatch(Library library, String option) {
-
             if (option.equals("1")) {
                 library.listOfBooks();
             } else if (option.equals("Quit"))
