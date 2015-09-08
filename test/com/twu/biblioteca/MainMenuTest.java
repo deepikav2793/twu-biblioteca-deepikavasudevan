@@ -10,6 +10,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import static org.junit.Assert.assertEquals;
 
@@ -25,7 +27,7 @@ public class MainMenuTest {
     @Test
     public void shouldDisplayListOfOptionsInMainMenu() {
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "Quit"));
-        MainMenu mainMenu = new MainMenu(menuOptions);
+        MainMenu mainMenu = new MainMenu(menuOptions, new ConsoleInput());
 
         mainMenu.display();
 
@@ -40,7 +42,7 @@ public class MainMenuTest {
         Library library = new Library();
         ConsoleInput consoleInput = new ConsoleInput();
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
-        MainMenu mainMenu = new MainMenu(menuOptions);
+        MainMenu mainMenu = new MainMenu(menuOptions, new ConsoleInput());
 
         mainMenu.dispatch(library, consoleInput.getInput());
 
@@ -53,8 +55,8 @@ public class MainMenuTest {
         System.setIn(inputInvalid);
         Library library = new Library();
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
-        MainMenu mainMenu = new MainMenu(menuOptions);
         ConsoleInput consoleInput = new ConsoleInput();
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
 
         mainMenu.dispatch(library, consoleInput.getInput());
 
@@ -64,7 +66,7 @@ public class MainMenuTest {
     @Test
     public void shouldHaveAnotherOptionToCheckOutABook() {
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout", "Quit"));
-        MainMenu mainMenu = new MainMenu(menuOptions);
+        MainMenu mainMenu = new MainMenu(menuOptions, new ConsoleInput());
 
         mainMenu.display();
 
@@ -73,8 +75,10 @@ public class MainMenuTest {
 
     @Test
     public void shouldChooseCheckOutBookOptionWhenOptionTwoIsEntered() {
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout", "Quit"));
-        MainMenu mainMenu = new MainMenu(menuOptions);
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
         Library library = new Library();
 
         mainMenu.dispatch(library, "2");

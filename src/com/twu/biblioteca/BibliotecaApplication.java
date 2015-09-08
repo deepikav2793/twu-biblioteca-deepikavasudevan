@@ -8,8 +8,8 @@ public class BibliotecaApplication {
 
     Library library = new Library();
     ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Check Out", "Quit"));
-    MainMenu mainMenu = new MainMenu(menuOptions);
     ConsoleInput consoleInput = new ConsoleInput();
+    MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
 
     public void start() {
         displayWelcomeMessage("Hello! Welcome to Bangalore Public Library!");

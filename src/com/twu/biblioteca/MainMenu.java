@@ -6,9 +6,11 @@ import java.util.ArrayList;
 public class MainMenu {
 
     private ArrayList<String> menuOptions = new ArrayList<String>();
+    private ConsoleInput consoleInput;
 
-    MainMenu(ArrayList<String> menuOptions) {
+    MainMenu(ArrayList<String> menuOptions, ConsoleInput consoleInput) {
         this.menuOptions = menuOptions;
+        this.consoleInput = consoleInput;
     }
 
     public void display() {
@@ -23,7 +25,7 @@ public class MainMenu {
         if (option.equals("1")) {
             library.listBooks();
         } else if (option.equals("2")) {
-            System.out.println("Thank you! Enjoy the book");
+            System.out.println(library.checkOut(new Book(consoleInput.getInput(),"", 0)));
         } else if (option.equals("Quit"))
             System.exit(0);
         else
