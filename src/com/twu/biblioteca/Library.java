@@ -20,7 +20,13 @@ public class Library {
         }
     }
 
-    public String checkOut() {
-        return "Thank you! Enjoy the book";
+    public String checkOut(Book thatBook) {
+        for(Book book : availableBookList) {
+            if (book.equals(thatBook)) {
+                availableBookList.remove(availableBookList.indexOf(thatBook));
+                return "Thank you! Enjoy the book";
+            }
+        }
+        return "That book is not available";
     }
 }
