@@ -34,10 +34,8 @@ public class LibraryTest {
     @Test
     public void shouldCheckOutTheBookSpecifiedByTheUser() {
         Library library = new Library();
-        library.checkOut(new Book("Gone Girl", "", 0));
-        library.listBooks();
 
-        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n", outputContent.toString());
+        assertEquals("Thank you! Enjoy the book", library.checkOut(new Book("Gone Girl", "", 0)));
     }
 
     @Test
