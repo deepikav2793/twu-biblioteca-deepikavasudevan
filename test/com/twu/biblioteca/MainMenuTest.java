@@ -16,10 +16,6 @@ import static org.junit.Assert.assertEquals;
 public class MainMenuTest {
 
     private ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-    private ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("1".getBytes());
-    private ByteArrayInputStream inputInvalid = new ByteArrayInputStream("Invalid".getBytes());
-    private ByteArrayInputStream inputQuit = new ByteArrayInputStream("Quit".getBytes());
-    private ByteArrayInputStream inputBookName = new ByteArrayInputStream("Gone Girl".getBytes());
 
     @Before
     public void setStreamsWithInitialValue() {
@@ -36,8 +32,10 @@ public class MainMenuTest {
         assertEquals("MAIN MENU\n1. List Books\nQuit\n", outputContent.toString());
     }
 
+
     @Test
     public void shouldListBooksWhenOptionIsInputtedAsOne() {
+        ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("1".getBytes());
         System.setIn(inputOptionOne);
         Library library = new Library();
         ConsoleInput consoleInput = new ConsoleInput();
@@ -51,6 +49,7 @@ public class MainMenuTest {
 
     @Test
     public void shouldGiveAppropriateMessageWhenInvalidOptionIsEntered() {
+        ByteArrayInputStream inputInvalid = new ByteArrayInputStream("Invalid".getBytes());
         System.setIn(inputInvalid);
         Library library = new Library();
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
@@ -88,6 +87,7 @@ public class MainMenuTest {
 
     @Test
     public void shouldExitTheApplicationWhenQuitOptionIsEnabled() {
+        ByteArrayInputStream inputQuit = new ByteArrayInputStream("Quit".getBytes());
         System.setIn(inputQuit);
 
         exit.expectSystemExit();

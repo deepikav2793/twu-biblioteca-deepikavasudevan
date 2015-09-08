@@ -3,13 +3,15 @@ package com.twu.biblioteca;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
 
 public class LibraryTest {
-    private final ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+    private ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
 
     @Before
     public void setStreamsWithInitialValue() {
@@ -23,12 +25,18 @@ public class LibraryTest {
 
     @Test
     public void shouldPrintListOfBooksInColumnFormat() {
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputContent));
-
         Library library = new Library();
         library.listBooks();
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldCheckOutTheBookSpecifiedByTheUser() {
+        ByteArrayInputStream inputBookName = new ByteArrayInputStream("Gone Girl".getBytes());
+        System.setIn(inputBookName);
+        Library library = new Library();
+
+        assertEquals("Thank you! Enjoy the book", library.checkOut());
     }
 }

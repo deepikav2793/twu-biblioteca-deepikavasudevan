@@ -19,4 +19,8 @@ public class Library {
             System.out.println(book.toString());
         }
     }
+
+    public String checkOut() {
+        return "Thank you! Enjoy the book";
+    }
 }
