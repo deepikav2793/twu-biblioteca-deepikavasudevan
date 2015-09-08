@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class BibliotecaApplication {
 
     Library library = new Library();
-    ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "Quit"));
+    ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Check Out", "Quit"));
     MainMenu mainMenu = new MainMenu(menuOptions);
     ConsoleInput consoleInput = new ConsoleInput();
 

@@ -4,17 +4,19 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 
 public class Library {
-    ArrayList<Book> bookList = new ArrayList<Book>();
+
+    ArrayList<Book> availableBookList = new ArrayList<Book>();
+    ArrayList<Book> checkedOutBooks = new ArrayList<Book>();
 
     Library() {
-        bookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
-        bookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
+        availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
+        availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
     }
 
-    void listOfBooks() {
+    void listBooks() {
         System.out.println("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION");
 
-        for (Book book : bookList) {
+        for (Book book : availableBookList) {
             System.out.println(book.toString());
         }
     }

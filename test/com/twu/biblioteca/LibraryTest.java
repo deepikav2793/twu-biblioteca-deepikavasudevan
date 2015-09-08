@@ -27,7 +27,7 @@ public class LibraryTest {
         System.setOut(new PrintStream(outputContent));
 
         Library library = new Library();
-        library.listOfBooks();
+        library.listBooks();
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
     }

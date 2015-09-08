@@ -2,7 +2,6 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MainMenu {
 
@@ -22,7 +21,7 @@ public class MainMenu {
 
     public void dispatch(Library library, String option) {
             if (option.equals("1")) {
-                library.listOfBooks();
+                library.listBooks();
             } else if (option.equals("Quit"))
                 System.exit(0);
             else

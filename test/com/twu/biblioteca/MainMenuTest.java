@@ -61,6 +61,16 @@ public class MainMenuTest {
         assertEquals("Select a valid option!\n", outputContent.toString());
     }
 
+    @Test
+    public void shouldHaveAnotherOptionToCheckOutABook() {
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout", "Quit"));
+        MainMenu mainMenu = new MainMenu(menuOptions);
+
+        mainMenu.display();
+
+        assertEquals("MAIN MENU\n1. List Books\n2. Checkout\nQuit\n", outputContent.toString());
+    }
+
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
