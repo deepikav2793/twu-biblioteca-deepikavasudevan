@@ -20,11 +20,13 @@ public class MainMenu {
     }
 
     public void dispatch(Library library, String option) {
-            if (option.equals("1")) {
-                library.listBooks();
-            } else if (option.equals("Quit"))
-                System.exit(0);
-            else
-                System.out.println("Select a valid option!");
+        if (option.equals("1")) {
+            library.listBooks();
+        } else if (option.equals("2")) {
+            System.out.println("Thank you! Enjoy the book");
+        } else if (option.equals("Quit"))
+            System.exit(0);
+        else
+            System.out.println("Select a valid option!");
     }
 }

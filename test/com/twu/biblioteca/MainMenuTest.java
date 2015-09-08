@@ -19,6 +19,7 @@ public class MainMenuTest {
     private ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("1".getBytes());
     private ByteArrayInputStream inputInvalid = new ByteArrayInputStream("Invalid".getBytes());
     private ByteArrayInputStream inputQuit = new ByteArrayInputStream("Quit".getBytes());
+    private ByteArrayInputStream inputBookName = new ByteArrayInputStream("Gone Girl".getBytes());
 
     @Before
     public void setStreamsWithInitialValue() {
@@ -69,6 +70,17 @@ public class MainMenuTest {
         mainMenu.display();
 
         assertEquals("MAIN MENU\n1. List Books\n2. Checkout\nQuit\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldChooseCheckOutBookOptionWhenOptionTwoIsEntered() {
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout", "Quit"));
+        MainMenu mainMenu = new MainMenu(menuOptions);
+        Library library = new Library();
+
+        mainMenu.dispatch(library, "2");
+
+        assertEquals("Thank you! Enjoy the book\n", outputContent.toString());
     }
 
     @Rule

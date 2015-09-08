@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Library {
 
     ArrayList<Book> availableBookList = new ArrayList<Book>();
-    ArrayList<Book> checkedOutBooks = new ArrayList<Book>();
 
     Library() {
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
