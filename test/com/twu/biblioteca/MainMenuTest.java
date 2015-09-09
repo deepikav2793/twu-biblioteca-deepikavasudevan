@@ -79,7 +79,7 @@ public class MainMenuTest {
     @Test
     public void shouldChooseCheckOutBookOptionWhenOptionTwoIsEntered() {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout", "Quit"));
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "Quit"));
         MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
         Library library = new Library();
 
@@ -87,6 +87,19 @@ public class MainMenuTest {
         mainMenu.dispatch(library, "2");
 
         assertEquals("Enter book to be checked out:\nThank you! Enjoy the book\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldChooseReturnBookOptionWhenOptionThreeIsEntered() {
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "3. Return Book", "Quit"));
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
+        Library library = new Library();
+
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+        mainMenu.dispatch(library, "3");
+
+        assertEquals("Enter book to be returned:\nThat is not a valid book to return\n", outputContent.toString());
     }
 
     @Rule

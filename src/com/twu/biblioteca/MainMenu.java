@@ -28,6 +28,9 @@ public class MainMenu {
         } else if (option.equals("2")) {
             System.out.println("Enter book to be checked out:");
             System.out.println(library.checkOutBook(consoleInput));
+        } else if (option.equals("3")){
+            System.out.println("Enter book to be returned:");
+            System.out.println(library.returnBook(consoleInput));
         } else if (option.equals("Quit"))
             System.exit(0);
         else
