@@ -19,4 +19,16 @@ public class ControllerTest {
 
         assertEquals("Hello! Welcome to Bangalore Public Library!\n", outputContent.toString());
     }
+
+    @Test
+    public void shouldInitialiseMenuAndReturnIt() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+
+        Controller controller = new Controller();
+        MainMenu mainMenu = controller.initialiseMainMenuWithOptions();
+        mainMenu.display();
+
+        assertEquals("MAIN MENU\n1. List Books\n2. Check Out\nQuit\n", outputContent.toString());
+    }
 }

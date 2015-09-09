@@ -7,13 +7,11 @@ import java.util.Arrays;
 public class BibliotecaApplication {
 
     Library library = new Library();
-    WelcomeMessage welcomeMessage = new WelcomeMessage();
-    ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Check Out", "Quit"));
-    ConsoleInput consoleInput = new ConsoleInput();
-    MainMenu mainMenu =  new MainMenu(menuOptions, consoleInput);
+    Controller controller = new Controller();
 
     public void start() {
-        welcomeMessage.display();
+        controller.displayWelcomeMessage();
+        MainMenu mainMenu = controller.initialiseMainMenuWithOptions();
 
         for (; ; ) {
             mainMenu.display();
