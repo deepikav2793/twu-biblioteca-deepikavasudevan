@@ -40,6 +40,15 @@ public class Library {
     }
 
     public String returnBook(ConsoleInput consoleInput) {
+        String thatBookName = consoleInput.getInput();
+        Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_OF_PUBLICATION);
+
+        for (Book book : checkedBookList) {
+            if(book.equals(thatBook)) {
+                availableBookList.add(book);
+                checkedBookList.remove(book);
+            }
+        }
         return "Thank you for returning the book";
     }
 }

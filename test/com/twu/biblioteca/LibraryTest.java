@@ -79,4 +79,17 @@ public class LibraryTest {
 
         assertEquals("Thank you for returning the book", library.returnBook(consoleInput));
     }
+
+    @Test
+    public void shouldHaveReturnedBookInListOfBooks() {
+        Library library = new Library();
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        library.checkOutBook(consoleInput);
+        library.returnBook(consoleInput);
+
+        library.listBooks();
+
+        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t" +
+                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", outputContent.toString());
+    }
 }
