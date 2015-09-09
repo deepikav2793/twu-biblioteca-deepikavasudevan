@@ -47,8 +47,9 @@ public class Library {
             if(book.equals(thatBook)) {
                 availableBookList.add(book);
                 checkedBookList.remove(book);
+                return "Thank you for returning the book";
             }
         }
-        return "Thank you for returning the book";
+        return "That is not a valid book to return";
     }
 }

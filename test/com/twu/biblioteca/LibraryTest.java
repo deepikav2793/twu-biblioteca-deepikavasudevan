@@ -49,7 +49,9 @@ public class LibraryTest {
         System.setIn(inputBookName);
         Library library = new Library();
         ConsoleInput consoleInput = mock(ConsoleInput.class);
+
         when(consoleInput.getInput()).thenReturn("Gone Girl");
+
         library.checkOutBook(consoleInput);
         library.listBooks();
 
@@ -73,9 +75,9 @@ public class LibraryTest {
     public void shouldReturnBookIfItHasBeenCheckedOut() {
         Library library = new Library();
         ConsoleInput consoleInput = mock(ConsoleInput.class);
-        library.checkOutBook(consoleInput);
 
-        when(consoleInput.getInput()).thenReturn("Gone Girl");
+        when(consoleInput.getInput()).thenReturn("Gone Girl", "Gone Girl");
+        library.checkOutBook(consoleInput);
 
         assertEquals("Thank you for returning the book", library.returnBook(consoleInput));
     }
@@ -84,12 +86,23 @@ public class LibraryTest {
     public void shouldHaveReturnedBookInListOfBooks() {
         Library library = new Library();
         ConsoleInput consoleInput = mock(ConsoleInput.class);
+
+        when(consoleInput.getInput()).thenReturn("Gone Girl", "Gone Girl");
         library.checkOutBook(consoleInput);
         library.returnBook(consoleInput);
-
         library.listBooks();
 
-        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t" +
-                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", outputContent.toString());
+        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
+                "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldNotReturnBookIfItHasNotBeenCheckedOut() {
+        Library library = new Library();
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+
+        assertEquals("That is not a valid book to return", library.returnBook(consoleInput));
     }
 }
