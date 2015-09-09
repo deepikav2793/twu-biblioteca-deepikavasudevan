@@ -2,16 +2,19 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Controller {
+
     public void displayWelcomeMessage() {
         WelcomeMessage welcomeMessage = new WelcomeMessage();
         welcomeMessage.display();
     }
 
-    public MainMenu initialiseMainMenuWithOptions() {
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Check Out", "Quit"));
+    private MainMenu initialiseMainMenuWithOptions() {
+        ArrayList<String> menuOptions = new ArrayList<>();
+        menuOptions.add("1. List Books");
+        menuOptions.add("2. Check Out");
+        menuOptions.add("Quit");
         ConsoleInput consoleInput = new ConsoleInput();
 
         return new MainMenu(menuOptions, consoleInput);
@@ -22,10 +25,16 @@ public class Controller {
         mainMenu.display();
     }
 
-    public void getMenuOptionAndDispatch(ConsoleInput consoleInput) {
+    public void initialiseMenuDispatch(Library library, ConsoleInput consoleInput) {
         MainMenu mainMenu = initialiseMainMenuWithOptions();
-        Library library = new Library();
-
         mainMenu.dispatch(library, consoleInput.getInput());
+    }
+
+    public void initialiseApplication(Library library, ConsoleInput consoleInput) {
+        displayWelcomeMessage();
+        for(; ;) {
+            displayMenuOptions();
+            initialiseMenuDispatch(library, consoleInput);
+        }
     }
 }
