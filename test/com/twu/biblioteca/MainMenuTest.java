@@ -47,7 +47,8 @@ public class MainMenuTest {
 
         mainMenu.dispatch(library, "1");
 
-        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
+        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn" +
+                "\t2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", outputContent.toString());
     }
 
     @Test

@@ -29,7 +29,8 @@ public class LibraryTest {
         Library library = new Library();
         library.listBooks();
 
-        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
+        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t" +
+                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", outputContent.toString());
     }
 
     @Test
@@ -52,7 +53,8 @@ public class LibraryTest {
         library.checkOutBook(consoleInput);
         library.listBooks();
 
-        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n", outputContent.toString());
+        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
+                "The Scarlett Letter\tNathaniel Hawthorne\t1850\n", outputContent.toString());
     }
 
     @Test

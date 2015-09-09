@@ -14,6 +14,7 @@ public class Library {
     Library() {
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
+        availableBookList.add(new Book("The Scarlett Letter","Nathaniel Hawthorne", 1850));
     }
 
     void listBooks() {
