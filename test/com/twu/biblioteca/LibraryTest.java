@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -48,5 +47,12 @@ public class LibraryTest {
         library.listBooks();
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldNotCheckOutBookSpecifiedByUserIfNotFoundInLibrary() {
+        Library library = new Library();
+
+        assertEquals("That book is not available", library.checkOut(new Book("Emma", "", 0)));
     }
 }

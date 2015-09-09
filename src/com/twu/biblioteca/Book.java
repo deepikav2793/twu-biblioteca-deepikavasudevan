@@ -1,4 +1,4 @@
-/*Book formats its details to column format*/
+/*Book formats its details into column format and checks if it is equal to another book*/
 package com.twu.biblioteca;
 
 public class Book {

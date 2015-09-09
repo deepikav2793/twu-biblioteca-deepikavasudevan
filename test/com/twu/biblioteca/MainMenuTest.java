@@ -27,7 +27,8 @@ public class MainMenuTest {
     @Test
     public void shouldDisplayListOfOptionsInMainMenu() {
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "Quit"));
-        MainMenu mainMenu = new MainMenu(menuOptions, new ConsoleInput());
+        ConsoleInput consoleInput = new ConsoleInput();
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
 
         mainMenu.display();
 
@@ -42,9 +43,9 @@ public class MainMenuTest {
         Library library = new Library();
         ConsoleInput consoleInput = new ConsoleInput();
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
-        MainMenu mainMenu = new MainMenu(menuOptions, new ConsoleInput());
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
 
-        mainMenu.dispatch(library, consoleInput.getInput());
+        mainMenu.dispatch(library);
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
     }
@@ -58,7 +59,7 @@ public class MainMenuTest {
         ConsoleInput consoleInput = new ConsoleInput();
         MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
 
-        mainMenu.dispatch(library, consoleInput.getInput());
+        mainMenu.dispatch(library);
 
         assertEquals("Select a valid option!\n", outputContent.toString());
     }
@@ -66,7 +67,8 @@ public class MainMenuTest {
     @Test
     public void shouldHaveAnotherOptionToCheckOutABook() {
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout", "Quit"));
-        MainMenu mainMenu = new MainMenu(menuOptions, new ConsoleInput());
+        ConsoleInput consoleInput = new ConsoleInput();
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
 
         mainMenu.display();
 
@@ -76,14 +78,14 @@ public class MainMenuTest {
     @Test
     public void shouldChooseCheckOutBookOptionWhenOptionTwoIsEntered() {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
-        when(consoleInput.getInput()).thenReturn("Gone Girl");
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout", "Quit"));
         MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
         Library library = new Library();
 
-        mainMenu.dispatch(library, "2");
+        when(consoleInput.getInput()).thenReturn("2", "Gone Girl");
+        mainMenu.dispatch(library);
 
-        assertEquals("Thank you! Enjoy the book\n", outputContent.toString());
+        assertEquals("Enter book to be checked out:\nThank you! Enjoy the book\n", outputContent.toString());
     }
 
     @Rule

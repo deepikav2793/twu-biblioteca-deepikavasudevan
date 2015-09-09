@@ -12,6 +12,6 @@ public class ConsoleInput {
     }
 
     public String getInput() {
-        return input.next();
+        return input.nextLine();
     }
 }

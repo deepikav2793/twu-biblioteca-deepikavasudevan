@@ -1,4 +1,4 @@
-/*Book List prints its list of books in column format*/
+/*Library prints its list of books and checks out book*/
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Library {
 
     ArrayList<Book> availableBookList = new ArrayList<Book>();
+    ArrayList<Book> checkedBookList = new ArrayList<Book>();
 
     Library() {
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
@@ -23,6 +24,7 @@ public class Library {
     public String checkOut(Book thatBook) {
         for(Book book : availableBookList) {
             if (book.equals(thatBook)) {
+                checkedBookList.add(book);
                 availableBookList.remove(availableBookList.indexOf(thatBook));
                 return "Thank you! Enjoy the book";
             }

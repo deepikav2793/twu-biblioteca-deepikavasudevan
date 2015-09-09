@@ -1,4 +1,4 @@
-/*Biblioteca Application displays Welcome Message and Main Menu*/
+/*Biblioteca Application displays Welcome Message and invokes Main Menu repeatedly*/
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
@@ -7,21 +7,18 @@ import java.util.Arrays;
 public class BibliotecaApplication {
 
     Library library = new Library();
+    WelcomeMessage welcomeMessage = new WelcomeMessage();
     ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Check Out", "Quit"));
     ConsoleInput consoleInput = new ConsoleInput();
-    MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
+    MainMenu mainMenu =  new MainMenu(menuOptions, consoleInput);
 
     public void start() {
-        displayWelcomeMessage("Hello! Welcome to Bangalore Public Library!");
+        welcomeMessage.display();
 
         for (; ; ) {
             mainMenu.display();
-            mainMenu.dispatch(library, consoleInput.getInput());
+            mainMenu.dispatch(library);
         }
-    }
-
-    public void displayWelcomeMessage(String welcomeMessage) {
-        System.out.println(welcomeMessage);
     }
 
     public static void main(String[] args) {
