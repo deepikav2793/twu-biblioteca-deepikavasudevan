@@ -39,7 +39,7 @@ public class LibraryTest {
 
         when(consoleInput.getInput()).thenReturn("Gone Girl");
 
-        assertEquals("Thank you! Enjoy the book", library.checkOut(consoleInput));
+        assertEquals("Thank you! Enjoy the book", library.checkOutBook(consoleInput));
     }
 
     @Test
@@ -49,7 +49,7 @@ public class LibraryTest {
         Library library = new Library();
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
-        library.checkOut(consoleInput);
+        library.checkOutBook(consoleInput);
         library.listBooks();
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n", outputContent.toString());
@@ -59,11 +59,22 @@ public class LibraryTest {
     public void shouldNotCheckOutBookSpecifiedByUserIfNotFoundInLibrary() {
         Library library = new Library();
         ConsoleInput consoleInput = mock(ConsoleInput.class);
-        library.checkOut(consoleInput);
+        library.checkOutBook(consoleInput);
         library.listBooks();
 
         when(consoleInput.getInput()).thenReturn("Goner Girl");
 
-        assertEquals("That book is not available", library.checkOut(consoleInput));
+        assertEquals("That book is not available", library.checkOutBook(consoleInput));
+    }
+
+    @Test
+    public void shouldReturnBookIfItHasBeenCheckedOut() {
+        Library library = new Library();
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        library.checkOutBook(consoleInput);
+
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+
+        assertEquals("Thank you for returning the book", library.returnBook(consoleInput));
     }
 }

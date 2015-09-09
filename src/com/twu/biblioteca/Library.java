@@ -24,7 +24,7 @@ public class Library {
         }
     }
 
-    public String checkOut(ConsoleInput consoleInput) {
+    public String checkOutBook(ConsoleInput consoleInput) {
         String thatBookName = consoleInput.getInput();
         Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_OF_PUBLICATION);
 
@@ -36,5 +36,9 @@ public class Library {
             }
         }
         return "That book is not available";
+    }
+
+    public String returnBook(ConsoleInput consoleInput) {
+        return "Thank you for returning the book";
     }
 }
