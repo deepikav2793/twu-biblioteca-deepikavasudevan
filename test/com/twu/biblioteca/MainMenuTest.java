@@ -45,7 +45,7 @@ public class MainMenuTest {
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
 
-        mainMenu.dispatch(library);
+        mainMenu.dispatch(library, "1");
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
     }
@@ -59,7 +59,7 @@ public class MainMenuTest {
         ConsoleInput consoleInput = new ConsoleInput();
         MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
 
-        mainMenu.dispatch(library);
+        mainMenu.dispatch(library, "Invalid");
 
         assertEquals("Select a valid option!\n", outputContent.toString());
     }
@@ -82,8 +82,8 @@ public class MainMenuTest {
         MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
         Library library = new Library();
 
-        when(consoleInput.getInput()).thenReturn("2", "Gone Girl");
-        mainMenu.dispatch(library);
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+        mainMenu.dispatch(library, "2");
 
         assertEquals("Enter book to be checked out:\nThank you! Enjoy the book\n", outputContent.toString());
     }

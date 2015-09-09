@@ -2,10 +2,13 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ControllerTest {
 
@@ -41,5 +44,18 @@ public class ControllerTest {
         controller.displayMenuOptions();
 
         assertEquals("MAIN MENU\n1. List Books\n2. Check Out\nQuit\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldGetMenuOptionFromUserAndSendItToBeDispatchedByMainMenu() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInput.getInput()).thenReturn("Invalid");
+
+        Controller controller = new Controller();
+        controller.getMenuOptionAndDispatch(consoleInput);
+
+        assertEquals("Select a valid option!\n", outputContent.toString());
     }
 }

@@ -21,8 +21,7 @@ public class MainMenu {
         }
     }
 
-    public void dispatch(Library library) {
-        String option = option();
+    public void dispatch(Library library, String option) {
 
         if (option.equals("1")) {
             library.listBooks();
@@ -33,9 +32,5 @@ public class MainMenu {
             System.exit(0);
         else
             System.out.println("Select a valid option!");
-    }
-
-    public String option() {
-        return consoleInput.getInput();
     }
 }

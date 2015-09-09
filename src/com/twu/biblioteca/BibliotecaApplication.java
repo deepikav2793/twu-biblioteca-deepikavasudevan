@@ -14,8 +14,7 @@ public class BibliotecaApplication {
         MainMenu mainMenu = controller.initialiseMainMenuWithOptions();
 
         for (; ; ) {
-            mainMenu.display();
-            mainMenu.dispatch(library);
+            mainMenu.dispatch(library, "1");
         }
     }
 

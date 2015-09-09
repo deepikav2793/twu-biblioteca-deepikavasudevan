@@ -21,4 +21,11 @@ public class Controller {
         MainMenu mainMenu = initialiseMainMenuWithOptions();
         mainMenu.display();
     }
+
+    public void getMenuOptionAndDispatch(ConsoleInput consoleInput) {
+        MainMenu mainMenu = initialiseMainMenuWithOptions();
+        Library library = new Library();
+
+        mainMenu.dispatch(library, consoleInput.getInput());
+    }
 }
