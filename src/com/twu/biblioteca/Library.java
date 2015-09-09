@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 public class Library {
 
+    private final String NO_AUTHOR_NAME = "";
+    private final int NO_YEAR_OF_PUBLICATION = 0;
+
     ArrayList<Book> availableBookList = new ArrayList<Book>();
     ArrayList<Book> checkedBookList = new ArrayList<Book>();
 
@@ -21,11 +24,14 @@ public class Library {
         }
     }
 
-    public String checkOut(Book thatBook) {
+    public String checkOut(ConsoleInput consoleInput) {
+        String thatBookName = consoleInput.getInput();
+        Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_OF_PUBLICATION);
+
         for(Book book : availableBookList) {
             if (book.equals(thatBook)) {
                 checkedBookList.add(book);
-                availableBookList.remove(availableBookList.indexOf(thatBook));
+                availableBookList.remove(book);
                 return "Thank you! Enjoy the book";
             }
         }

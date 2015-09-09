@@ -1,4 +1,4 @@
-/*Controls flow of control of Bibllioteca*/
+/*Controls flow of Bibllioteca*/
 package com.twu.biblioteca;
 
 import java.util.ArrayList;

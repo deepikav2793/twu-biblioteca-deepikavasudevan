@@ -8,6 +8,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class LibraryTest {
     private ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
@@ -33,17 +35,21 @@ public class LibraryTest {
     @Test
     public void shouldCheckOutTheBookSpecifiedByTheUser() {
         Library library = new Library();
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
 
-        assertEquals("Thank you! Enjoy the book", library.checkOut(new Book("Gone Girl", "", 0)));
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+
+        assertEquals("Thank you! Enjoy the book", library.checkOut(consoleInput));
     }
 
     @Test
     public void shouldNotHaveCheckedOutBookInUpdatedBookList() {
         ByteArrayInputStream inputBookName = new ByteArrayInputStream("Gone Girl".getBytes());
         System.setIn(inputBookName);
-
         Library library = new Library();
-        library.checkOut(new Book("Gone Girl", "", 0));
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+        library.checkOut(consoleInput);
         library.listBooks();
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n", outputContent.toString());
@@ -52,7 +58,12 @@ public class LibraryTest {
     @Test
     public void shouldNotCheckOutBookSpecifiedByUserIfNotFoundInLibrary() {
         Library library = new Library();
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        library.checkOut(consoleInput);
+        library.listBooks();
 
-        assertEquals("That book is not available", library.checkOut(new Book("Emma", "", 0)));
+        when(consoleInput.getInput()).thenReturn("Goner Girl");
+
+        assertEquals("That book is not available", library.checkOut(consoleInput));
     }
 }

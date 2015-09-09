@@ -46,4 +46,21 @@ public class ControllerTest {
 
         assertEquals("Select a valid option!\n", outputContent.toString());
     }
+
+
+//    @Test
+//    public void foo() {
+//        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+//        System.setOut(new PrintStream(outputContent));
+//        ConsoleInput consoleInput = mock(ConsoleInput.class);
+//
+//        when(consoleInput.getInput()).thenReturn("1", "Quit");
+//
+//        Library library = new Library();
+//        Controller controller = new Controller();
+//        controller.initialiseApplication(library, consoleInput);
+//
+//        assertEquals("Hello! Welcome to Bangalore Public Library!\nMAIN MENU\n1. List Books\n2. Check Out\nQuit\nNAME OF BOOK\t" +
+//                "NAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t2000\n", outputContent.toString());
+//    }
 }

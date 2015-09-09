@@ -1,4 +1,4 @@
-/*Biblioteca Application displays Welcome Message and invokes Main Menu repeatedly*/
+/*Biblioteca Application */
 package com.twu.biblioteca;
 
 public class BibliotecaApplication {
