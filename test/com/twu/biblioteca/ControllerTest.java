@@ -29,7 +29,7 @@ public class ControllerTest {
         Controller controller = new Controller();
         controller.displayMenuOptions();
 
-        assertEquals("MAIN MENU\n1. List Books\n2. Check Out\nQuit\n", outputContent.toString());
+        assertEquals("MAIN MENU\n1. List Books\n2. Checkout Book\n3. Return Book\nQuit\n", outputContent.toString());
     }
 
     @Test

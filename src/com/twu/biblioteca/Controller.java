@@ -13,7 +13,8 @@ public class Controller {
     private MainMenu initialiseMainMenuWithOptions() {
         ArrayList<String> menuOptions = new ArrayList<>();
         menuOptions.add("1. List Books");
-        menuOptions.add("2. Check Out");
+        menuOptions.add("2. Checkout Book");
+        menuOptions.add("3. Return Book");
         menuOptions.add("Quit");
         ConsoleInput consoleInput = new ConsoleInput();
 
