@@ -21,13 +21,24 @@ public class ControllerTest {
     }
 
     @Test
-    public void shouldInitialiseMenuAndReturnIt() {
+    public void shouldInitialiseMenu() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
 
         Controller controller = new Controller();
         MainMenu mainMenu = controller.initialiseMainMenuWithOptions();
         mainMenu.display();
+
+        assertEquals("MAIN MENU\n1. List Books\n2. Check Out\nQuit\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldDisplayMenuOptions() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+
+        Controller controller = new Controller();
+        controller.displayMenuOptions();
 
         assertEquals("MAIN MENU\n1. List Books\n2. Check Out\nQuit\n", outputContent.toString());
     }

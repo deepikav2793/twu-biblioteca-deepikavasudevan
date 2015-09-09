@@ -16,4 +16,9 @@ public class Controller {
 
         return new MainMenu(menuOptions, consoleInput);
     }
+
+    public void displayMenuOptions() {
+        MainMenu mainMenu = initialiseMainMenuWithOptions();
+        mainMenu.display();
+    }
 }
