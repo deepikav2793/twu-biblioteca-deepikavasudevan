@@ -3,11 +3,11 @@ package com.twu.biblioteca;
 
 public class BibliotecaApplication {
 
-    ConsoleInput consoleInput = new ConsoleInput();
-    Library library = new Library();
-    Controller controller = new Controller();
+    private ConsoleInput consoleInput = new ConsoleInput();
+    private Library library = new Library();
+    private Controller controller = new Controller();
 
-    public void start() {
+    private void start() {
         controller.initialiseApplication(library, consoleInput);
     }
 

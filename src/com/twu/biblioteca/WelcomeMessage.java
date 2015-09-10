@@ -2,9 +2,9 @@
 package com.twu.biblioteca;
 
 public class WelcomeMessage {
-    String welcomeMessage;
+    private String welcomeMessage;
 
-    WelcomeMessage() {
+    public WelcomeMessage() {
         welcomeMessage = "Hello! Welcome to Bangalore Public Library!";
     }
 

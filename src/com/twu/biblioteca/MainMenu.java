@@ -8,7 +8,7 @@ public class MainMenu {
     private ArrayList<String> menuOptions = new ArrayList<String>();
     private ConsoleInput consoleInput;
 
-    MainMenu(ArrayList<String> menuOptions, ConsoleInput consoleInput) {
+    public MainMenu(ArrayList<String> menuOptions, ConsoleInput consoleInput) {
         this.menuOptions = menuOptions;
         this.consoleInput = consoleInput;
     }

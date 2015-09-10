@@ -1,4 +1,4 @@
-/*Library prints its list of books and checks out book*/
+/*Library prints its list of books, checks it out and returns it*/
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
@@ -8,16 +8,16 @@ public class Library {
     private final String NO_AUTHOR_NAME = "";
     private final int NO_YEAR_OF_PUBLICATION = 0;
 
-    ArrayList<Book> availableBookList = new ArrayList<Book>();
-    ArrayList<Book> checkedBookList = new ArrayList<Book>();
+    private ArrayList<Book> availableBookList = new ArrayList<Book>();
+    private ArrayList<Book> checkedBookList = new ArrayList<Book>();
 
-    Library() {
+    public Library() {
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter","Nathaniel Hawthorne", 1850));
     }
 
-    void listBooks() {
+    public void listBooks() {
         System.out.println("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION");
 
         for (Book book : availableBookList) {
