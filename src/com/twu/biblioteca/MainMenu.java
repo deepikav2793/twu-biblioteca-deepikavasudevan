@@ -7,32 +7,36 @@ public class MainMenu {
 
     private ArrayList<String> menuOptions = new ArrayList<String>();
     private ConsoleInput consoleInput;
+    private ConsoleOutput consoleOutput;
 
-    public MainMenu(ArrayList<String> menuOptions, ConsoleInput consoleInput) {
+    public MainMenu(ArrayList<String> menuOptions, ConsoleInput consoleInput, ConsoleOutput consoleOutput) {
         this.menuOptions = menuOptions;
         this.consoleInput = consoleInput;
+        this.consoleOutput = consoleOutput;
     }
 
-    public void display() {
-        System.out.println("MAIN MENU");
+    public void mainMenuOptions() {
+        String mainMenuOptions = "MAIN MENU\n";
 
         for (String menuOption : menuOptions) {
-            System.out.println(menuOption);
+            mainMenuOptions += menuOption +"\n";
         }
+
+        consoleOutput.display(mainMenuOptions);
     }
 
     public void dispatch(Library library, String option) {
         if (option.equals("1")) {
-            library.listBooks();
+            library.listBooks(consoleOutput);
         } else if (option.equals("2")) {
-            System.out.println("Enter book to be checked out:");
-            System.out.println(library.checkOutBook(consoleInput));
+            consoleOutput.display("Enter book to be checked out:");
+            library.checkOutBook(consoleInput, consoleOutput);
         } else if (option.equals("3")) {
-            System.out.println("Enter book to be returned:");
-            System.out.println(library.returnBook(consoleInput));
+            consoleOutput.display("Enter book to be returned:");
+            library.returnBook(consoleInput, consoleOutput);
         } else if (option.equals("4"))
             System.exit(0);
         else
-            System.out.println("Select a valid option!");
+            consoleOutput.display("Select a valid option!");
     }
 }

@@ -2,13 +2,14 @@
 package com.twu.biblioteca;
 
 public class WelcomeMessage {
+
     private String welcomeMessage;
 
-    public WelcomeMessage() {
-        welcomeMessage = "Hello! Welcome to Bangalore Public Library!";
+    public WelcomeMessage(String welcomeMessage) {
+        this.welcomeMessage = welcomeMessage;
     }
 
-    public void display() {
-        System.out.println(welcomeMessage);
+    public void display(ConsoleOutput consoleOutput) {
+        consoleOutput.display(welcomeMessage);
     }
 }

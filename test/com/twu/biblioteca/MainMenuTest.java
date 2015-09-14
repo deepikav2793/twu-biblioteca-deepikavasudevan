@@ -29,11 +29,12 @@ public class MainMenuTest {
     public void shouldDisplayListOfOptionsInMainMenu() {
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "Quit"));
         ConsoleInput consoleInput = new ConsoleInput();
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
 
-        mainMenu.display();
+        mainMenu.mainMenuOptions();
 
-        assertEquals("MAIN MENU\n1. List Books\nQuit\n", outputContent.toString());
+        assertEquals("MAIN MENU\n1. List Books\nQuit\n\n", outputContent.toString());
     }
 
 
@@ -41,25 +42,41 @@ public class MainMenuTest {
     public void shouldListBooksWhenOptionIsInputtedAsOne() {
         ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("1".getBytes());
         System.setIn(inputOptionOne);
-        Library library = new Library();
+
+        ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        ArrayList<Book> availableBookList = new ArrayList<>();
+        availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
+        availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
+        availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
+
+        Library library = new Library(availableBookList, checkedOutBookList);
         ConsoleInput consoleInput = new ConsoleInput();
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
 
         mainMenu.dispatch(library, "1");
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn" +
-                "\t2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", outputContent.toString());
+                "\t2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n\n", outputContent.toString());
     }
 
     @Test
     public void shouldGiveAppropriateMessageWhenInvalidOptionIsEntered() {
         ByteArrayInputStream inputInvalid = new ByteArrayInputStream("Invalid".getBytes());
         System.setIn(inputInvalid);
-        Library library = new Library();
+
+        ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        ArrayList<Book> availableBookList = new ArrayList<>();
+        availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
+        availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
+        availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
+
+        Library library = new Library(availableBookList, checkedOutBookList);
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         ConsoleInput consoleInput = new ConsoleInput();
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
 
         mainMenu.dispatch(library, "Invalid");
 
@@ -70,19 +87,28 @@ public class MainMenuTest {
     public void shouldHaveAnotherOptionToCheckOutABook() {
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout", "Quit"));
         ConsoleInput consoleInput = new ConsoleInput();
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
 
-        mainMenu.display();
+        mainMenu.mainMenuOptions();
 
-        assertEquals("MAIN MENU\n1. List Books\n2. Checkout\nQuit\n", outputContent.toString());
+        assertEquals("MAIN MENU\n1. List Books\n2. Checkout\nQuit\n\n", outputContent.toString());
     }
 
     @Test
     public void shouldChooseCheckOutBookOptionWhenOptionTwoIsEntered() {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "Quit"));
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
-        Library library = new Library();
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
+
+        ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        ArrayList<Book> availableBookList = new ArrayList<>();
+        availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
+        availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
+        availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
+
+        Library library = new Library(availableBookList, checkedOutBookList);
 
         when(consoleInput.getInput()).thenReturn("Gone Girl");
         mainMenu.dispatch(library, "2");
@@ -94,8 +120,16 @@ public class MainMenuTest {
     public void shouldChooseReturnBookOptionWhenOptionThreeIsEntered() {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "3. Return Book", "Quit"));
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput);
-        Library library = new Library();
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
+
+        ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        ArrayList<Book> availableBookList = new ArrayList<>();
+        availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
+        availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
+        availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
+
+        Library library = new Library(availableBookList, checkedOutBookList);
 
         when(consoleInput.getInput()).thenReturn("Gone Girl");
         mainMenu.dispatch(library, "3");

@@ -6,16 +6,26 @@ import java.util.ArrayList;
 public class Controller {
 
     private ConsoleInput consoleInput;
-    private Library library;
+    private ConsoleOutput consoleOutput;
 
     public Controller() {
         consoleInput = new ConsoleInput();
-        library = new Library();
+        consoleOutput = new ConsoleOutput();
     }
 
     public void displayWelcomeMessage() {
-        WelcomeMessage welcomeMessage = new WelcomeMessage();
-        welcomeMessage.display();
+        WelcomeMessage welcomeMessage = new WelcomeMessage("Hello! Welcome to Bangalore Public Library!");
+        welcomeMessage.display(consoleOutput);
+    }
+
+    protected Library initialiseLibraryWithBooks() {
+        ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        ArrayList<Book> availableBookList = new ArrayList<>();
+        availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
+        availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
+        availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
+
+        return new Library(availableBookList, checkedOutBookList);
     }
 
     private MainMenu initialiseMainMenuWithOptions() {
@@ -25,12 +35,12 @@ public class Controller {
         menuOptions.add("3. Return Book");
         menuOptions.add("4. Quit");
 
-        return new MainMenu(menuOptions, consoleInput);
+        return new MainMenu(menuOptions, consoleInput, consoleOutput);
     }
 
     public void displayMenuOptions() {
         MainMenu mainMenu = initialiseMainMenuWithOptions();
-        mainMenu.display();
+        mainMenu.mainMenuOptions();
     }
 
     public void initialiseMenuDispatch(Library library, ConsoleInput consoleInput) {
@@ -39,6 +49,7 @@ public class Controller {
     }
 
     public void initialiseApplication() {
+        Library library = initialiseLibraryWithBooks();
         displayWelcomeMessage();
         for (; ; ) {
             displayMenuOptions();

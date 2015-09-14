@@ -1,4 +1,4 @@
-/*Biblioteca Application */
+/*Biblioteca Application starts the application*/
 package com.twu.biblioteca;
 
 public class BibliotecaApplication {
