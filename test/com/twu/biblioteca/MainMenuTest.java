@@ -32,9 +32,7 @@ public class MainMenuTest {
         ConsoleOutput consoleOutput = new ConsoleOutput();
         MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
 
-        mainMenu.mainMenuOptions();
-
-        assertEquals("MAIN MENU\n1. List Books\nQuit\n\n", outputContent.toString());
+        assertEquals("MAIN MENU\n1. List Books\nQuit\n", mainMenu.mainMenuOptions());
     }
 
 
@@ -90,9 +88,7 @@ public class MainMenuTest {
         ConsoleOutput consoleOutput = new ConsoleOutput();
         MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
 
-        mainMenu.mainMenuOptions();
-
-        assertEquals("MAIN MENU\n1. List Books\n2. Checkout\nQuit\n\n", outputContent.toString());
+        assertEquals("MAIN MENU\n1. List Books\n2. Checkout\nQuit\n", mainMenu.mainMenuOptions());
     }
 
     @Test

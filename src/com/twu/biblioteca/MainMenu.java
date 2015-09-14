@@ -15,14 +15,14 @@ public class MainMenu {
         this.consoleOutput = consoleOutput;
     }
 
-    public void mainMenuOptions() {
+    public String mainMenuOptions() {
         String mainMenuOptions = "MAIN MENU\n";
 
         for (String menuOption : menuOptions) {
             mainMenuOptions += menuOption +"\n";
         }
 
-        consoleOutput.display(mainMenuOptions);
+        return mainMenuOptions;
     }
 
     public void dispatch(Library library, String option) {
@@ -37,6 +37,6 @@ public class MainMenu {
         } else if (option.equals("4"))
             System.exit(0);
         else
-            consoleOutput.display("Select a valid option!");
+             consoleOutput.display("Select a valid option!");
     }
 }

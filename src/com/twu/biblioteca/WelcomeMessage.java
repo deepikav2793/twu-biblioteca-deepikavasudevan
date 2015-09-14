@@ -9,7 +9,7 @@ public class WelcomeMessage {
         this.welcomeMessage = welcomeMessage;
     }
 
-    public void display(ConsoleOutput consoleOutput) {
-        consoleOutput.display(welcomeMessage);
+    public String getWelcomeMessage() {
+        return welcomeMessage;
     }
 }
