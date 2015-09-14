@@ -60,9 +60,8 @@ public class ControllerTest {
 
         Controller controller = new Controller();
         Library library = controller.initialiseLibraryWithBooks();
-        library.listBooks(new ConsoleOutput());
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t" +
-                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n\n", outputContent.toString());
+                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", library.listOfBooks());
     }
 }

@@ -27,13 +27,13 @@ public class MainMenu {
 
     public void dispatch(Library library, String option) {
         if (option.equals("1")) {
-            library.listBooks(consoleOutput);
+            consoleOutput.display(library.listOfBooks());
         } else if (option.equals("2")) {
             consoleOutput.display("Enter book to be checked out:");
-            library.checkOutBook(consoleInput, consoleOutput);
+            consoleOutput.display(library.checkOutBook(consoleInput.getInput()));
         } else if (option.equals("3")) {
             consoleOutput.display("Enter book to be returned:");
-            library.returnBook(consoleInput, consoleOutput);
+            consoleOutput.display(library.returnBook(consoleInput.getInput()));
         } else if (option.equals("4"))
             System.exit(0);
         else
