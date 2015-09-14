@@ -7,11 +7,12 @@ public class ConsoleInput {
 
     Scanner input;
 
-    ConsoleInput() {
+    public ConsoleInput() {
         input = new Scanner(System.in);
     }
 
     public String getInput() {
         return input.nextLine();
+
     }
 }

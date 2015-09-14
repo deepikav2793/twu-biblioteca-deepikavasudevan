@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -107,7 +108,7 @@ public class MainMenuTest {
 
     @Test
     public void shouldExitTheApplicationWhenQuitOptionIsEnabled() {
-        ByteArrayInputStream inputQuit = new ByteArrayInputStream("Quit".getBytes());
+        ByteArrayInputStream inputQuit = new ByteArrayInputStream("4".getBytes());
         System.setIn(inputQuit);
 
         exit.expectSystemExit();

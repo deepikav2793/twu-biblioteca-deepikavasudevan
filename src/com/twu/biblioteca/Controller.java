@@ -5,6 +5,14 @@ import java.util.ArrayList;
 
 public class Controller {
 
+    private ConsoleInput consoleInput;
+    private Library library;
+
+    public Controller() {
+        consoleInput = new ConsoleInput();
+        library = new Library();
+    }
+
     public void displayWelcomeMessage() {
         WelcomeMessage welcomeMessage = new WelcomeMessage();
         welcomeMessage.display();
@@ -15,8 +23,7 @@ public class Controller {
         menuOptions.add("1. List Books");
         menuOptions.add("2. Checkout Book");
         menuOptions.add("3. Return Book");
-        menuOptions.add("Quit");
-        ConsoleInput consoleInput = new ConsoleInput();
+        menuOptions.add("4. Quit");
 
         return new MainMenu(menuOptions, consoleInput);
     }
@@ -31,9 +38,9 @@ public class Controller {
         mainMenu.dispatch(library, consoleInput.getInput());
     }
 
-    public void initialiseApplication(Library library, ConsoleInput consoleInput) {
+    public void initialiseApplication() {
         displayWelcomeMessage();
-        for(; ;) {
+        for (; ; ) {
             displayMenuOptions();
             initialiseMenuDispatch(library, consoleInput);
         }

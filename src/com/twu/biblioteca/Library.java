@@ -14,7 +14,7 @@ public class Library {
     public Library() {
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
-        availableBookList.add(new Book("The Scarlett Letter","Nathaniel Hawthorne", 1850));
+        availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
     }
 
     public void listBooks() {
@@ -29,7 +29,7 @@ public class Library {
         String thatBookName = consoleInput.getInput();
         Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_OF_PUBLICATION);
 
-        for(Book book : availableBookList) {
+        for (Book book : availableBookList) {
             if (book.equals(thatBook)) {
                 checkedBookList.add(book);
                 availableBookList.remove(book);
@@ -44,7 +44,7 @@ public class Library {
         Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_OF_PUBLICATION);
 
         for (Book book : checkedBookList) {
-            if(book.equals(thatBook)) {
+            if (book.equals(thatBook)) {
                 availableBookList.add(book);
                 checkedBookList.remove(book);
                 return "Thank you for returning the book";
