@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class ConsoleInput {
 
-    Scanner input;
+    private Scanner input;
 
     public ConsoleInput() {
         input = new Scanner(System.in);
@@ -13,6 +13,5 @@ public class ConsoleInput {
 
     public String getInput() {
         return input.nextLine();
-
     }
 }

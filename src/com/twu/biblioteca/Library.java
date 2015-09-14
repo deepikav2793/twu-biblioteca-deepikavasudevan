@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Library {
 
     private final String NO_AUTHOR_NAME = "";
-    private final int NO_YEAR_OF_PUBLICATION = 0;
+    private final int NO_YEAR_PUBLISHED = 0;
 
     private ArrayList<Book> availableBookList = new ArrayList<Book>();
     private ArrayList<Book> checkedBookList = new ArrayList<Book>();
@@ -27,7 +27,7 @@ public class Library {
 
     public String checkOutBook(ConsoleInput consoleInput) {
         String thatBookName = consoleInput.getInput();
-        Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_OF_PUBLICATION);
+        Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_PUBLISHED);
 
         for (Book book : availableBookList) {
             if (book.equals(thatBook)) {
@@ -41,7 +41,7 @@ public class Library {
 
     public String returnBook(ConsoleInput consoleInput) {
         String thatBookName = consoleInput.getInput();
-        Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_OF_PUBLICATION);
+        Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_PUBLISHED);
 
         for (Book book : checkedBookList) {
             if (book.equals(thatBook)) {
