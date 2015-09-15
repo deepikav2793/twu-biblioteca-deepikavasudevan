@@ -46,14 +46,15 @@ public class MainMenuTest {
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
-
-        Library library = new Library(availableBookList, checkedOutBookList);
+        BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
+        ArrayList<Movie> movieList = new ArrayList<>();
+        MovieLibrary movieLibrary = new MovieLibrary(movieList);
         ConsoleInput consoleInput = new ConsoleInput();
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         ConsoleOutput consoleOutput = new ConsoleOutput();
         MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
 
-        mainMenu.dispatch(library, "1");
+        mainMenu.dispatch(bookLibrary, movieLibrary, "1");
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn" +
                 "\t2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n\n", outputContent.toString());
@@ -69,14 +70,15 @@ public class MainMenuTest {
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
-
-        Library library = new Library(availableBookList, checkedOutBookList);
+        BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
+        ArrayList<Movie> movieList = new ArrayList<>();
+        MovieLibrary movieLibrary = new MovieLibrary(movieList);
         ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
         ConsoleInput consoleInput = new ConsoleInput();
         ConsoleOutput consoleOutput = new ConsoleOutput();
         MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
 
-        mainMenu.dispatch(library, "Invalid");
+        mainMenu.dispatch(bookLibrary, movieLibrary, "Invalid");
 
         assertEquals("Select a valid option!\n", outputContent.toString());
     }
@@ -103,11 +105,12 @@ public class MainMenuTest {
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
-
-        Library library = new Library(availableBookList, checkedOutBookList);
+        BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
+        ArrayList<Movie> movieList = new ArrayList<>();
+        MovieLibrary movieLibrary = new MovieLibrary(movieList);
 
         when(consoleInput.getInput()).thenReturn("Gone Girl");
-        mainMenu.dispatch(library, "2");
+        mainMenu.dispatch(bookLibrary, movieLibrary, "2");
 
         assertEquals("Enter book to be checked out:\nThank you! Enjoy the book\n", outputContent.toString());
     }
@@ -124,21 +127,43 @@ public class MainMenuTest {
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
-
-        Library library = new Library(availableBookList, checkedOutBookList);
+        BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
+        ArrayList<Movie> movieList = new ArrayList<>();
+        MovieLibrary movieLibrary = new MovieLibrary(movieList);
 
         when(consoleInput.getInput()).thenReturn("Gone Girl");
-        mainMenu.dispatch(library, "3");
+        mainMenu.dispatch(bookLibrary, movieLibrary, "3");
 
         assertEquals("Enter book to be returned:\nThat is not a valid book to return\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldChooseListMoviesOptionWhenOptionFourIsEntered() {
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "3. Return Book", "Quit"));
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
+
+        ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        ArrayList<Book> availableBookList = new ArrayList<>();
+        BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
+        ArrayList<Movie> movieList = new ArrayList<>();
+        movieList.add(new Movie("Funny Girl", 1968, "William Wyler", "8"));
+        movieList.add(new Movie("Pretty in Pink", 1986, "John Hughes", "10"));
+        MovieLibrary movieLibrary = new MovieLibrary(movieList);
+
+        mainMenu.dispatch(bookLibrary, movieLibrary, "4");
+
+        assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +
+                "Pretty in Pink\t1986\tJohn Hughes\t10\n\n", outputContent.toString());
     }
 
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Test
-    public void shouldExitTheApplicationWhenQuitOptionIsEnabled() {
-        ByteArrayInputStream inputQuit = new ByteArrayInputStream("4".getBytes());
+    public void shouldExitTheApplicationWhenOptionFiveIsEnabled() {
+        ByteArrayInputStream inputQuit = new ByteArrayInputStream("5".getBytes());
         System.setIn(inputQuit);
 
         exit.expectSystemExit();

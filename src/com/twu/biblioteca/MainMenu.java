@@ -25,16 +25,18 @@ public class MainMenu {
         return mainMenuOptions;
     }
 
-    public void dispatch(Library library, String option) {
+    public void dispatch(BookLibrary bookLibrary, MovieLibrary movieLibrary, String option) {
         if (option.equals("1")) {
-            consoleOutput.display(library.listOfBooks());
+            consoleOutput.display(bookLibrary.listOfBooks());
         } else if (option.equals("2")) {
             consoleOutput.display("Enter book to be checked out:");
-            consoleOutput.display(library.checkOutBook(consoleInput.getInput()));
+            consoleOutput.display(bookLibrary.checkOutBook(consoleInput.getInput()));
         } else if (option.equals("3")) {
             consoleOutput.display("Enter book to be returned:");
-            consoleOutput.display(library.returnBook(consoleInput.getInput()));
-        } else if (option.equals("4"))
+            consoleOutput.display(bookLibrary.returnBook(consoleInput.getInput()));
+        } else if (option.equals("4")) {
+            consoleOutput.display(movieLibrary.listOfMovies());
+        } else if (option.equals("5"))
             System.exit(0);
         else
              consoleOutput.display("Select a valid option!");

@@ -22,10 +22,10 @@ public class SetupTest {
         System.setOut(new PrintStream(outputContent));
 
         Setup setup = new Setup();
-        Library library = setup.initialiseLibraryWithBooks();
+        BookLibrary bookLibrary = setup.initialiseLibraryWithBooks();
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t" +
-                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", library.listOfBooks());
+                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", bookLibrary.listOfBooks());
     }
 
     @Test

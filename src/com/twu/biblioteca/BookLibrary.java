@@ -1,9 +1,9 @@
-/*Library prints its list of books, checks it out and returns it*/
+/*BookLibrary prints its list of books, checks it out and returns it*/
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-public class Library {
+public class BookLibrary {
 
     private final String NO_AUTHOR_NAME = "";
     private final int NO_YEAR_PUBLISHED = 0;
@@ -11,7 +11,7 @@ public class Library {
     private ArrayList<Book> availableBookList = new ArrayList<Book>();
     private ArrayList<Book> checkedBookList = new ArrayList<Book>();
 
-    public Library(ArrayList<Book> availableBookList, ArrayList<Book> checkedBookList) {
+    public BookLibrary(ArrayList<Book> availableBookList, ArrayList<Book> checkedBookList) {
         this.availableBookList = availableBookList;
         this.checkedBookList = checkedBookList;
     }

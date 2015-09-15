@@ -20,10 +20,11 @@ public class Controller {
 
     public void displayMenuOptionsAndDispatch() {
         MainMenu mainMenu = setup.initialiseMainMenuWithOptions();
-        Library library = setup.initialiseLibraryWithBooks();
+        BookLibrary bookLibrary = setup.initialiseLibraryWithBooks();
+        MovieLibrary movieLibrary = setup.initialiseMovieLibraryWithMovies();
 
         consoleOutput.display(mainMenu.mainMenuOptions());
-        mainMenu.dispatch(library, consoleInput.getInput());
+        mainMenu.dispatch(bookLibrary, movieLibrary, consoleInput.getInput());
     }
 
     public void initialiseApplication() {
