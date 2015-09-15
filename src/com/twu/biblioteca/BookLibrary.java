@@ -21,7 +21,6 @@ public class BookLibrary {
         for (Book book : availableBookList) {
             listOfBooks += book.toString() + "\n";
         }
-
         return listOfBooks;
     }
 

@@ -28,7 +28,7 @@ public class Controller {
         mainMenu.dispatch(bookLibrary, movieLibrary, consoleInput.getInput());
     }
 
-    public void initialiseApplication() {
+    public void initialiseBibliotecaApplication() {
         displayWelcomeMessage();
 
         for (; ; ) {

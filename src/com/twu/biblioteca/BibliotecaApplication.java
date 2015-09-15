@@ -6,7 +6,7 @@ public class BibliotecaApplication {
     private Controller controller = new Controller();
 
     private void start() {
-        controller.initialiseApplication();
+        controller.initialiseBibliotecaApplication();
     }
 
     public static void main(String[] args) {
