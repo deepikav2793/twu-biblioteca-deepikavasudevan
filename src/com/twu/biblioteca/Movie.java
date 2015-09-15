@@ -22,6 +22,8 @@ public class Movie {
 
     @Override
     public boolean equals(Object that) {
-        return false;
+        if (that == null || that.getClass() != this.getClass())
+            return false;
+        return true;
     }
 }

@@ -2,8 +2,8 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class MovieTest {
 
@@ -18,6 +18,13 @@ public class MovieTest {
     public void shouldNotBeEqualToNull() {
         Movie movie = new Movie("Funny Girl", 1968, "William Wyler", "8");
 
-        assertFalse(movie.equals(null));
+        assertNotEquals(movie, null);
+    }
+
+    @Test
+    public void shouldBeOfTypeMovie() {
+        Movie movie = new Movie("Funny Girl", 1968, "William Wyler", "8");
+
+        assertEquals(movie.getClass(), movie.getClass());
     }
 }
