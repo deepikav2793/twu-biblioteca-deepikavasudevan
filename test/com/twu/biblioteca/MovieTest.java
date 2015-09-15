@@ -42,4 +42,12 @@ public class MovieTest {
 
         assertEquals(movie1, movie2);
     }
+
+    @Test
+    public void shouldNotBeEqualToAMovieOfTheSameName() {
+        Movie movie1 = new Movie("Funny Girl", 1968, "William Wyler", "8");
+        Movie movie2 = new Movie("Funny", 1968, "Willian Wyler", "8");
+
+        assertNotEquals(movie1, movie2);
+    }
 }
