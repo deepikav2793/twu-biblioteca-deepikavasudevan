@@ -30,4 +30,9 @@ public class MovieLibraryTest {
     public void shouldReturnSuccessfulCheckOutMessageIfMovieIsCheckedOut() {
         assertEquals("Thank you! Enjoy the movie", movieLibrary.checkOutMovie("Funny Girl"));
     }
+
+    @Test
+    public void shouldReturnUnsuccessfulCheckOutMessageIfMovieIsNotCheckedOut() {
+        assertEquals("That movie is not available", movieLibrary.checkOutMovie("Funny"));
+    }
 }
