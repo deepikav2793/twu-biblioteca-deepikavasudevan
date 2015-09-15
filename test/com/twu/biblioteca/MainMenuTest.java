@@ -13,34 +13,35 @@ import java.util.Arrays;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 import static org.junit.Assert.assertEquals;
 
 public class MainMenuTest {
 
-    private ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+    private ByteArrayOutputStream outputContent;
+    private MainMenu mainMenu;
+    private ConsoleInput consoleInput;
 
     @Before
     public void setStreamsWithInitialValue() {
+        outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "3. Return Book",
+                "4. List Movies", "5. Checkout Movie", "6. Quit"));
+        consoleInput = mock(ConsoleInput.class);
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
+
     }
 
     @Test
     public void shouldDisplayListOfOptionsInMainMenu() {
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "Quit"));
-        ConsoleInput consoleInput = new ConsoleInput();
-        ConsoleOutput consoleOutput = new ConsoleOutput();
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
-
-        assertEquals("MAIN MENU\n1. List Books\nQuit\n", mainMenu.mainMenuOptions());
+        assertEquals("MAIN MENU\n1. List Books\n2. Checkout Book\n3. Return Book\n4. List Movies\n5. Checkout Movie\n" +
+                "6. Quit\n", mainMenu.mainMenuOptions());
     }
 
 
     @Test
     public void shouldListBooksWhenOptionIsInputtedAsOne() {
-        ByteArrayInputStream inputOptionOne = new ByteArrayInputStream("1".getBytes());
-        System.setIn(inputOptionOne);
-
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         ArrayList<Book> availableBookList = new ArrayList<>();
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
@@ -49,10 +50,6 @@ public class MainMenuTest {
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
         ArrayList<Movie> movieList = new ArrayList<>();
         MovieLibrary movieLibrary = new MovieLibrary(movieList);
-        ConsoleInput consoleInput = new ConsoleInput();
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
-        ConsoleOutput consoleOutput = new ConsoleOutput();
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
 
         mainMenu.dispatch(bookLibrary, movieLibrary, "1");
 
@@ -62,9 +59,6 @@ public class MainMenuTest {
 
     @Test
     public void shouldGiveAppropriateMessageWhenInvalidOptionIsEntered() {
-        ByteArrayInputStream inputInvalid = new ByteArrayInputStream("Invalid".getBytes());
-        System.setIn(inputInvalid);
-
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         ArrayList<Book> availableBookList = new ArrayList<>();
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
@@ -73,10 +67,6 @@ public class MainMenuTest {
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
         ArrayList<Movie> movieList = new ArrayList<>();
         MovieLibrary movieLibrary = new MovieLibrary(movieList);
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books"));
-        ConsoleInput consoleInput = new ConsoleInput();
-        ConsoleOutput consoleOutput = new ConsoleOutput();
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
 
         mainMenu.dispatch(bookLibrary, movieLibrary, "Invalid");
 
@@ -84,22 +74,7 @@ public class MainMenuTest {
     }
 
     @Test
-    public void shouldHaveAnotherOptionToCheckOutABook() {
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout", "Quit"));
-        ConsoleInput consoleInput = new ConsoleInput();
-        ConsoleOutput consoleOutput = new ConsoleOutput();
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
-
-        assertEquals("MAIN MENU\n1. List Books\n2. Checkout\nQuit\n", mainMenu.mainMenuOptions());
-    }
-
-    @Test
     public void shouldChooseCheckOutBookOptionWhenOptionTwoIsEntered() {
-        ConsoleInput consoleInput = mock(ConsoleInput.class);
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "Quit"));
-        ConsoleOutput consoleOutput = new ConsoleOutput();
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
-
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         ArrayList<Book> availableBookList = new ArrayList<>();
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
@@ -117,11 +92,6 @@ public class MainMenuTest {
 
     @Test
     public void shouldChooseReturnBookOptionWhenOptionThreeIsEntered() {
-        ConsoleInput consoleInput = mock(ConsoleInput.class);
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "3. Return Book", "Quit"));
-        ConsoleOutput consoleOutput = new ConsoleOutput();
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
-
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         ArrayList<Book> availableBookList = new ArrayList<>();
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
@@ -139,11 +109,6 @@ public class MainMenuTest {
 
     @Test
     public void shouldChooseListMoviesOptionWhenOptionFourIsEntered() {
-        ConsoleInput consoleInput = mock(ConsoleInput.class);
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "3. Return Book", "4. List Movie", "5. Quit"));
-        ConsoleOutput consoleOutput = new ConsoleOutput();
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
-
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         ArrayList<Book> availableBookList = new ArrayList<>();
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
@@ -160,12 +125,6 @@ public class MainMenuTest {
 
     @Test
     public void shouldChooseCheckOutMovieOptionWhenOptionFiveIsEntered() {
-        ConsoleInput consoleInput = mock(ConsoleInput.class);
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "3. Return Book", "4. List Movies",
-                "5. Checkout Movie","6. Quit"));
-        ConsoleOutput consoleOutput = new ConsoleOutput();
-        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
-
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         ArrayList<Book> availableBookList = new ArrayList<>();
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
@@ -188,14 +147,7 @@ public class MainMenuTest {
     public void shouldExitTheApplicationWhenOptionFiveIsEnabled() {
         ByteArrayInputStream inputQuit = new ByteArrayInputStream("6".getBytes());
         System.setIn(inputQuit);
-
         exit.expectSystemExit();
         System.exit(0);
-    }
-
-    @After
-    public void cleanUpStreams() {
-        System.setOut(System.out);
-        System.setIn(System.in);
     }
 }
