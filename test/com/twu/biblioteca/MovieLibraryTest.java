@@ -25,4 +25,9 @@ public class MovieLibraryTest {
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +
                 "Pretty in Pink\t1986\tJohn Hughes\t10\n", movieLibrary.listOfMovies());
     }
+
+    @Test
+    public void shouldReturnSuccessfulCheckOutMessageIfMovieIsCheckedOut() {
+        assertEquals("Thank you! Enjoy the movie", movieLibrary.checkOutMovie("Funny Girl"));
+    }
 }
