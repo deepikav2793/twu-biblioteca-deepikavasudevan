@@ -1,9 +1,6 @@
 package com.twu.biblioteca;
 
 import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -12,15 +9,11 @@ public class BookLibraryTest {
 
     @Test
     public void shouldPrintListOfBooksInColumnFormat() {
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputContent));
-
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         ArrayList<Book> availableBookList = new ArrayList<>();
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
-
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t" +
@@ -34,7 +27,6 @@ public class BookLibraryTest {
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
-
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
 
         assertEquals("Thank you! Enjoy the book", bookLibrary.checkOutBook("Gone Girl"));
@@ -47,7 +39,6 @@ public class BookLibraryTest {
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
-
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
 
         bookLibrary.checkOutBook("Gone Girl");
@@ -58,15 +49,11 @@ public class BookLibraryTest {
 
     @Test
     public void shouldNotCheckOutBookSpecifiedByUserIfNotFoundInLibrary() {
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputContent));
-
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         ArrayList<Book> availableBookList = new ArrayList<>();
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
-
         BookLibrary bookLibrary = new BookLibrary(checkedOutBookList, availableBookList);
 
         assertEquals("That book is not available", bookLibrary.checkOutBook("Goner Girl"));
@@ -74,15 +61,11 @@ public class BookLibraryTest {
 
     @Test
     public void shouldReturnBookIfItHasBeenCheckedOut() {
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputContent));
-
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         checkedOutBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         ArrayList<Book> availableBookList = new ArrayList<>();
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
-
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
 
         assertEquals("Thank you for returning the book", bookLibrary.returnBook("Gone Girl"));
@@ -90,14 +73,11 @@ public class BookLibraryTest {
 
     @Test
     public void shouldHaveReturnedBookInListOfBooks() {
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputContent));
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         checkedOutBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         ArrayList<Book> availableBookList = new ArrayList<>();
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
-
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
 
         bookLibrary.returnBook("Gone Girl");
@@ -108,14 +88,11 @@ public class BookLibraryTest {
 
     @Test
     public void shouldNotReturnBookIfItHasNotBeenCheckedOut() {
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputContent));
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         ArrayList<Book> availableBookList = new ArrayList<>();
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
-
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
 
         assertEquals("That is not a valid book to return", bookLibrary.returnBook("Gone Girl"));
