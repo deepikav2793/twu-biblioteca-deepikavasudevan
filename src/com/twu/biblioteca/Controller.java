@@ -5,11 +5,12 @@ public class Controller {
 
     private ConsoleInput consoleInput;
     private ConsoleOutput consoleOutput;
-    Setup setup = new Setup();
+    private Setup setup;
 
     public Controller() {
         consoleInput = new ConsoleInput();
         consoleOutput = new ConsoleOutput();
+        setup = new Setup();
     }
 
     public void displayWelcomeMessage() {
