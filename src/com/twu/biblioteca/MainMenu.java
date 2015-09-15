@@ -36,7 +36,10 @@ public class MainMenu {
             consoleOutput.display(bookLibrary.returnBook(consoleInput.getInput()));
         } else if (option.equals("4")) {
             consoleOutput.display(movieLibrary.listOfMovies());
-        } else if (option.equals("5"))
+        } else if (option.equals("5")) {
+            consoleOutput.display("Enter movie to be checked out:");
+            consoleOutput.display(movieLibrary.checkOutMovie(consoleInput.getInput()));
+        } else if (option.equals("6"))
             System.exit(0);
         else
              consoleOutput.display("Select a valid option!");

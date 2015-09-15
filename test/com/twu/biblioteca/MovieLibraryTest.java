@@ -1,21 +1,25 @@
 package com.twu.biblioteca;
 
+import org.junit.Before;
 import org.junit.Test;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 
 public class MovieLibraryTest {
 
-    @Test
-    public void shouldDisplayMovieDetails() {
+    private MovieLibrary movieLibrary;
+
+    @Before
+    public void setUpMovie(){
         ArrayList<Movie> movieList = new ArrayList<>();
         movieList.add(new Movie("Funny Girl", 1968, "William Wyler", "8"));
         movieList.add(new Movie("Pretty in Pink", 1986, "John Hughes", "10"));
-        MovieLibrary movieLibrary = new MovieLibrary(movieList);
+        movieLibrary = new MovieLibrary(movieList);
+    }
 
+    @Test
+    public void shouldDisplayMovieDetails() {
         movieLibrary.listOfMovies();
 
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +

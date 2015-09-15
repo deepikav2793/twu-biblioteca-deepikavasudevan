@@ -140,7 +140,7 @@ public class MainMenuTest {
     @Test
     public void shouldChooseListMoviesOptionWhenOptionFourIsEntered() {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
-        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "3. Return Book", "Quit"));
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "3. Return Book", "4. List Movie", "5. Quit"));
         ConsoleOutput consoleOutput = new ConsoleOutput();
         MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
 
@@ -158,12 +158,35 @@ public class MainMenuTest {
                 "Pretty in Pink\t1986\tJohn Hughes\t10\n\n", outputContent.toString());
     }
 
+    @Test
+    public void shouldChooseCheckOutMovieOptionWhenOptionFiveIsEntered() {
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        ArrayList<String> menuOptions = new ArrayList<>(Arrays.asList("1. List Books", "2. Checkout Book", "3. Return Book", "4. List Movies",
+                "5. Checkout Movie","6. Quit"));
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        MainMenu mainMenu = new MainMenu(menuOptions, consoleInput, consoleOutput);
+
+        ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        ArrayList<Book> availableBookList = new ArrayList<>();
+        availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
+        BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
+        ArrayList<Movie> movieList = new ArrayList<>();
+        MovieLibrary movieLibrary = new MovieLibrary(movieList);
+        movieList.add(new Movie("Funny Girl", 1968, "William Wyler", "8"));
+        movieList.add(new Movie("Pretty in Pink", 1986, "John Hughes", "10"));
+
+        when(consoleInput.getInput()).thenReturn("Funny Girl");
+        mainMenu.dispatch(bookLibrary, movieLibrary, "5");
+
+        assertEquals("Enter movie to be checked out:\nThank you! Enjoy the movie\n", outputContent.toString());
+    }
+
     @Rule
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Test
     public void shouldExitTheApplicationWhenOptionFiveIsEnabled() {
-        ByteArrayInputStream inputQuit = new ByteArrayInputStream("5".getBytes());
+        ByteArrayInputStream inputQuit = new ByteArrayInputStream("6".getBytes());
         System.setIn(inputQuit);
 
         exit.expectSystemExit();

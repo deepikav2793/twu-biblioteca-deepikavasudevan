@@ -20,4 +20,8 @@ public class MovieLibrary {
 
         return listOfMovies;
     }
+
+    public String checkOutMovie(String thatMovieName) {
+        return "Thank you! Enjoy the movie";
+    }
 }
