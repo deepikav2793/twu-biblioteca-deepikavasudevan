@@ -27,4 +27,11 @@ public class MovieTest {
 
         assertEquals(movie.getClass(), movie.getClass());
     }
+
+    @Test
+    public void shouldBeEqualToItself() {
+        Movie movie = new Movie("Funny Girl", 1968, "William Wyler", "8");
+
+        assertEquals(movie, movie);
+    }
 }
