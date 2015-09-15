@@ -1,6 +1,7 @@
 /*Sets up the Biblioteca Application*/
 package com.twu.biblioteca;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Setup {
@@ -31,5 +32,13 @@ public class Setup {
         menuOptions.add("5. Quit");
 
         return new MainMenu(menuOptions, consoleInput, consoleOutput);
+    }
+
+    public MovieLibrary initialiseMovieLibraryWithMovies() {
+        ArrayList<Movie> movieList = new ArrayList<>();
+        movieList.add(new Movie("Funny Girl", 1968, "William Wyler", "8"));
+        movieList.add(new Movie("Pretty in Pink", 1986, "John Hughes", "10"));
+
+        return new MovieLibrary(movieList);
     }
 }

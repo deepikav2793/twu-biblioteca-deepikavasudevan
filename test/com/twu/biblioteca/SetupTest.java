@@ -38,4 +38,17 @@ public class SetupTest {
 
         assertEquals("MAIN MENU\n1. List Books\n2. Checkout Book\n3. Return Book\n4. List Movies\n5. Quit\n", menu.mainMenuOptions());
     }
+
+    @Test
+    public void shouldInitialiseMovieLibraryWithMovies() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+
+        Setup setup = new Setup();
+
+        MovieLibrary movieLibrary = setup.initialiseMovieLibraryWithMovies();
+
+        assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +
+                "Pretty in Pink\t1986\tJohn Hughes\t10\n", movieLibrary.listOfMovies());
+    }
 }
