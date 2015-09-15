@@ -50,4 +50,11 @@ public class MovieTest {
 
         assertNotEquals(movie1, movie2);
     }
+
+    @Test
+    public void shouldHaveTheSameHashCodeIfItIsTheSameReference() {
+        Movie movie = new Movie("Funny Girl", 1968, "William Wyler", "8");
+
+        assertEquals(movie.hashCode(), movie.hashCode());
+    }
 }

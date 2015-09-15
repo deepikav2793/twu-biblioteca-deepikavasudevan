@@ -3,13 +3,13 @@ package com.twu.biblioteca;
 
 public class Movie {
 
-    String nameOfMovie;
+    String name;
     int yearOfRelease;
     String nameOfDirector;
     String movieRating;
 
-    public Movie(String nameOfMovie, int yearOfRelease, String nameOfDirector, String movieRating) {
-        this.nameOfMovie = nameOfMovie;
+    public Movie(String name, int yearOfRelease, String nameOfDirector, String movieRating) {
+        this.name = name;
         this.yearOfRelease = yearOfRelease;
         this.nameOfDirector = nameOfDirector;
         this.movieRating = movieRating;
@@ -17,16 +17,27 @@ public class Movie {
 
     @Override
     public String toString() {
-        return nameOfMovie + "\t" + yearOfRelease + "\t" + nameOfDirector + "\t" + movieRating;
+        return name + "\t" + yearOfRelease + "\t" + nameOfDirector + "\t" + movieRating;
     }
 
     @Override
     public boolean equals(Object that) {
         if (that != null && that.getClass() == this.getClass()) {
             Movie thatMovie = (Movie) that;
-            if(this == thatMovie || this.nameOfMovie == thatMovie.nameOfMovie)
+            if(this == thatMovie || this.name == thatMovie.name)
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        if (this != null) {
+            for (int i = 0; i < name.length(); i++) {
+                hash = Character.getNumericValue(name.charAt(i)) + (hash << 6) + (hash << 16) - hash;
+            }
+        }
+        return hash;
     }
 }
