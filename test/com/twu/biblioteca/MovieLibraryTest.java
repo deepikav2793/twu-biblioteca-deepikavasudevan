@@ -35,4 +35,11 @@ public class MovieLibraryTest {
     public void shouldReturnUnsuccessfulCheckOutMessageIfMovieIsNotCheckedOut() {
         assertEquals("That movie is not available", movieLibrary.checkOutMovie("Funny"));
     }
+
+    @Test
+    public void shouldNotContainCheckedOutMovieInMovieList() {
+        movieLibrary.checkOutMovie("Funny Girl");
+
+        assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nPretty in Pink\t1986\tJohn Hughes\t10\n", movieLibrary.listOfMovies());
+    }
 }

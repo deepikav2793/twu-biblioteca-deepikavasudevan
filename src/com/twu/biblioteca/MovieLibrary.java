@@ -29,8 +29,10 @@ public class MovieLibrary {
         String checkOutMovieMessage = "That movie is not available";
 
         for (Movie thisMovie : movieList) {
-            if (thisMovie.equals(thatMovie))
+            if (thisMovie.equals(thatMovie)) {
                 checkOutMovieMessage = "Thank you! Enjoy the movie";
+                movieList.remove(thisMovie);
+            }
         }
 
         return checkOutMovieMessage;
