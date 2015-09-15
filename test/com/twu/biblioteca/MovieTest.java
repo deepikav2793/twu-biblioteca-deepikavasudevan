@@ -34,4 +34,12 @@ public class MovieTest {
 
         assertEquals(movie, movie);
     }
+
+    @Test
+    public void shouldBeEqualToAMovieOfTheSameName() {
+        Movie movie1 = new Movie("Funny Girl", 1968, "William Wyler", "8");
+        Movie movie2 = new Movie("Funny Girl", 0, "", "");
+
+        assertEquals(movie1, movie2);
+    }
 }

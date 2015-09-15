@@ -23,7 +23,8 @@ public class Movie {
     @Override
     public boolean equals(Object that) {
         if (that != null && that.getClass() == this.getClass()) {
-            if(this == that)
+            Movie thatMovie = (Movie) that;
+            if(this == thatMovie || this.nameOfMovie == thatMovie.nameOfMovie)
                 return true;
         }
         return false;
