@@ -31,16 +31,15 @@ public class Controller {
     }
 
 
-    public void displayMenuOptionsAndDispatch() {
+    public void displayMenuOptions() {
         consoleOutput.display(mainMenu.mainMenuOptions());
-        mainMenu.dispatch(bookLibrary, movieLibrary, consoleInput.getInput());
     }
 
     public void initialiseBibliotecaApplication() {
         displayWelcomeMessage();
 
         for (; ; ) {
-            displayMenuOptionsAndDispatch();
+            displayMenuOptions();
         }
     }
 }

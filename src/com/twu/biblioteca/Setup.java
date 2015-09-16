@@ -34,7 +34,7 @@ public class Setup {
         menuOptions.add("8. Logout");
         menuOptions.add("9. Quit");
 
-        return new MainMenu(menuOptions, consoleInput, consoleOutput);
+        return new MainMenu(menuOptions);
     }
 
     public MovieLibrary initialiseMovieLibraryWithMovies() {

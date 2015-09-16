@@ -36,10 +36,10 @@ public class ControllerTest {
         System.setIn(inputOption);
 
         Controller controller = new Controller(new ArrayList<User>(), new Factory());
-        controller.displayMenuOptionsAndDispatch();
+        controller.displayMenuOptions();
 
         assertEquals("MAIN MENU\n1. Login\n2. List Books\n3. Checkout Book\n4. Return Book\n5. List Movies\n6. Checkout Movie" +
-        "\n7. List Checked Out Books with User's Library Number\n8. Logout\n9. Quit\n\nSelect a valid option!\n", outputContent.toString());
+        "\n7. List Checked Out Books with User's Library Number\n8. Logout\n9. Quit\n\n", outputContent.toString());
     }
 
     @Test
