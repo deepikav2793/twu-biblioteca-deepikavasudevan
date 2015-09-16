@@ -36,7 +36,7 @@ public class SetupTest {
         BookLibrary bookLibrary = setup.initialiseLibraryWithBooks();
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t" +
-                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", bookLibrary.listOfBooks());
+                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", bookLibrary.list());
     }
 
     @Test
@@ -68,6 +68,6 @@ public class SetupTest {
         MovieLibrary movieLibrary = setup.initialiseMovieLibraryWithMovies();
 
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +
-                "Pretty in Pink\t1986\tJohn Hughes\t10\n", movieLibrary.listOfMovies());
+                "Pretty in Pink\t1986\tJohn Hughes\t10\n", movieLibrary.list());
     }
 }

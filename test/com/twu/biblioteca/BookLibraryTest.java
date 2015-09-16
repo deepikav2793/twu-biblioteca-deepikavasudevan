@@ -17,7 +17,7 @@ public class BookLibraryTest {
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t" +
-                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", bookLibrary.listOfBooks());
+                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", bookLibrary.list());
     }
 
     @Test
@@ -29,7 +29,7 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
 
-        assertEquals("Thank you! Enjoy the book", bookLibrary.checkOutBook("Gone Girl"));
+        assertEquals("Thank you! Enjoy the book", bookLibrary.checkOut("Gone Girl"));
     }
 
     @Test
@@ -41,10 +41,10 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
 
-        bookLibrary.checkOutBook("Gone Girl");
+        bookLibrary.checkOut("Gone Girl");
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
-                "The Scarlett Letter\tNathaniel Hawthorne\t1850\n", bookLibrary.listOfBooks());
+                "The Scarlett Letter\tNathaniel Hawthorne\t1850\n", bookLibrary.list());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         BookLibrary bookLibrary = new BookLibrary(checkedOutBookList, availableBookList);
 
-        assertEquals("That book is not available", bookLibrary.checkOutBook("Goner Girl"));
+        assertEquals("That book is not available", bookLibrary.checkOut("Goner Girl"));
     }
 
     @Test
@@ -83,7 +83,7 @@ public class BookLibraryTest {
         bookLibrary.returnBook("Gone Girl");
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
-                "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n", bookLibrary.listOfBooks());
+                "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n", bookLibrary.list());
     }
 
     @Test

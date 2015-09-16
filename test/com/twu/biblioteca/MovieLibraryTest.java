@@ -20,26 +20,26 @@ public class MovieLibraryTest {
 
     @Test
     public void shouldDisplayMovieDetails() {
-        movieLibrary.listOfMovies();
+        movieLibrary.list();
 
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +
-                "Pretty in Pink\t1986\tJohn Hughes\t10\n", movieLibrary.listOfMovies());
+                "Pretty in Pink\t1986\tJohn Hughes\t10\n", movieLibrary.list());
     }
 
     @Test
     public void shouldReturnSuccessfulCheckOutMessageIfMovieIsCheckedOut() {
-        assertEquals("Thank you! Enjoy the movie", movieLibrary.checkOutMovie("Funny Girl"));
+        assertEquals("Thank you! Enjoy the movie", movieLibrary.checkOut("Funny Girl"));
     }
 
     @Test
     public void shouldReturnUnsuccessfulCheckOutMessageIfMovieIsNotCheckedOut() {
-        assertEquals("That movie is not available", movieLibrary.checkOutMovie("Funny"));
+        assertEquals("That movie is not available", movieLibrary.checkOut("Funny"));
     }
 
     @Test
     public void shouldNotContainCheckedOutMovieInMovieList() {
-        movieLibrary.checkOutMovie("Funny Girl");
+        movieLibrary.checkOut("Funny Girl");
 
-        assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nPretty in Pink\t1986\tJohn Hughes\t10\n", movieLibrary.listOfMovies());
+        assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nPretty in Pink\t1986\tJohn Hughes\t10\n", movieLibrary.list());
     }
 }

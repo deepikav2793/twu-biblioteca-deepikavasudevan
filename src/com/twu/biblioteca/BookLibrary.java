@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-public class BookLibrary {
+public class BookLibrary implements Library {
 
     private final String NO_AUTHOR_NAME = "";
     private final int NO_YEAR_PUBLISHED = 0;
@@ -16,7 +16,8 @@ public class BookLibrary {
         this.checkedBookList = checkedBookList;
     }
 
-    public String listOfBooks() {
+    @Override
+    public String list() {
         String listOfBooks = "NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\n";
         for (Book book : availableBookList) {
             listOfBooks += book.toString() + "\n";
@@ -24,7 +25,8 @@ public class BookLibrary {
         return listOfBooks;
     }
 
-    public String checkOutBook(String thatBookName) {
+    @Override
+    public String checkOut(String thatBookName) {
         String checkOutMessage = "That book is not available";
         Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_PUBLISHED);
 

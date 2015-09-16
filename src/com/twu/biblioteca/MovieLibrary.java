@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-public class MovieLibrary {
+public class MovieLibrary implements Library {
     private final int NO_YEAR_PUBLISHED = 0;
     private final String NO_DIRECTOR_NAME = "";
     private final String NO_MOVIE_RATING = "";
@@ -14,7 +14,8 @@ public class MovieLibrary {
         this.movieList = movieList;
     }
 
-    public String listOfMovies() {
+    @Override
+    public String list() {
         String listOfMovies = "NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\n";
 
         for (Movie movie : movieList) {
@@ -24,7 +25,8 @@ public class MovieLibrary {
         return listOfMovies;
     }
 
-    public String checkOutMovie(String thatMovieName) {
+    @Override
+    public String checkOut(String thatMovieName) {
         Movie thatMovie = new Movie(thatMovieName, NO_YEAR_PUBLISHED, NO_DIRECTOR_NAME, NO_MOVIE_RATING);
         String checkOutMovieMessage = "That movie is not available";
 

@@ -107,7 +107,7 @@ public class ControllerTest {
         Controller controller = new Controller(new ArrayList<User>(), factory);
         controller.dispatchMenuOption("6");
 
-        assertEquals("Enter movie to be checked out:\nThank you! Enjoy the movie\n", outputContent.toString());
+        assertEquals("Enter what is to be checked out:\nThank you! Enjoy the movie\n", outputContent.toString());
     }
 
 
@@ -152,7 +152,7 @@ public class ControllerTest {
         Controller controller = new Controller(new ArrayList<User>(), factory);
         controller.dispatchMenuOption("3");
 
-        assertEquals("Enter book to be checked out:\nThank you! Enjoy the book\n", outputContent.toString());
+        assertEquals("Enter what is to be checked out:\nThank you! Enjoy the book\n", outputContent.toString());
     }
 
     @Test

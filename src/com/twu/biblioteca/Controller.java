@@ -49,16 +49,15 @@ public class Controller {
 
     public void dispatchMenuOption(String menuOption) {
         if (menuOption.equals("2")) {
-            listBooks(bookLibrary);
+            list(bookLibrary);
         } else if (menuOption.equals("3")) {
-            checkOutBook();
+            checkOut(bookLibrary);
         } else if (menuOption.equals("4")) {
-            consoleOutput.display("Enter book to be returned:");
-            consoleOutput.display(bookLibrary.returnBook(consoleInput.getInput()));
+            returnBook();
         } else if (menuOption.equals("5")) {
-            listMovies(movieLibrary);
+            list(movieLibrary);
         } else if (menuOption.equals("6")) {
-            checkOutMovie();
+            checkOut(movieLibrary);
         } else if (menuOption.equals("9")) {
             quitOption();
         } else {
@@ -66,22 +65,23 @@ public class Controller {
         }
     }
 
-    private void listBooks(BookLibrary bookLibrary) {
-        consoleOutput.display(bookLibrary.listOfBooks());
+    private void returnBook() {
+        consoleOutput.display("Enter book to be returned:");
+        String bookToBeReturned = consoleInput.getInput();
+        String returnMessage = bookLibrary.returnBook(bookToBeReturned);
+        consoleOutput.display(returnMessage);
     }
 
-    private void listMovies(MovieLibrary movieLibrary) {
-        consoleOutput.display(movieLibrary.listOfMovies());
+    private void list(Library library) {
+        String list = library.list();
+        consoleOutput.display(list);
     }
 
-    private void checkOutBook() {
-        consoleOutput.display("Enter book to be checked out:");
-        consoleOutput.display(bookLibrary.checkOutBook(consoleInput.getInput()));
-    }
-
-    private void checkOutMovie() {
-        consoleOutput.display("Enter movie to be checked out:");
-        consoleOutput.display(movieLibrary.checkOutMovie(consoleInput.getInput()));
+    private void checkOut(Library library) {
+        consoleOutput.display("Enter what is to be checked out:");
+        String movieToBeCheckedOut = consoleInput.getInput();
+        String checkOutMessage = library.checkOut(movieToBeCheckedOut);
+        consoleOutput.display(checkOutMessage);
     }
 
     private void quitOption() {
