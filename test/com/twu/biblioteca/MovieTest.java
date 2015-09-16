@@ -27,7 +27,7 @@ public class MovieTest {
 
     @Test
     public void shouldBeOfTypeMovie() {
-        assertEquals(movie.getClass(), movie.getClass());
+        assertNotEquals(movie, "This is not a valid object");
     }
 
     @Test

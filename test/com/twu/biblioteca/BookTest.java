@@ -27,7 +27,7 @@ public class BookTest {
 
     @Test
     public void shouldBeOfTypeBook() {
-        assertEquals(book.getClass(), book.getClass());
+        assertNotEquals(book, "This is not a valid object");
     }
 
     @Test
