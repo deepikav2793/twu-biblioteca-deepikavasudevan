@@ -10,13 +10,9 @@ public class Setup {
     }
 
     public BookLibrary initialiseLibraryWithBooks() {
-        ArrayList<Book> checkedOutBookList = new ArrayList<>();
-        ArrayList<Book> availableBookList = new ArrayList<>();
-        availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
-        availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
-        availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
+        BookLibraryFactory bookLibraryFactory = new BookLibraryFactory();
 
-        return new BookLibrary(availableBookList, checkedOutBookList);
+        return bookLibraryFactory.createBookLibrary();
     }
 
     public MainMenu initialiseMainMenuWithOptions() {

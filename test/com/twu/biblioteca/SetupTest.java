@@ -2,10 +2,10 @@ package com.twu.biblioteca;
 
 import org.junit.Before;
 import org.junit.Test;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 
 public class SetupTest {
 
@@ -30,9 +30,6 @@ public class SetupTest {
 
     @Test
     public void shouldInitialiseLibraryWithBooks() {
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputContent));
-
         BookLibrary bookLibrary = setup.initialiseLibraryWithBooks();
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t" +
@@ -46,9 +43,6 @@ public class SetupTest {
 
     @Test
     public void shouldInitialiseMenuOptions() {
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputContent));
-
         MainMenu menu = setup.initialiseMainMenuWithOptions();
 
         assertEquals("MAIN MENU\n1. Login\n2. List Books\n3. Checkout Book\n4. Return Book\n5. List Movies\n6. Checkout Movie" +
@@ -62,9 +56,6 @@ public class SetupTest {
 
     @Test
     public void shouldInitialiseMovieLibraryWithMovies() {
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputContent));
-
         MovieLibrary movieLibrary = setup.initialiseMovieLibraryWithMovies();
 
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +
