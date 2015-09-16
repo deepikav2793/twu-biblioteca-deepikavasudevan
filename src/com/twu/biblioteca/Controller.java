@@ -10,13 +10,19 @@ public class Controller {
     private ConsoleInput consoleInput;
     private ConsoleOutput consoleOutput;
     private Setup setup;
+    private BookLibrary bookLibrary;
+    private MovieLibrary movieLibrary;
+    private MainMenu mainMenu;
 
     public Controller(ArrayList<User> listOfUsers, Factory factory) {
+        this.listOfUsers = listOfUsers;
         this.factory = factory;
         consoleInput = factory.createConsoleInput();
         consoleOutput = factory.createConsoleOutput();
         setup = new Setup();
-        this.listOfUsers = listOfUsers;
+        bookLibrary = setup.initialiseLibraryWithBooks();
+        movieLibrary = setup.initialiseMovieLibraryWithMovies();
+        mainMenu = setup.initialiseMainMenuWithOptions();
     }
 
     public void displayWelcomeMessage() {
@@ -26,10 +32,6 @@ public class Controller {
 
 
     public void displayMenuOptionsAndDispatch() {
-        MainMenu mainMenu = setup.initialiseMainMenuWithOptions();
-        BookLibrary bookLibrary = setup.initialiseLibraryWithBooks();
-        MovieLibrary movieLibrary = setup.initialiseMovieLibraryWithMovies();
-
         consoleOutput.display(mainMenu.mainMenuOptions());
         mainMenu.dispatch(bookLibrary, movieLibrary, consoleInput.getInput());
     }
