@@ -125,7 +125,22 @@ public class ControllerTest {
     }
 
     @Test
-    public void shouldCheckOutABookFromLibraryWhenBookOptionOfThreeIsEntered() {
+    public void shouldReturnABookToLibraryWhenMenuOptionOfFourIsEntered() {
+        System.setOut(new PrintStream(outputContent));
+        Factory factory = mock(Factory.class);
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        when(factory.createConsoleInput()).thenReturn(consoleInput);
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+
+        Controller controller = new Controller(new ArrayList<User>(), factory);
+        controller.dispatchMenuOption("4");
+
+        assertEquals("Enter book to be returned:\nThat is not a valid book to return\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldCheckOutABookFromLibraryWhenMenuOptionOfThreeIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
         Factory factory = mock(Factory.class);

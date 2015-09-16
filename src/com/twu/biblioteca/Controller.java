@@ -52,6 +52,9 @@ public class Controller {
             listBooks(bookLibrary);
         } else if (menuOption.equals("3")) {
             checkOutBook();
+        } else if (menuOption.equals("4")) {
+            consoleOutput.display("Enter book to be returned:");
+            consoleOutput.display(bookLibrary.returnBook(consoleInput.getInput()));
         } else if (menuOption.equals("5")) {
             listMovies(movieLibrary);
         } else if (menuOption.equals("6")) {
