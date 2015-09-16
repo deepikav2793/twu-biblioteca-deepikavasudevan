@@ -40,7 +40,7 @@ public class ControllerTest {
         controller.displayMenuOptions();
 
         assertEquals("MAIN MENU\n1. Login\n2. List Books\n3. Checkout Book\n4. Return Book\n5. List Movies\n6. Checkout Movie" +
-        "\n7. List Checked Out Books with User's Library Number\n8. Logout\n9. Quit\n\n", outputContent.toString());
+                "\n7. List Checked Out Books with User's Library Number\n8. Logout\n9. Quit\n\n", outputContent.toString());
     }
 
     @Test
@@ -108,5 +108,19 @@ public class ControllerTest {
         controller.dispatchMenuOption("6");
 
         assertEquals("Enter movie to be checked out:\nThank you! Enjoy the movie\n", outputContent.toString());
+    }
+
+
+    @Test
+    public void shouldListMoviesFromMovieLibraryWhenMovieOptionOfFiveIsEntered() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        Factory factory = mock(Factory.class);
+        when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        Controller controller = new Controller(new ArrayList<User>(), factory);
+        controller.dispatchMenuOption("5");
+
+        assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +
+                "Pretty in Pink\t1986\tJohn Hughes\t10\n\n", outputContent.toString());
     }
 }

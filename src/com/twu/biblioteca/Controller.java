@@ -48,9 +48,11 @@ public class Controller {
     }
 
     public void dispatchMenuOption(String menuOption) {
-        if (menuOption.equals("6")) {
+        if (menuOption.equals("5")) {
+            consoleOutput.display(movieLibrary.listOfMovies());
+        } else if (menuOption.equals("6")) {
             checkOutMovie();
-        }else if (menuOption.equals("9")) {
+        } else if (menuOption.equals("9")) {
             quitOption();
         } else {
             invalidOption();
