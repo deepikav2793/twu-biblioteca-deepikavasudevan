@@ -48,6 +48,14 @@ public class Controller {
     }
 
     public void dispatchMenuOption(String menuOption) {
+        if (menuOption.equals("9")) {
+            System.exit(0);
+        } else {
+            invalidOption();
+        }
+    }
+
+    private void invalidOption() {
         consoleOutput.display("Select a valid option!");
     }
 }

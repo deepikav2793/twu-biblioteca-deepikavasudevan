@@ -1,7 +1,10 @@
 package com.twu.biblioteca;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -69,8 +72,6 @@ public class ControllerTest {
 
     @Test
     public void shouldDisplayInvalidMessageWhenInvalidOptionIsEntered() {
-        ByteArrayInputStream inputInvalidOption = new ByteArrayInputStream("Invalid".getBytes());
-        System.setIn(inputInvalidOption);
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
         Factory factory = mock(Factory.class);
@@ -78,7 +79,18 @@ public class ControllerTest {
         when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
         Controller controller = new Controller(new ArrayList<User>(), factory);
         controller.dispatchMenuOption("Invalid");
-        
+
         assertEquals("Select a valid option!\n", outputContent.toString());
+    }
+
+    @Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
+
+    @Test
+    public void shouldQuitTheApplicationWhenMenuOptionOfNineIsEntered() {
+        exit.expectSystemExitWithStatus(0);
+        Factory factory = mock(Factory.class);
+        Controller controller = new Controller(new ArrayList<User>(), factory);
+        controller.dispatchMenuOption("9");
     }
 }
