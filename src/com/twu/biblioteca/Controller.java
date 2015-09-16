@@ -7,11 +7,11 @@ public class Controller {
 
     private ArrayList<User> listOfUsers;
     private Factory factory;
-    private ConsoleInput consoleInput;
-    private ConsoleOutput consoleOutput;
-    private Setup setup;
     private BookLibrary bookLibrary;
     private MovieLibrary movieLibrary;
+    private Setup setup;
+    private ConsoleInput consoleInput;
+    private ConsoleOutput consoleOutput;
     private MainMenu mainMenu;
 
     public Controller(ArrayList<User> listOfUsers, Factory factory) {

@@ -5,9 +5,6 @@ import java.util.ArrayList;
 
 public class Setup {
 
-    private ConsoleInput consoleInput = new ConsoleInput();
-    private ConsoleOutput consoleOutput = new ConsoleOutput();
-
     public WelcomeMessage initialiseWelcomeMessage() {
         return new WelcomeMessage("Hello! Welcome to Bangalore Public Library!");
     }
