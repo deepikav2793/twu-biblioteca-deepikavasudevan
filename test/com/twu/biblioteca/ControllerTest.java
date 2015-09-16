@@ -57,7 +57,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void shouldUseConsoleInputWhileTakingMenuOptionAsInputFromConsole() {
+    public void shouldUseConsoleInputWhileTakingMenuOptionsAsInputFromConsole() {
         ByteArrayInputStream inputOneOption = new ByteArrayInputStream("1".getBytes());
         System.setIn(inputOneOption);
         Factory factory = mock(Factory.class);
@@ -65,5 +65,20 @@ public class ControllerTest {
         Controller controller = new Controller(new ArrayList<User>(), factory);
 
         assertEquals("1", controller.menuOptionsInput());
+    }
+
+    @Test
+    public void shouldDisplayInvalidMessageWhenInvalidOptionIsEntered() {
+        ByteArrayInputStream inputInvalidOption = new ByteArrayInputStream("Invalid".getBytes());
+        System.setIn(inputInvalidOption);
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        Factory factory = mock(Factory.class);
+
+        when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        Controller controller = new Controller(new ArrayList<User>(), factory);
+        controller.dispatchMenuOption("Invalid");
+        
+        assertEquals("Select a valid option!\n", outputContent.toString());
     }
 }

@@ -39,10 +39,15 @@ public class Controller {
 
         for (; ; ) {
             displayMenuOptions();
+            dispatchMenuOption(menuOptionsInput());
         }
     }
 
     protected String menuOptionsInput() {
         return consoleInput.getInput();
+    }
+
+    public void dispatchMenuOption(String menuOption) {
+        consoleOutput.display("Select a valid option!");
     }
 }
