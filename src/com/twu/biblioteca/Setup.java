@@ -9,12 +9,6 @@ public class Setup {
         return new WelcomeMessage("Hello! Welcome to Bangalore Public Library!");
     }
 
-    public BookLibrary initialiseLibraryWithBooks() {
-        BookLibraryFactory bookLibraryFactory = new BookLibraryFactory();
-
-        return bookLibraryFactory.createBookLibrary();
-    }
-
     public MainMenu initialiseMainMenuWithOptions() {
         ArrayList<String> menuOptions = new ArrayList<>();
         menuOptions.add("1. Login");

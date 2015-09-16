@@ -14,13 +14,13 @@ public class Controller {
     private ConsoleOutput consoleOutput;
     private MainMenu mainMenu;
 
-    public Controller(ArrayList<User> listOfUsers, Factory factory) {
+    public Controller(ArrayList<User> listOfUsers, Factory factory, BookLibraryFactory bookLibraryFactory) {
         this.listOfUsers = listOfUsers;
         this.factory = factory;
         consoleInput = factory.createConsoleInput();
         consoleOutput = factory.createConsoleOutput();
         setup = new Setup();
-        bookLibrary = setup.initialiseLibraryWithBooks();
+        bookLibrary = bookLibraryFactory.createBookLibrary();
         movieLibrary = setup.initialiseMovieLibraryWithMovies();
         mainMenu = setup.initialiseMainMenuWithOptions();
     }

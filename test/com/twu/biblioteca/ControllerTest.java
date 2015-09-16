@@ -24,7 +24,7 @@ public class ControllerTest {
 
     @Test
     public void shouldInitialiseWelcomeMessageAndDisplayIt() {
-        Controller controller = new Controller(new ArrayList<User>(), new Factory());
+        Controller controller = new Controller(new ArrayList<User>(), new Factory(), new BookLibraryFactory());
         controller.displayWelcomeMessage();
 
         assertEquals("Hello! Welcome to Bangalore Public Library!\n", outputContent.toString());
@@ -35,7 +35,7 @@ public class ControllerTest {
         ByteArrayInputStream inputOption = new ByteArrayInputStream("Invalid".getBytes());
         System.setIn(inputOption);
 
-        Controller controller = new Controller(new ArrayList<User>(), new Factory());
+        Controller controller = new Controller(new ArrayList<User>(), new Factory(), new BookLibraryFactory());
         controller.displayMenuOptions();
 
         assertEquals("MAIN MENU\n1. Login\n2. List Books\n3. Checkout Book\n4. Return Book\n5. List Movies\n6. Checkout Movie" +
@@ -45,7 +45,7 @@ public class ControllerTest {
     @Test
     public void shouldUseAFactoryToCreateConsoleInput() {
         Factory factory = mock(Factory.class);
-        Controller controller = new Controller(new ArrayList<User>(), factory);
+        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory());
 
         verify(factory, times(1)).createConsoleInput();
     }
@@ -53,9 +53,17 @@ public class ControllerTest {
     @Test
     public void shouldUseAFactoryToCreateConsoleOutput() {
         Factory factory = mock(Factory.class);
-        Controller controller = new Controller(new ArrayList<User>(), factory);
+        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory());
 
         verify(factory, times(1)).createConsoleOutput();
+    }
+
+    @Test
+    public void shouldUseBookLibraryFactoryToCreateBookLibrary() {
+        BookLibraryFactory bookLibraryFactory = mock(BookLibraryFactory.class);
+        Controller controller = new Controller(new ArrayList<User>(), new Factory(), bookLibraryFactory);
+
+        verify(bookLibraryFactory, times(1)).createBookLibrary();
     }
 
     @Test
@@ -64,7 +72,7 @@ public class ControllerTest {
         System.setIn(inputOneOption);
         Factory factory = mock(Factory.class);
         when(factory.createConsoleInput()).thenReturn(new ConsoleInput());
-        Controller controller = new Controller(new ArrayList<User>(), factory);
+        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory());
 
         assertEquals("1", controller.menuOptionsInput());
     }
@@ -76,7 +84,7 @@ public class ControllerTest {
         Factory factory = mock(Factory.class);
 
         when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
-        Controller controller = new Controller(new ArrayList<User>(), factory);
+        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory());
         controller.dispatchMenuOption("Invalid");
 
         assertEquals("Select a valid option!\n", outputContent.toString());
@@ -89,7 +97,7 @@ public class ControllerTest {
     public void shouldQuitTheApplicationWhenMenuOptionOfNineIsEntered() {
         exit.expectSystemExitWithStatus(0);
         Factory factory = mock(Factory.class);
-        Controller controller = new Controller(new ArrayList<User>(), factory);
+        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory());
         controller.dispatchMenuOption("9");
     }
 
@@ -103,7 +111,7 @@ public class ControllerTest {
         when(factory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("Funny Girl");
 
-        Controller controller = new Controller(new ArrayList<User>(), factory);
+        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory());
         controller.dispatchMenuOption("6");
 
         assertEquals("Enter what is to be checked out:\nThank you! Enjoy the movie\n", outputContent.toString());
@@ -116,7 +124,7 @@ public class ControllerTest {
         System.setOut(new PrintStream(outputContent));
         Factory factory = mock(Factory.class);
         when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
-        Controller controller = new Controller(new ArrayList<User>(), factory);
+        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory());
         controller.dispatchMenuOption("5");
 
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +
@@ -132,7 +140,7 @@ public class ControllerTest {
         when(factory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
 
-        Controller controller = new Controller(new ArrayList<User>(), factory);
+        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory());
         controller.dispatchMenuOption("4");
 
         assertEquals("Enter book to be returned:\nThat is not a valid book to return\n", outputContent.toString());
@@ -148,7 +156,7 @@ public class ControllerTest {
         when(factory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
 
-        Controller controller = new Controller(new ArrayList<User>(), factory);
+        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory());
         controller.dispatchMenuOption("3");
 
         assertEquals("Enter what is to be checked out:\nThank you! Enjoy the book\n", outputContent.toString());
@@ -160,7 +168,7 @@ public class ControllerTest {
         System.setOut(new PrintStream(outputContent));
         Factory factory = mock(Factory.class);
         when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
-        Controller controller = new Controller(new ArrayList<User>(), factory);
+        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory());
         controller.dispatchMenuOption("2");
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn" +

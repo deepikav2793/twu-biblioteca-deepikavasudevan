@@ -4,8 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
 
 public class SetupTest {
 
@@ -21,19 +19,6 @@ public class SetupTest {
         WelcomeMessage welcomeMessage = setup.initialiseWelcomeMessage();
 
         assertEquals("Hello! Welcome to Bangalore Public Library!", welcomeMessage.getWelcomeMessage());
-    }
-
-    @Test
-    public void shouldCreateBookLibraryObject() {
-        assertEquals(BookLibrary.class, setup.initialiseLibraryWithBooks().getClass());
-    }
-
-    @Test
-    public void shouldInitialiseLibraryWithBooks() {
-        BookLibrary bookLibrary = setup.initialiseLibraryWithBooks();
-
-        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t" +
-                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", bookLibrary.list());
     }
 
     @Test
