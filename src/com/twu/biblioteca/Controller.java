@@ -53,7 +53,7 @@ public class Controller {
         } else if (menuOption.equals("3")) {
             checkOutBook();
         } else if (menuOption.equals("5")) {
-            listMovie(movieLibrary);
+            listMovies(movieLibrary);
         } else if (menuOption.equals("6")) {
             checkOutMovie();
         } else if (menuOption.equals("9")) {
@@ -67,7 +67,7 @@ public class Controller {
         consoleOutput.display(bookLibrary.listOfBooks());
     }
 
-    private void listMovie(MovieLibrary movieLibrary) {
+    private void listMovies(MovieLibrary movieLibrary) {
         consoleOutput.display(movieLibrary.listOfMovies());
     }
 

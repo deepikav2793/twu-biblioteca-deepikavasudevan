@@ -124,9 +124,8 @@ public class ControllerTest {
                 "Pretty in Pink\t1986\tJohn Hughes\t10\n\n", outputContent.toString());
     }
 
-
     @Test
-    public void shouldCheckOutABookFromLibraryWhenMovieOptionOfThreeIsEntered() {
+    public void shouldCheckOutABookFromLibraryWhenBookOptionOfThreeIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
         Factory factory = mock(Factory.class);
