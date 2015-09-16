@@ -1,16 +1,20 @@
 /*Controls flow of Biblioteca*/
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
+
 public class Controller {
 
+    private ArrayList<User> listOfUsers;
     private ConsoleInput consoleInput;
     private ConsoleOutput consoleOutput;
     private Setup setup;
 
-    public Controller() {
+    public Controller(ArrayList<User> listOfUsers) {
         consoleInput = new ConsoleInput();
         consoleOutput = new ConsoleOutput();
         setup = new Setup();
+        this.listOfUsers = listOfUsers;
     }
 
     public void displayWelcomeMessage() {

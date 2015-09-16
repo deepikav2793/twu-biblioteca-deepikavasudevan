@@ -146,7 +146,6 @@ public class MainMenuTest {
     @Test
     public void shouldExitTheApplicationWhenOptionSixIsEnabled() {
         exit.expectSystemExitWithStatus(0);
-
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         ArrayList<Book> availableBookList = new ArrayList<>();
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
