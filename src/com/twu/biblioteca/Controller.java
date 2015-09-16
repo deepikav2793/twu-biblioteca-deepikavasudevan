@@ -49,7 +49,7 @@ public class Controller {
 
     public void dispatchMenuOption(String menuOption) {
         if(menuOption.equals("2")) {
-            consoleOutput.display(bookLibrary.listOfBooks());
+            listBooks(bookLibrary);
         } else if (menuOption.equals("5")) {
             listMovie(movieLibrary);
         } else if (menuOption.equals("6")) {
@@ -59,6 +59,10 @@ public class Controller {
         } else {
             invalidOption();
         }
+    }
+
+    private void listBooks(BookLibrary bookLibrary) {
+        consoleOutput.display(bookLibrary.listOfBooks());
     }
 
     private void listMovie(MovieLibrary movieLibrary) {
