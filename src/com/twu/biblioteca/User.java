@@ -13,7 +13,7 @@ public class User {
         this.role = role;
     }
 
-    public String authenticate() {
-        return "Login successful";
+    public String authenticate(String thatLibraryNumber) {
+            return "Login successful";
     }
 }

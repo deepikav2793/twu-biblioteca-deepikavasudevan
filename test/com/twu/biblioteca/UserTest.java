@@ -7,9 +7,9 @@ import static org.junit.Assert.assertEquals;
 public class UserTest {
 
     @Test
-    public void shouldReturnSuccessfulAuthenticationIfLoginIsSuccessful() {
-        User user = new User("xxx-xxxx", "duh", "Guest");
+    public void shouldHaveSuccessfulLoginWhenLibraryNumbersOfUsersIsEqual() {
+        User user = new User("xxx-xxxx", "password", "Guest");
 
-        assertEquals("Login successful", user.authenticate());
+        assertEquals("Login successful", user.authenticate("xxx-xxxx"));
     }
 }
