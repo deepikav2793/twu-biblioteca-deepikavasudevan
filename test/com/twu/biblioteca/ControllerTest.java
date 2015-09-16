@@ -93,4 +93,20 @@ public class ControllerTest {
         Controller controller = new Controller(new ArrayList<User>(), factory);
         controller.dispatchMenuOption("9");
     }
+
+    @Test
+    public void shouldCheckOutAMovieFromMovieLibraryWhenMenuOptionOfSixIsEntered() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        Factory factory = mock(Factory.class);
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        when(factory.createConsoleInput()).thenReturn(consoleInput);
+        when(consoleInput.getInput()).thenReturn("Funny Girl");
+
+        Controller controller = new Controller(new ArrayList<User>(), factory);
+        controller.dispatchMenuOption("6");
+
+        assertEquals("Enter movie to be checked out:\nThank you! Enjoy the movie\n", outputContent.toString());
+    }
 }
