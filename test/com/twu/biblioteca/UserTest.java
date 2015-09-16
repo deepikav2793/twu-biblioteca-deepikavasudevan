@@ -26,4 +26,11 @@ public class UserTest {
 
         assertEquals("Login unsuccessful", user.authenticate("xxx-xxxx", "pass"));
     }
+
+    @Test
+    public void shouldHaveUnsuccessfulLoginWhenLibraryNumbersAreNotEqualAndPasswordsAreNotEqual() {
+        User user = new User("xxx-xxxx", "password", "GUEST");
+
+        assertEquals("Login unsuccessful", user.authenticate("yyy-yyyy", "pass"));
+    }
 }
