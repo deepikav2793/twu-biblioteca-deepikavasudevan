@@ -8,9 +8,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class ControllerTest {
 
@@ -56,5 +54,16 @@ public class ControllerTest {
         Controller controller = new Controller(new ArrayList<User>(), factory);
 
         verify(factory, times(1)).createConsoleOutput();
+    }
+
+    @Test
+    public void shouldUseConsoleInputWhileTakingMenuOptionAsInputFromConsole() {
+        ByteArrayInputStream inputOneOption = new ByteArrayInputStream("1".getBytes());
+        System.setIn(inputOneOption);
+        Factory factory = mock(Factory.class);
+        when(factory.createConsoleInput()).thenReturn(new ConsoleInput());
+        Controller controller = new Controller(new ArrayList<User>(), factory);
+
+        assertEquals("1", controller.menuOptionsInput());
     }
 }

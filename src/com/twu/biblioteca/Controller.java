@@ -30,7 +30,6 @@ public class Controller {
         consoleOutput.display(welcomeMessage.getWelcomeMessage());
     }
 
-
     public void displayMenuOptions() {
         consoleOutput.display(mainMenu.mainMenuOptions());
     }
@@ -41,5 +40,9 @@ public class Controller {
         for (; ; ) {
             displayMenuOptions();
         }
+    }
+
+    protected String menuOptionsInput() {
+        return consoleInput.getInput();
     }
 }
