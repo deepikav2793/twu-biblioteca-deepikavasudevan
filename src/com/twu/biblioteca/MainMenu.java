@@ -26,7 +26,9 @@ public class MainMenu {
     }
 
     public void dispatch(BookLibrary bookLibrary, MovieLibrary movieLibrary, String option) {
-        if (option.equals("2")) {
+        if(option.equals("1")) {
+            consoleOutput.display("Login Successful");
+        }else if (option.equals("2")) {
             consoleOutput.display(bookLibrary.listOfBooks());
         } else if (option.equals("3")) {
             consoleOutput.display("Enter book to be checked out:");

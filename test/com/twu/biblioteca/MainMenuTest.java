@@ -37,6 +37,18 @@ public class MainMenuTest {
                 "6. Quit\n", mainMenu.mainMenuOptions());
     }
 
+    @Test
+    public void shouldLoginAUserWhenOptionOneIsEntered() {
+        ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        ArrayList<Book> availableBookList = new ArrayList<>();
+        BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
+        ArrayList<Movie> movieList = new ArrayList<>();
+        MovieLibrary movieLibrary = new MovieLibrary(movieList);
+
+        mainMenu.dispatch(bookLibrary, movieLibrary, "1");
+
+        assertEquals("Login Successful\n", outputContent.toString());
+    }
 
     @Test
     public void shouldListBooksWhenOptionWhenOptionTwoIsEntered() {

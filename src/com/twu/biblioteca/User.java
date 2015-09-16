@@ -5,9 +5,9 @@ public class User {
 
     private String libraryNumber;
     private String password;
-    private String role;
+    private ROLE role;
 
-    public User(String libraryNumber, String password, String role) {
+    public User(String libraryNumber, String password, ROLE role) {
         this.libraryNumber = libraryNumber;
         this.password = password;
         this.role = role;

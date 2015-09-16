@@ -8,28 +8,28 @@ public class UserTest {
 
     @Test
     public void shouldHaveSuccessfulLoginWhenLibraryNumberAndPasswordsAreEqual() {
-        User user = new User("xxx-xxxx", "password", "GUEST");
+        User user = new User("xxx-xxxx", "password", ROLE.GUEST_USER);
 
         assertEquals("Login successful", user.authenticate("xxx-xxxx", "password"));
     }
 
     @Test
     public void shouldHaveUnsuccessfulLoginWhenLibraryNumbersAreNotEqualAndPasswordsAreEqual() {
-        User user = new User("xxx-xxxx", "password", "GUEST");
+        User user = new User("xxx-xxxx", "password", ROLE.GUEST_USER);
 
         assertEquals("Login unsuccessful", user.authenticate("yyy-yyyy", "password"));
     }
 
     @Test
     public void shouldHaveUnsuccessfulLoginWhenLibraryNumbersAreEqualAndPasswordsAreEqual() {
-        User user = new User("xxx-xxxx", "password", "GUEST");
+        User user = new User("xxx-xxxx", "password", ROLE.GUEST_USER);
 
         assertEquals("Login unsuccessful", user.authenticate("xxx-xxxx", "pass"));
     }
 
     @Test
     public void shouldHaveUnsuccessfulLoginWhenLibraryNumbersAreNotEqualAndPasswordsAreNotEqual() {
-        User user = new User("xxx-xxxx", "password", "GUEST");
+        User user = new User("xxx-xxxx", "password", ROLE.GUEST_USER);
 
         assertEquals("Login unsuccessful", user.authenticate("yyy-yyyy", "pass"));
     }
