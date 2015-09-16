@@ -14,7 +14,7 @@ public class Controller {
     private ConsoleOutput consoleOutput;
     private MainMenu mainMenu;
 
-    public Controller(ArrayList<User> listOfUsers, Factory factory, BookLibraryFactory bookLibraryFactory) {
+    public Controller(ArrayList<User> listOfUsers, Factory factory, BookLibraryFactory bookLibraryFactory, MainMenuFactory mainMenuFactory) {
         this.listOfUsers = listOfUsers;
         this.factory = factory;
         consoleInput = factory.createConsoleInput();
@@ -22,7 +22,7 @@ public class Controller {
         setup = new Setup();
         bookLibrary = bookLibraryFactory.createBookLibrary();
         movieLibrary = setup.initialiseMovieLibraryWithMovies();
-        mainMenu = setup.initialiseMainMenuWithOptions();
+        mainMenu = mainMenuFactory.createMainMenu();
     }
 
     public void displayWelcomeMessage() {

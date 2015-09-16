@@ -22,19 +22,6 @@ public class SetupTest {
     }
 
     @Test
-    public void shouldCreateMainMenuObject() {
-        assertEquals(MainMenu.class, setup.initialiseMainMenuWithOptions().getClass());
-    }
-
-    @Test
-    public void shouldInitialiseMenuOptions() {
-        MainMenu menu = setup.initialiseMainMenuWithOptions();
-
-        assertEquals("MAIN MENU\n1. Login\n2. List Books\n3. Checkout Book\n4. Return Book\n5. List Movies\n6. Checkout Movie" +
-                "\n7. List Checked Out Books with User's Library Number\n8. Logout\n9. Quit\n", menu.mainMenuOptions());
-    }
-
-    @Test
     public void shouldCreateMovieLibraryObject() {
         assertEquals(MovieLibrary.class, setup.initialiseMovieLibraryWithMovies().getClass());
     }

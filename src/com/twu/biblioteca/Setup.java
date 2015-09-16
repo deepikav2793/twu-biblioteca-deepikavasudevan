@@ -9,21 +9,6 @@ public class Setup {
         return new WelcomeMessage("Hello! Welcome to Bangalore Public Library!");
     }
 
-    public MainMenu initialiseMainMenuWithOptions() {
-        ArrayList<String> menuOptions = new ArrayList<>();
-        menuOptions.add("1. Login");
-        menuOptions.add("2. List Books");
-        menuOptions.add("3. Checkout Book");
-        menuOptions.add("4. Return Book");
-        menuOptions.add("5. List Movies");
-        menuOptions.add("6. Checkout Movie");
-        menuOptions.add("7. List Checked Out Books with User's Library Number");
-        menuOptions.add("8. Logout");
-        menuOptions.add("9. Quit");
-
-        return new MainMenu(menuOptions);
-    }
-
     public MovieLibrary initialiseMovieLibraryWithMovies() {
         ArrayList<Movie> movieList = new ArrayList<>();
         movieList.add(new Movie("Funny Girl", 1968, "William Wyler", "8"));
