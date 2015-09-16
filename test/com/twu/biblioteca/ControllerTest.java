@@ -124,6 +124,23 @@ public class ControllerTest {
                 "Pretty in Pink\t1986\tJohn Hughes\t10\n\n", outputContent.toString());
     }
 
+
+    @Test
+    public void shouldCheckOutABookFromLibraryWhenMovieOptionOfThreeIsEntered() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        Factory factory = mock(Factory.class);
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        when(factory.createConsoleInput()).thenReturn(consoleInput);
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+
+        Controller controller = new Controller(new ArrayList<User>(), factory);
+        controller.dispatchMenuOption("3");
+
+        assertEquals("Enter book to be checked out:\nThank you! Enjoy the book\n", outputContent.toString());
+    }
+
     @Test
     public void shouldListBooksFromBookLibraryWhenMovieOptionOfTwoIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();

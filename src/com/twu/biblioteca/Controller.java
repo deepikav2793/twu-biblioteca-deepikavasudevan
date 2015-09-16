@@ -48,8 +48,10 @@ public class Controller {
     }
 
     public void dispatchMenuOption(String menuOption) {
-        if(menuOption.equals("2")) {
+        if (menuOption.equals("2")) {
             listBooks(bookLibrary);
+        } else if (menuOption.equals("3")) {
+            checkOutBook();
         } else if (menuOption.equals("5")) {
             listMovie(movieLibrary);
         } else if (menuOption.equals("6")) {
@@ -67,6 +69,11 @@ public class Controller {
 
     private void listMovie(MovieLibrary movieLibrary) {
         consoleOutput.display(movieLibrary.listOfMovies());
+    }
+
+    private void checkOutBook() {
+        consoleOutput.display("Enter book to be checked out:");
+        consoleOutput.display(bookLibrary.checkOutBook(consoleInput.getInput()));
     }
 
     private void checkOutMovie() {
