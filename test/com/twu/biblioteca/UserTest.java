@@ -7,9 +7,16 @@ import static org.junit.Assert.assertEquals;
 public class UserTest {
 
     @Test
-    public void shouldHaveSuccessfulLoginWhenLibraryNumbersOfUsersIsEqual() {
+    public void shouldHaveSuccessfulLoginWhenLibraryNumberAndPasswordsAreEqual() {
         User user = new User("xxx-xxxx", "password", "Guest");
 
-        assertEquals("Login successful", user.authenticate("xxx-xxxx"));
+        assertEquals("Login successful", user.authenticate("xxx-xxxx", "password"));
+    }
+
+    @Test
+    public void shouldHaveUnsuccessfulLoginWhenLibraryNumbersAreNotEqualAndPasswordsAreEqual() {
+        User user = new User("xxx-xxxx", "password", "Guest");
+
+        assertEquals("Login unsuccessful", user.authenticate("yyy-yyyy", "password"));
     }
 }
