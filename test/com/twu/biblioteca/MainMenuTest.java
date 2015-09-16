@@ -9,9 +9,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class MainMenuTest {
 
@@ -48,6 +47,19 @@ public class MainMenuTest {
         mainMenu.dispatch(bookLibrary, movieLibrary, "1");
 
         assertEquals("Login Successful\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldTakeInInputFromUserForUserNameAndPassword() {
+        ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        ArrayList<Book> availableBookList = new ArrayList<>();
+        BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
+        ArrayList<Movie> movieList = new ArrayList<>();
+        MovieLibrary movieLibrary = new MovieLibrary(movieList);
+
+        mainMenu.dispatch(bookLibrary, movieLibrary, "1");
+
+        verify(consoleInput, times(2)).getInput();
     }
 
     @Test
