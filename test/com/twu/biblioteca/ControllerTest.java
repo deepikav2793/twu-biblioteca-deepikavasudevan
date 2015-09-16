@@ -49,4 +49,12 @@ public class ControllerTest {
 
         verify(factory, times(1)).createConsoleInput();
     }
+
+    @Test
+    public void shouldUseAFactoryToCreateConsoleOutput() {
+        Factory factory = mock(Factory.class);
+        Controller controller = new Controller(new ArrayList<User>(), factory);
+
+        verify(factory, times(1)).createConsoleOutput();
+    }
 }
