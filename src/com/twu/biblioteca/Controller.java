@@ -6,13 +6,15 @@ import java.util.ArrayList;
 public class Controller {
 
     private ArrayList<User> listOfUsers;
+    private Factory factory;
     private ConsoleInput consoleInput;
     private ConsoleOutput consoleOutput;
     private Setup setup;
 
-    public Controller(ArrayList<User> listOfUsers) {
-        consoleInput = new ConsoleInput();
-        consoleOutput = new ConsoleOutput();
+    public Controller(ArrayList<User> listOfUsers, Factory factory) {
+        this.factory = factory;
+        consoleInput = factory.createConsoleInput();
+        consoleOutput = factory.createConsoleOutput();
         setup = new Setup();
         this.listOfUsers = listOfUsers;
     }

@@ -26,6 +26,11 @@ public class SetupTest {
     }
 
     @Test
+    public void shouldCreateBookLibraryObject() {
+        assertEquals(BookLibrary.class, setup.initialiseLibraryWithBooks().getClass());
+    }
+
+    @Test
     public void shouldInitialiseLibraryWithBooks() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
@@ -37,6 +42,11 @@ public class SetupTest {
     }
 
     @Test
+    public void shouldCreateMainMenuObject() {
+        assertEquals(MainMenu.class, setup.initialiseMainMenuWithOptions().getClass());
+    }
+
+    @Test
     public void shouldInitialiseMenuOptions() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
@@ -44,6 +54,11 @@ public class SetupTest {
         MainMenu menu = setup.initialiseMainMenuWithOptions();
 
         assertEquals("MAIN MENU\n1. List Books\n2. Checkout Book\n3. Return Book\n4. List Movies\n5. Quit\n", menu.mainMenuOptions());
+    }
+
+    @Test
+    public void shouldCreateMovieLibraryObject() {
+        assertEquals(MovieLibrary.class, setup.initialiseMovieLibraryWithMovies().getClass());
     }
 
     @Test
