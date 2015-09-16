@@ -49,13 +49,17 @@ public class Controller {
 
     public void dispatchMenuOption(String menuOption) {
         if (menuOption.equals("6")) {
-            consoleOutput.display("Enter movie to be checked out:");
-            consoleOutput.display(movieLibrary.checkOutMovie(consoleInput.getInput()));
+            checkOutMovie();
         }else if (menuOption.equals("9")) {
             quitOption();
         } else {
             invalidOption();
         }
+    }
+
+    private void checkOutMovie() {
+        consoleOutput.display("Enter movie to be checked out:");
+        consoleOutput.display(movieLibrary.checkOutMovie(consoleInput.getInput()));
     }
 
     private void quitOption() {
