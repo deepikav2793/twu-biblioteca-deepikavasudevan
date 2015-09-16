@@ -24,11 +24,15 @@ public class Setup {
 
     public MainMenu initialiseMainMenuWithOptions() {
         ArrayList<String> menuOptions = new ArrayList<>();
-        menuOptions.add("1. List Books");
-        menuOptions.add("2. Checkout Book");
-        menuOptions.add("3. Return Book");
-        menuOptions.add("4. List Movies");
-        menuOptions.add("5. Quit");
+        menuOptions.add("1. Login");
+        menuOptions.add("2. List Books");
+        menuOptions.add("3. Checkout Book");
+        menuOptions.add("4. Return Book");
+        menuOptions.add("5. List Movies");
+        menuOptions.add("6. Checkout Movie");
+        menuOptions.add("7. List Checked Out Books with User's Library Number");
+        menuOptions.add("8. Logout");
+        menuOptions.add("9. Quit");
 
         return new MainMenu(menuOptions, consoleInput, consoleOutput);
     }
