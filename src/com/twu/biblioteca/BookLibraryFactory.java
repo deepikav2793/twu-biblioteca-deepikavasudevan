@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class BookLibraryFactory {
 
-    BookLibrary bookLibrary;
+    private BookLibrary bookLibrary;
 
     public BookLibrary createBookLibrary() {
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
@@ -14,6 +14,7 @@ public class BookLibraryFactory {
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
 
-        return new BookLibrary(availableBookList, checkedOutBookList);
+        bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
+        return bookLibrary;
     }
 }
