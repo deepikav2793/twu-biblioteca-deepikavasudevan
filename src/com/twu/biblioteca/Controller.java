@@ -48,7 +48,9 @@ public class Controller {
     }
 
     public void dispatchMenuOption(String menuOption) {
-        if (menuOption.equals("5")) {
+        if(menuOption.equals("2")) {
+            consoleOutput.display(bookLibrary.listOfBooks());
+        } else if (menuOption.equals("5")) {
             listMovie(movieLibrary);
         } else if (menuOption.equals("6")) {
             checkOutMovie();

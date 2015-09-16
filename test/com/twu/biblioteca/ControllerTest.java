@@ -123,4 +123,17 @@ public class ControllerTest {
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +
                 "Pretty in Pink\t1986\tJohn Hughes\t10\n\n", outputContent.toString());
     }
+
+    @Test
+    public void shouldListBooksFromBookLibraryWhenMovieOptionOfTwoIsEntered() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        Factory factory = mock(Factory.class);
+        when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        Controller controller = new Controller(new ArrayList<User>(), factory);
+        controller.dispatchMenuOption("2");
+
+        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn" +
+                "\t2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n\n", outputContent.toString());
+    }
 }
