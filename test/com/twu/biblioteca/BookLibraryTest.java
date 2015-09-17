@@ -114,4 +114,36 @@ public class BookLibraryTest {
 
         assertEquals("That is not a valid book to return", bookLibrary.returnBook("Gone Girl", currentUser));
     }
+
+    @Test
+    public void shouldNotReturnBookIfBookHasBeenCheckedOutButNotByTheSameUser() {
+        ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        ArrayList<Book> availableBookList = new ArrayList<>();
+        availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
+        availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
+        availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
+        HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
+        checkedOutBookListWithUser.put(new Book("Gone Girl", "Gillian Flynn", 2000),
+                new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
+        BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
+        User currentUser = new User("Guest User", "No Password", ROLE.AUTHENTICATED_USER);
+
+        assertEquals("That is not a valid book to return", bookLibrary.returnBook("Gone Girl", currentUser));
+    }
+
+    @Test
+    public void shouldNotReturnBookIfBookHasNotBeenCheckedOutButUserHasCheckedOutSomeOtherBook() {
+        ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        ArrayList<Book> availableBookList = new ArrayList<>();
+        availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
+        availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
+        availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
+        HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
+        checkedOutBookListWithUser.put(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850),
+                new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
+        BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
+        User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER);
+
+        assertEquals("That is not a valid book to return", bookLibrary.returnBook("Gone Girl", currentUser));
+    }
 }
