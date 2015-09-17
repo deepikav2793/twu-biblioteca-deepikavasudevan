@@ -1,20 +1,25 @@
 /*Authenticates user name and password against list of users*/
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
+
 public class LoginMenuOption implements MainMenuOption {
 
     ConsoleInput consoleInput;
     ConsoleOutput consoleOutput;
+    ArrayList<User> listOfUsers;
 
-    public LoginMenuOption(ConsoleInput consoleInput, ConsoleOutput consoleOutput) {
+    public LoginMenuOption(ConsoleInput consoleInput, ConsoleOutput consoleOutput, ArrayList<User> listOfUsers) {
         this.consoleInput = consoleInput;
         this.consoleOutput = consoleOutput;
+        this.listOfUsers = listOfUsers;
     }
     @Override
     public void executeOptionOperation() {
-        String username = username();
-        String password = password();
-        consoleOutput.display("Login Successful");
+        if(isAuthenticatedUser(username(), password()))
+            consoleOutput.display("Login Successful");
+        else
+            consoleOutput.display("Login Unsuccessful");
     }
 
     private String username() {
@@ -23,5 +28,9 @@ public class LoginMenuOption implements MainMenuOption {
 
     private String password() {
         return consoleInput.getInput();
+    }
+
+    private boolean isAuthenticatedUser(String username, String password) {
+        return true;
     }
 }

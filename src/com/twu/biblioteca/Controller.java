@@ -29,15 +29,6 @@ public class Controller {
         mainMenu.executeOption(mainMenuOption);
     }
 
-    public void initialiseBibliotecaApplication() {
-        displayWelcomeMessage();
-
-        for (; ; ) {
-            displayMenuOptions();
-            dispatchMenuOption(menuOptionsInput());
-        }
-    }
-
     public void displayWelcomeMessage() {
         consoleOutput.display(welcomeMessage.getWelcomeMessage());
     }
@@ -52,7 +43,7 @@ public class Controller {
 
     public MainMenuOption parseMenuOption(String menuOption) {
         if (menuOption.equals("1")) {
-            return new LoginMenuOption(consoleInput, consoleOutput);
+            return new LoginMenuOption(consoleInput, consoleOutput, listOfUsers);
         } else if (menuOption.equals("2")) {
             return new ListLibraryMenuOption(bookLibrary, consoleOutput);
         } else if (menuOption.equals("3")) {
@@ -67,6 +58,15 @@ public class Controller {
             return new QuitMenuOption();
         } else {
             return new InvalidMenuOption(consoleOutput);
+        }
+    }
+
+    public void initialiseBibliotecaApplication() {
+        displayWelcomeMessage();
+
+        for (; ; ) {
+            displayMenuOptions();
+            dispatchMenuOption(menuOptionsInput());
         }
     }
 }
