@@ -148,6 +148,11 @@ public class ControllerTest {
     }
 
     @Test
+    public void shouldLogoutTheUserWhenMenuOptionNineIsEntered() {
+
+    }
+
+    @Test
     public void shouldCheckOutAMovieFromMovieLibraryWhenMenuOptionOfSixIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
