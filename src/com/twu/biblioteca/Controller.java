@@ -74,7 +74,7 @@ public class Controller {
         String returnMessage = bookLibrary.returnBook(bookToBeReturned);
         consoleOutput.display(returnMessage);
     }
-    
+
     private void invalidOption() {
         consoleOutput.display("Select a valid option!");
     }
