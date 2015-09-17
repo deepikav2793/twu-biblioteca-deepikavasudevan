@@ -9,6 +9,8 @@ public class MovieLibraryFactory {
 
     public MovieLibrary createMovieLibrary() {
         ArrayList<Movie> movieList = new ArrayList<>();
+        movieList.add(new Movie("Funny Girl", 1968, "William Wyler", "8"));
+        movieList.add(new Movie("Pretty in Pink", 1986, "John Hughes", "10"));
         movieLibrary  = new MovieLibrary(movieList);
 
         return movieLibrary;
