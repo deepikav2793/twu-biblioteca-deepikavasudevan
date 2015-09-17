@@ -14,7 +14,8 @@ public class CheckOutMainMenuOptionTest {
         BookLibrary bookLibrary = mock(BookLibrary.class);
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         checkOutMenuOption.executeOptionOperation();
 
         verify(consoleInput, times(1)).getInput();
@@ -30,7 +31,8 @@ public class CheckOutMainMenuOptionTest {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         checkOutMenuOption.executeOptionOperation();
 
         assertEquals("Enter what is to be checked out:\nThank you! Enjoy the book\n", outputContent.toString());
@@ -43,7 +45,8 @@ public class CheckOutMainMenuOptionTest {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         checkOutMenuOption.executeOptionOperation();
 
         verify(consoleOutput, times(1)).display("Enter what is to be checked out:");
@@ -60,7 +63,8 @@ public class CheckOutMainMenuOptionTest {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("Goner Girl");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         checkOutMenuOption.executeOptionOperation();
 
         assertEquals("Enter what is to be checked out:\nThis book is not available\n", outputContent.toString());
@@ -76,7 +80,8 @@ public class CheckOutMainMenuOptionTest {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("Funny Girl");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(movieLibrary, consoleInput, consoleOutput);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(movieLibrary, consoleInput, consoleOutput, currentUser);
         checkOutMenuOption.executeOptionOperation();
 
         assertEquals("Enter what is to be checked out:\nThank you! Enjoy the movie\n", outputContent.toString());

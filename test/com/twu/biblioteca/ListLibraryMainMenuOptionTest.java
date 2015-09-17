@@ -17,7 +17,8 @@ public class ListLibraryMainMenuOptionTest {
         when(bookLibrary.list()).thenReturn("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
                 "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, consoleOutput);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, consoleOutput, currentUser);
         listLibraryMenuOption.executeOptionOperation();
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
                 "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n\n", outputContent.toString());
@@ -26,7 +27,8 @@ public class ListLibraryMainMenuOptionTest {
     @Test
     public void shouldUseBookLibrarysListingToListBooks() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
-        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, new ConsoleOutput());
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, new ConsoleOutput(), currentUser);
         listLibraryMenuOption.executeOptionOperation();
 
         verify(bookLibrary, times(1)).list();
@@ -40,7 +42,8 @@ public class ListLibraryMainMenuOptionTest {
         when(movieLibrary.list()).thenReturn("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\n" +
                 "Funny Girl\t1968\tWilliam Wyler\t8\nPretty in Pink\t1986\tJohn Hughes\t10\n");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, consoleOutput);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, consoleOutput, currentUser);
         listLibraryMenuOption.executeOptionOperation();
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\n" +
                 "Funny Girl\t1968\tWilliam Wyler\t8\nPretty in Pink\t1986\tJohn Hughes\t10\n\n", outputContent.toString());
@@ -49,7 +52,8 @@ public class ListLibraryMainMenuOptionTest {
     @Test
     public void shouldUseMovieLibrarysListingToListBooks() {
         MovieLibrary movieLibrary = mock(MovieLibrary.class);
-        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, new ConsoleOutput());
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, new ConsoleOutput(), currentUser);
         listLibraryMenuOption.executeOptionOperation();
 
         verify(movieLibrary, times(1)).list();
@@ -61,7 +65,8 @@ public class ListLibraryMainMenuOptionTest {
         when(bookLibrary.list()).thenReturn("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
                 "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n");
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, consoleOutput);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, consoleOutput, currentUser);
         listLibraryMenuOption.executeOptionOperation();
 
         verify(consoleOutput, times(1)).display("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +

@@ -18,12 +18,14 @@ public class LoginMenuOption implements MainMenuOption {
     }
 
     @Override
-    public void executeOptionOperation() {
+    public User executeOptionOperation() {
         currentUser = new User(username(), password(), ROLE.GUEST_USER);
         if(isAuthenticatedUser(currentUser))
             consoleOutput.display("Login Successful");
         else
             consoleOutput.display("Login Unsuccessful");
+
+        return currentUser;
     }
 
     private String username() {

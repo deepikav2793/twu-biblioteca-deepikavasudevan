@@ -21,7 +21,7 @@ public class MainMenu {
         return mainMenuOptions;
     }
 
-    public void executeOption(MainMenuOption mainMenuOption) {
-        mainMenuOption.executeOptionOperation();
+    public User executeOption(MainMenuOption mainMenuOption) {
+        return mainMenuOption.executeOptionOperation();
     }
 }

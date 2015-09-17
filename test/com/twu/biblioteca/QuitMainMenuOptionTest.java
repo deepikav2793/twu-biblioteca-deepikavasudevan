@@ -11,8 +11,9 @@ public class QuitMainMenuOptionTest {
 
     @Test
     public void shouldQuitApplication() {
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         exit.expectSystemExitWithStatus(0);
-        QuitMenuOption quitMenuOption = new QuitMenuOption();
+        QuitMenuOption quitMenuOption = new QuitMenuOption(currentUser);
         quitMenuOption.executeOptionOperation();
     }
 }

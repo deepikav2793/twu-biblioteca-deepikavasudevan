@@ -17,7 +17,7 @@ public class User {
     public boolean equals(Object that) {
         if (that != null && that.getClass() == this.getClass()) {
             User thatUser = (User) that;
-            if (this == thatUser || (this.libraryNumber == thatUser.libraryNumber && this.password == thatUser.password))
+            if (this == thatUser || (this.libraryNumber.equals(thatUser.libraryNumber) && this.password.equals(thatUser.password)))
                 return true;
         }
         return false;

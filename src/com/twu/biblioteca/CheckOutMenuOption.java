@@ -1,24 +1,25 @@
 /*checks out a book from book library or a movie from movie library*/
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-
 public class CheckOutMenuOption implements MainMenuOption {
     private Library library;
     private ConsoleInput consoleInput;
     private ConsoleOutput consoleOutput;
+    private User currentUser;
 
-    public CheckOutMenuOption(Library library, ConsoleInput consoleInput, ConsoleOutput consoleOutput) {
+    public CheckOutMenuOption(Library library, ConsoleInput consoleInput, ConsoleOutput consoleOutput, User currentUser) {
         this.library = library;
         this.consoleInput = consoleInput;
         this.consoleOutput = consoleOutput;
+        this.currentUser = currentUser;
     }
 
     @Override
-    public void executeOptionOperation() {
+    public User executeOptionOperation() {
         consoleOutput.display("Enter what is to be checked out:");
         String checkOutMessage = library.checkOut(entityToBeCheckedOut());
         consoleOutput.display(checkOutMessage);
+        return currentUser;
     }
 
     private String entityToBeCheckedOut() {

@@ -47,19 +47,19 @@ public class Controller {
         if (menuOption.equals("1")) {
             return new LoginMenuOption(consoleInput, consoleOutput, listOfUsers, currentUser);
         } else if (menuOption.equals("2")) {
-            return new ListLibraryMenuOption(bookLibrary, consoleOutput);
+            return new ListLibraryMenuOption(bookLibrary, consoleOutput, currentUser);
         } else if (menuOption.equals("3")) {
-            return new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
+            return new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         } else if (menuOption.equals("4")) {
-            return new ReturnBookMenuOption(bookLibrary, consoleInput, consoleOutput);
+            return new ReturnBookMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         } else if (menuOption.equals("5")) {
-            return new ListLibraryMenuOption(movieLibrary, consoleOutput);
+            return new ListLibraryMenuOption(movieLibrary, consoleOutput, currentUser);
         } else if (menuOption.equals("6")) {
-            return new CheckOutMenuOption(movieLibrary, consoleInput, consoleOutput);
+            return new CheckOutMenuOption(movieLibrary, consoleInput, consoleOutput, currentUser);
         } else if (menuOption.equals("9")) {
-            return new QuitMenuOption();
+            return new QuitMenuOption(currentUser);
         } else {
-            return new InvalidMenuOption(consoleOutput);
+            return new InvalidMenuOption(consoleOutput, currentUser);
         }
     }
 

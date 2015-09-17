@@ -1,5 +1,5 @@
 package com.twu.biblioteca;
 
 public interface MainMenuOption {
-    void executeOptionOperation();
+    User executeOptionOperation();
 }

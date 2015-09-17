@@ -4,15 +4,18 @@ package com.twu.biblioteca;
 public class ListLibraryMenuOption implements MainMenuOption {
     private Library library;
     private ConsoleOutput consoleOutput;
+    private User currentUser;
 
-    public ListLibraryMenuOption(Library library, ConsoleOutput consoleOutput) {
+    public ListLibraryMenuOption(Library library, ConsoleOutput consoleOutput, User currentUser) {
         this.library = library;
         this.consoleOutput = consoleOutput;
+        this.currentUser = currentUser;
     }
 
     @Override
-    public void executeOptionOperation() {
+    public User executeOptionOperation() {
         consoleOutput.display(list());
+        return currentUser;
     }
 
     private String list() {
