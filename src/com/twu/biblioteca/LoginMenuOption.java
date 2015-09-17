@@ -31,11 +31,11 @@ public class LoginMenuOption implements MainMenuOption {
     }
 
     private boolean isAuthenticatedUser(String username, String password) {
+        User thatUser = new User(username, password, ROLE.GUEST_USER);
         for(User user : listOfUsers) {
-            if(user.authenticate(username, password))
+            if(user.equals(thatUser))
                 return true;
         }
-
         return false;
     }
 }

@@ -13,10 +13,24 @@ public class User {
         this.role = role;
     }
 
-    public boolean authenticate(String thatLibraryNumber, String thatPassword) {
-        if(this.libraryNumber.equals(thatLibraryNumber) && this.password.equals(thatPassword))
-            return true;
-        else
-            return false;
+    @Override
+    public boolean equals(Object that) {
+        if (that != null && that.getClass() == this.getClass()) {
+            User thatUser = (User) that;
+            if (this == thatUser || (this.libraryNumber == thatUser.libraryNumber && this.password == thatUser.password))
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        if (this != null) {
+            for (int i = 0; i < libraryNumber.length(); i++) {
+                hash = Character.getNumericValue(libraryNumber.charAt(i)) + (hash << 6) + (hash << 16) - hash;
+            }
+        }
+        return hash;
     }
 }
