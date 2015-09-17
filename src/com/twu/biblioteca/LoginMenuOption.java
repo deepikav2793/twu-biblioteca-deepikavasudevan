@@ -8,12 +8,15 @@ public class LoginMenuOption implements MainMenuOption {
     ConsoleInput consoleInput;
     ConsoleOutput consoleOutput;
     ArrayList<User> listOfUsers;
+    User currentUser;
 
     public LoginMenuOption(ConsoleInput consoleInput, ConsoleOutput consoleOutput, ArrayList<User> listOfUsers) {
         this.consoleInput = consoleInput;
         this.consoleOutput = consoleOutput;
         this.listOfUsers = listOfUsers;
+        currentUser = new User(username(), password(), ROLE.GUEST_USER);
     }
+
     @Override
     public void executeOptionOperation() {
         if(isAuthenticatedUser(username(), password()))
@@ -23,10 +26,12 @@ public class LoginMenuOption implements MainMenuOption {
     }
 
     private String username() {
+        consoleOutput.display("Enter username:");
         return consoleInput.getInput();
     }
 
     private String password() {
+        consoleOutput.display("Enter password:");
         return consoleInput.getInput();
     }
 

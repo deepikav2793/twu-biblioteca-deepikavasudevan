@@ -38,6 +38,16 @@ public class LoginMenuOptionTest {
     }
 
     @Test
+    public void shouldUseConsoleOutputToPrintPromptMessageForUserNameAndPassword() {
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
+        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, new ArrayList<User>());
+
+        verify(consoleOutput, times(1)).display("Enter username:");
+        verify(consoleOutput, times(1)).display("Enter password:");
+    }
+
+    @Test
     public void shouldReturnSuccessfulLoginMessageOnAuthentication() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
