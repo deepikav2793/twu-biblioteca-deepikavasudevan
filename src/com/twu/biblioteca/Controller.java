@@ -12,9 +12,10 @@ public class Controller {
     private MainMenu mainMenu;
     private BookLibrary bookLibrary;
     private MovieLibrary movieLibrary;
+    private User currentUser;
 
     public Controller(ArrayList<User> listOfUsers, ConsoleInputAndOutputFactory consoleInputAndOutputFactory, BookLibraryFactory bookLibraryFactory, MainMenuFactory mainMenuFactory,
-                      MovieLibraryFactory movieLibraryFactory, WelcomeMessageFactory welcomeMessageFactory) {
+                      MovieLibraryFactory movieLibraryFactory, WelcomeMessageFactory welcomeMessageFactory, User currentUser) {
         this.listOfUsers = listOfUsers;
         consoleInput = consoleInputAndOutputFactory.createConsoleInput();
         consoleOutput = consoleInputAndOutputFactory.createConsoleOutput();
@@ -22,6 +23,7 @@ public class Controller {
         mainMenu = mainMenuFactory.createMainMenu();
         bookLibrary = bookLibraryFactory.createBookLibrary();
         movieLibrary = movieLibraryFactory.createMovieLibrary();
+        this.currentUser = currentUser;
     }
 
     public void dispatchMenuOption(String menuOption) {
@@ -43,7 +45,7 @@ public class Controller {
 
     public MainMenuOption parseMenuOption(String menuOption) {
         if (menuOption.equals("1")) {
-            return new LoginMenuOption(consoleInput, consoleOutput, listOfUsers);
+            return new LoginMenuOption(consoleInput, consoleOutput, listOfUsers, currentUser);
         } else if (menuOption.equals("2")) {
             return new ListLibraryMenuOption(bookLibrary, consoleOutput);
         } else if (menuOption.equals("3")) {

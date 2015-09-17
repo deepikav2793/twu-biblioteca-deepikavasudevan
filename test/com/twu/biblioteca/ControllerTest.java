@@ -24,8 +24,9 @@ public class ControllerTest {
 
     @Test
     public void shouldInitialiseWelcomeMessageAndDisplayIt() {
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.displayWelcomeMessage();
 
         assertEquals("Hello! Welcome to Bangalore Public Library!\n", outputContent.toString());
@@ -36,8 +37,9 @@ public class ControllerTest {
         ByteArrayInputStream inputOption = new ByteArrayInputStream("Invalid".getBytes());
         System.setIn(inputOption);
 
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.displayMenuOptions();
 
         assertEquals("MAIN MENU\n1. Login\n2. List Books\n3. Checkout Book\n4. Return Book\n5. List Movies\n6. Checkout Movie" +
@@ -47,8 +49,9 @@ public class ControllerTest {
     @Test
     public void shouldUseAFactoryToCreateConsoleInput() {
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
 
         verify(consoleInputAndOutputFactory, times(1)).createConsoleInput();
     }
@@ -56,8 +59,9 @@ public class ControllerTest {
     @Test
     public void shouldUseAFactoryToCreateConsoleOutput() {
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
 
         verify(consoleInputAndOutputFactory, times(1)).createConsoleOutput();
     }
@@ -65,8 +69,9 @@ public class ControllerTest {
     @Test
     public void shouldUseBookLibraryFactoryToCreateBookLibrary() {
         BookLibraryFactory bookLibraryFactory = mock(BookLibraryFactory.class);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), bookLibraryFactory,
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
 
         verify(bookLibraryFactory, times(1)).createBookLibrary();
     }
@@ -74,8 +79,9 @@ public class ControllerTest {
     @Test
     public void shouldUseMovieLibraryFactoryToCreateMovieLibrary() {
         MovieLibraryFactory movieLibraryFactory = mock(MovieLibraryFactory.class);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
-                new MainMenuFactory(), movieLibraryFactory, new WelcomeMessageFactory());
+                new MainMenuFactory(), movieLibraryFactory, new WelcomeMessageFactory(), currentUser);
 
         verify(movieLibraryFactory, times(1)).createMovieLibrary();
     }
@@ -83,8 +89,9 @@ public class ControllerTest {
     @Test
     public void shouldUseMainMenuFactoryToCreateBookLibrary() {
         MainMenuFactory mainMenuFactory = mock(MainMenuFactory.class);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
-                mainMenuFactory, new MovieLibraryFactory(), new WelcomeMessageFactory());
+                mainMenuFactory, new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
 
         verify(mainMenuFactory, times(1)).createMainMenu();
     }
@@ -92,8 +99,9 @@ public class ControllerTest {
     @Test
     public void shouldUseWelcomeMessageFactoryToCreateWelcomeMessage() {
         WelcomeMessageFactory welcomeMessageFactory = mock(WelcomeMessageFactory.class);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), welcomeMessageFactory);
+                new MainMenuFactory(), new MovieLibraryFactory(), welcomeMessageFactory, currentUser);
 
         verify(welcomeMessageFactory, times(1)).createWelcomeMessage();
     }
@@ -104,8 +112,9 @@ public class ControllerTest {
         System.setIn(inputOneOption);
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
         when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(new ConsoleInput());
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
 
         assertEquals("1", controller.menuOption());
     }
@@ -117,8 +126,9 @@ public class ControllerTest {
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
 
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("Invalid");
 
         assertEquals("Select a valid option!\n", outputContent.toString());
@@ -131,8 +141,9 @@ public class ControllerTest {
     public void shouldQuitTheApplicationWhenMenuOptionOfNineIsEntered() {
         exit.expectSystemExitWithStatus(0);
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("9");
     }
 
@@ -145,9 +156,10 @@ public class ControllerTest {
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
         when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("Funny Girl");
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
 
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("6");
 
         assertEquals("Enter what is to be checked out:\nThank you! Enjoy the movie\n", outputContent.toString());
@@ -160,8 +172,9 @@ public class ControllerTest {
         System.setOut(new PrintStream(outputContent));
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("5");
 
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +
@@ -176,9 +189,9 @@ public class ControllerTest {
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
         when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
-
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("4");
 
         assertEquals("Enter book to be returned:\nThat is not a valid book to return\n", outputContent.toString());
@@ -193,9 +206,9 @@ public class ControllerTest {
         when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
-
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("3");
 
         assertEquals("Enter what is to be checked out:\nThank you! Enjoy the book\n", outputContent.toString());
@@ -207,8 +220,9 @@ public class ControllerTest {
         System.setOut(new PrintStream(outputContent));
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("2");
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn" +
@@ -224,8 +238,9 @@ public class ControllerTest {
         when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("usr-1000", "password1");
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("1");
 
         assertEquals("Enter username:\nEnter password:\nLogin Unsuccessful\n", outputContent.toString());

@@ -18,10 +18,11 @@ public class LoginMenuOptionTest {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("usr-1001", "password1");
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         ArrayList<User> listOfUsers = new ArrayList<>();
         listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN));
         listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
-        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers);
+        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers, currentUser);
         loginMenuOption.executeOptionOperation();
 
         verify(consoleOutput, times(1)).display("Login Successful");
@@ -31,7 +32,8 @@ public class LoginMenuOptionTest {
     public void shouldTakeUserNameAndPasswordAsInputFromConsole() {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, new ArrayList<User>());
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, new ArrayList<User>(), currentUser);
         loginMenuOption.executeOptionOperation();
 
         verify(consoleInput, times(2)).getInput();
@@ -41,8 +43,9 @@ public class LoginMenuOptionTest {
     public void shouldUseConsoleOutputToPrintPromptMessageForUserNameAndPassword() {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, new ArrayList<User>());
-
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, new ArrayList<User>(), currentUser);
+        loginMenuOption.executeOptionOperation();
         verify(consoleOutput, times(1)).display("Enter username:");
         verify(consoleOutput, times(1)).display("Enter password:");
     }
@@ -54,11 +57,12 @@ public class LoginMenuOptionTest {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("usr-1001", "password1");
         ConsoleOutput consoleOutput = new ConsoleOutput();
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         ArrayList<User> listOfUsers = new ArrayList<>();
         listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN));
         listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
 
-        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers);
+        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers, currentUser);
         loginMenuOption.executeOptionOperation();
 
         assertEquals("Enter username:\nEnter password:\nLogin Successful\n", outputContent.toString());
@@ -71,11 +75,12 @@ public class LoginMenuOptionTest {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("usr-2489", "password1");
         ConsoleOutput consoleOutput = new ConsoleOutput();
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         ArrayList<User> listOfUsers = new ArrayList<>();
         listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN));
         listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
 
-        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers);
+        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers, currentUser);
         loginMenuOption.executeOptionOperation();
 
         assertEquals("Enter username:\nEnter password:\nLogin Unsuccessful\n", outputContent.toString());
@@ -88,11 +93,13 @@ public class LoginMenuOptionTest {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("usr-2489", "password1");
         ConsoleOutput consoleOutput = new ConsoleOutput();
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         ArrayList<User> listOfUsers = new ArrayList<>();
         listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN));
         listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
 
-        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers);
+        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers, currentUser);
+        loginMenuOption.executeOptionOperation();
 
         assertEquals(new User("usr-2489", "password1", ROLE.GUEST_USER), loginMenuOption.currentUser());
     }

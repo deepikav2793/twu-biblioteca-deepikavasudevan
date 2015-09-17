@@ -10,15 +10,16 @@ public class LoginMenuOption implements MainMenuOption {
     private ArrayList<User> listOfUsers;
     private User currentUser;
 
-    public LoginMenuOption(ConsoleInput consoleInput, ConsoleOutput consoleOutput, ArrayList<User> listOfUsers) {
+    public LoginMenuOption(ConsoleInput consoleInput, ConsoleOutput consoleOutput, ArrayList<User> listOfUsers, User currentUser) {
         this.consoleInput = consoleInput;
         this.consoleOutput = consoleOutput;
         this.listOfUsers = listOfUsers;
-        currentUser = new User(username(), password(), ROLE.GUEST_USER);
+        this.currentUser = currentUser;
     }
 
     @Override
     public void executeOptionOperation() {
+        currentUser = new User(username(), password(), ROLE.GUEST_USER);
         if(isAuthenticatedUser(currentUser))
             consoleOutput.display("Login Successful");
         else
