@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class LogoutMenuOptionTest {
 
@@ -19,5 +20,15 @@ public class LogoutMenuOptionTest {
         logoutMenuOption.executeOptionOperation();
 
         assertEquals("You are logged out\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldUseConsoleOutputToPrintSuccessfulLogOutMessage() {
+        ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
+        User currentUser = new User("Guest User", "No Password", ROLE.GUEST_USER);
+        LogoutMenuOption logoutMenuOption = new LogoutMenuOption(consoleOutput, currentUser);
+        logoutMenuOption.executeOptionOperation();
+
+        verify(consoleOutput, times(1)).display("You are logged out");
     }
 }
