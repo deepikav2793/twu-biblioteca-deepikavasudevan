@@ -37,6 +37,19 @@ public class CheckOutMenuOptionTest {
     }
 
     @Test
+    public void shouldUseConsoleOutputToPrintPromptMessageToTheConsole() {
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        when(bookLibrary.checkOut("Gone Girl")).thenReturn("Thank you! Enjoy the book");
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+        ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
+        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
+        checkOutMenuOption.executeOptionOperation();
+
+        verify(consoleOutput, times(1)).display("Enter what is to be checked out:");
+    }
+
+    @Test
     public void shouldTakeInputFromUserOnWhatIsToBeCheckedOut() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
         ConsoleInput consoleInput = mock(ConsoleInput.class);
