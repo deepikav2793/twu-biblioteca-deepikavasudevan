@@ -6,6 +6,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class InvalidMenuOptionTest {
 
@@ -18,5 +21,13 @@ public class InvalidMenuOptionTest {
         invalidMenuOption.executeOptionOperation();
 
         assertEquals("Select a valid option!\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldUseConsoleOutputToPrintTheMessage() {
+        ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
+        InvalidMenuOption invalidMenuOption = new InvalidMenuOption(consoleOutput);
+        invalidMenuOption.executeOptionOperation();
+        verify(consoleOutput, times(1)).display("Select a valid option!");
     }
 }
