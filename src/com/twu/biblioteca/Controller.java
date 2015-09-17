@@ -24,8 +24,8 @@ public class Controller {
         movieLibrary = movieLibraryFactory.createMovieLibrary();
     }
 
-    public void dispatchMenuOption() {
-        MainMenuOption mainMenuOption = parseMenuOption(menuOptionsInput());
+    public void dispatchMenuOption(String menuOption) {
+        MainMenuOption mainMenuOption = parseMenuOption(menuOption);
         mainMenu.executeOption(mainMenuOption);
     }
 
@@ -34,7 +34,7 @@ public class Controller {
 
         for (; ; ) {
             displayMenuOptions();
-            dispatchMenuOption();
+            dispatchMenuOption(menuOptionsInput());
         }
     }
 

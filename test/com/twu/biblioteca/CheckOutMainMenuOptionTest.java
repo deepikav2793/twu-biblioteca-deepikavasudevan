@@ -65,4 +65,20 @@ public class CheckOutMainMenuOptionTest {
 
         assertEquals("Enter what is to be checked out:\nThis book is not available\n", outputContent.toString());
     }
+
+    @Test
+    public void shouldPrintSuccessfulReturnMessageIfMovieCheckOutWasSuccessful() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        when(movieLibrary.checkOut("Funny Girl")).thenReturn("Thank you! Enjoy the movie");
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInput.getInput()).thenReturn("Funny Girl");
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(movieLibrary, consoleInput, consoleOutput);
+        checkOutMenuOption.executeOptionOperation();
+
+        assertEquals("Enter what is to be checked out:\nThank you! Enjoy the movie\n", outputContent.toString());
+    }
 }
