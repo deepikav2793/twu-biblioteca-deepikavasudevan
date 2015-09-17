@@ -47,13 +47,15 @@ public class Controller {
 
     public void dispatchMenuOption(String menuOption) {
         if (menuOption.equals("2")) {
-            list(bookLibrary);
+            ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, consoleOutput);
+            listLibraryMenuOption.displayList();
         } else if (menuOption.equals("3")) {
             checkOut(bookLibrary);
         } else if (menuOption.equals("4")) {
             returnBook();
         } else if (menuOption.equals("5")) {
-            list(movieLibrary);
+            ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, consoleOutput);
+            listLibraryMenuOption.displayList();
         } else if (menuOption.equals("6")) {
             checkOut(movieLibrary);
         } else if (menuOption.equals("9")) {
@@ -61,11 +63,6 @@ public class Controller {
         } else {
             invalidOption();
         }
-    }
-
-    private void list(Library library) {
-        String list = library.list();
-        consoleOutput.display(list);
     }
 
     private void checkOut(Library library) {

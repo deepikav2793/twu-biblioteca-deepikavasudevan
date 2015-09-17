@@ -3,12 +3,11 @@ package com.twu.biblioteca;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ListLibraryTest {
+public class ListLibraryMenuOptionTest {
 
     @Test
     public void shouldPrintAListOfBooksIfLibraryIsBookLibrary() {
@@ -18,8 +17,8 @@ public class ListLibraryTest {
         when(bookLibrary.list()).thenReturn("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
                 "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        ListLibrary listLibrary = new ListLibrary(bookLibrary, consoleOutput);
-        listLibrary.displayList();
+        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, consoleOutput);
+        listLibraryMenuOption.displayList();
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
                 "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n\n", outputContent.toString());
     }
@@ -27,8 +26,8 @@ public class ListLibraryTest {
     @Test
     public void shouldUseBookLibrarysListingToListBooks() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
-        ListLibrary listLibrary = new ListLibrary(bookLibrary, new ConsoleOutput());
-        listLibrary.displayList();
+        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, new ConsoleOutput());
+        listLibraryMenuOption.displayList();
 
         verify(bookLibrary, times(1)).list();
     }
@@ -41,8 +40,8 @@ public class ListLibraryTest {
         when(movieLibrary.list()).thenReturn("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\n" +
                 "Funny Girl\t1968\tWilliam Wyler\t8\nPretty in Pink\t1986\tJohn Hughes\t10\n");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        ListLibrary listLibrary = new ListLibrary(movieLibrary, consoleOutput);
-        listLibrary.displayList();
+        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, consoleOutput);
+        listLibraryMenuOption.displayList();
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\n" +
                 "Funny Girl\t1968\tWilliam Wyler\t8\nPretty in Pink\t1986\tJohn Hughes\t10\n\n", outputContent.toString());
     }
@@ -50,8 +49,8 @@ public class ListLibraryTest {
     @Test
     public void shouldUseMovieLibrarysListingToListBooks() {
         MovieLibrary movieLibrary = mock(MovieLibrary.class);
-        ListLibrary listLibrary = new ListLibrary(movieLibrary, new ConsoleOutput());
-        listLibrary.displayList();
+        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, new ConsoleOutput());
+        listLibraryMenuOption.displayList();
 
         verify(movieLibrary, times(1)).list();
     }
@@ -62,8 +61,8 @@ public class ListLibraryTest {
         when(bookLibrary.list()).thenReturn("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
                 "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n");
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        ListLibrary listLibrary = new ListLibrary(bookLibrary, consoleOutput);
-        listLibrary.displayList();
+        ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, consoleOutput);
+        listLibraryMenuOption.displayList();
 
         verify(consoleOutput, times(1)).display("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
                         "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n");
