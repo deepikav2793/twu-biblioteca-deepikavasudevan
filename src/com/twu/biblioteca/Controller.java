@@ -28,7 +28,7 @@ public class Controller {
 
     public void dispatchMenuOption(String menuOption) {
         MainMenuOption mainMenuOption = parseMenuOption(menuOption);
-         currentUser = mainMenu.executeOption(mainMenuOption);
+        currentUser = mainMenu.executeOption(mainMenuOption);
     }
 
     public void displayWelcomeMessage() {
@@ -49,7 +49,10 @@ public class Controller {
         } else if (menuOption.equals("2")) {
             return new ListLibraryMenuOption(bookLibrary, consoleOutput, currentUser);
         } else if (menuOption.equals("3")) {
-            return new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
+            if (currentUser.getUserRole().equals(ROLE.GUEST_USER))
+                return new NotAuthorisedMenuOption(consoleOutput, currentUser);
+            else
+                return new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         } else if (menuOption.equals("4")) {
             return new ReturnBookMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         } else if (menuOption.equals("5")) {

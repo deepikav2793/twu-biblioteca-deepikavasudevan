@@ -198,6 +198,23 @@ public class ControllerTest {
     }
 
     @Test
+    public void shouldPrintInvalidOptionIfUserHasNotLoggedInForCheckedOutBook() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        User currentUser = new User("usr-1001", "password1", ROLE.GUEST_USER);
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
+        controller.dispatchMenuOption("3");
+
+        assertEquals("NOT AUTHORISED to access this option. Please log in.\n", outputContent.toString());
+    }
+
+    @Test
     public void shouldCheckOutABookFromLibraryWhenMenuOptionOfThreeIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
@@ -206,7 +223,7 @@ public class ControllerTest {
         when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("3");
