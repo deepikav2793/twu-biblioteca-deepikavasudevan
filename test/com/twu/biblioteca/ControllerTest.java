@@ -107,7 +107,7 @@ public class ControllerTest {
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
 
-        assertEquals("1", controller.menuOptionsInput());
+        assertEquals("1", controller.menuOption());
     }
 
     @Test

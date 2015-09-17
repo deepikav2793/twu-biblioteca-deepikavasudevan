@@ -37,7 +37,7 @@ public class Controller {
         consoleOutput.display(mainMenu.mainMenuOptions());
     }
 
-    protected String menuOptionsInput() {
+    protected String menuOption() {
         return consoleInput.getInput();
     }
 
@@ -66,7 +66,7 @@ public class Controller {
 
         for (; ; ) {
             displayMenuOptions();
-            dispatchMenuOption(menuOptionsInput());
+            dispatchMenuOption(menuOption());
         }
     }
 }
