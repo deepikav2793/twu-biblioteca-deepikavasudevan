@@ -182,6 +182,22 @@ public class ControllerTest {
     }
 
     @Test
+    public void shouldPrintInvalidOptionIfUserHasNotLoggedInToReturnABookToLibraryWhenMenuOptionOfFourIsEntered() {
+        System.setOut(new PrintStream(outputContent));
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
+        controller.dispatchMenuOption("4");
+
+        assertEquals("NOT AUTHORISED to access this option. Please log in.\n", outputContent.toString());
+    }
+
+    @Test
     public void shouldReturnABookToLibraryWhenMenuOptionOfFourIsEntered() {
         System.setOut(new PrintStream(outputContent));
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
