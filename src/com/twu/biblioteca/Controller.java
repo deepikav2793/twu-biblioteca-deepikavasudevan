@@ -50,26 +50,22 @@ public class Controller {
             ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, consoleOutput);
             listLibraryMenuOption.executeOptionOperation();
         } else if (menuOption.equals("3")) {
-            checkOut(bookLibrary);
+            CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
+            checkOutMenuOption.executeOptionOperation();
         } else if (menuOption.equals("4")) {
             returnBook();
         } else if (menuOption.equals("5")) {
             ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, consoleOutput);
             listLibraryMenuOption.executeOptionOperation();
         } else if (menuOption.equals("6")) {
-            checkOut(movieLibrary);
+            CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(movieLibrary, consoleInput, consoleOutput);
+            checkOutMenuOption.executeOptionOperation();
         } else if (menuOption.equals("9")) {
-            quitOption();
+            QuitMenuOption quitMenuOption = new QuitMenuOption();
+            quitMenuOption.executeOptionOperation();
         } else {
             invalidOption();
         }
-    }
-
-    private void checkOut(Library library) {
-        consoleOutput.display("Enter what is to be checked out:");
-        String movieToBeCheckedOut = consoleInput.getInput();
-        String checkOutMessage = library.checkOut(movieToBeCheckedOut);
-        consoleOutput.display(checkOutMessage);
     }
 
     private void returnBook() {
@@ -78,11 +74,7 @@ public class Controller {
         String returnMessage = bookLibrary.returnBook(bookToBeReturned);
         consoleOutput.display(returnMessage);
     }
-
-    private void quitOption() {
-        System.exit(0);
-    }
-
+    
     private void invalidOption() {
         consoleOutput.display("Select a valid option!");
     }
