@@ -12,8 +12,16 @@ public class LoginMenuOption implements MainMenuOption {
     }
     @Override
     public void executeOptionOperation() {
-        String username = consoleInput.getInput();
-        String password = consoleInput.getInput();
+        String username = username();
+        String password = password();
         consoleOutput.display("Login Successful");
+    }
+
+    private String username() {
+        return consoleInput.getInput();
+    }
+
+    private String password() {
+        return consoleInput.getInput();
     }
 }
