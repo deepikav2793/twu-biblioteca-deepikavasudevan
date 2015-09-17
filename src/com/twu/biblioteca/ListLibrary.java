@@ -11,7 +11,10 @@ public class ListLibrary {
     }
 
     public void displayList() {
-        String list = library.list();
-        consoleOutput.display(list);
+        consoleOutput.display(list());
+    }
+
+    private String list() {
+        return library.list();
     }
 }
