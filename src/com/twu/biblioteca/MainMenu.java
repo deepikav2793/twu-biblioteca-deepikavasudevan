@@ -20,4 +20,8 @@ public class MainMenu {
 
         return mainMenuOptions;
     }
+
+    public void executeOption(MainMenuOption mainMenuOption) {
+        mainMenuOption.executeOptionOperation();
+    }
 }

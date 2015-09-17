@@ -1,7 +1,8 @@
 /*gets book to return and returns it to book library*/
 package com.twu.biblioteca;
 
-public class ReturnBookMenuOption {
+public class ReturnBookMenuOption implements MainMenuOption {
+
     private BookLibrary bookLibrary;
     private ConsoleInput consoleInput;
     private ConsoleOutput consoleOutput;
@@ -12,6 +13,7 @@ public class ReturnBookMenuOption {
         this.consoleOutput = consoleOutput;
     }
 
+    @Override
     public void executeOptionOperation() {
         consoleOutput.display("Enter book to be returned:");
         String returnMessage =bookLibrary.returnBook(bookToBeReturned());

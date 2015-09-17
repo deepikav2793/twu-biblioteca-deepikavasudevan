@@ -1,7 +1,7 @@
 /*List Library displays the bookList in Book Library or movieList in Movie Library*/
 package com.twu.biblioteca;
 
-public class ListLibraryMenuOption {
+public class ListLibraryMenuOption implements MainMenuOption {
     private Library library;
     private ConsoleOutput consoleOutput;
 
@@ -10,6 +10,7 @@ public class ListLibraryMenuOption {
         this.consoleOutput = consoleOutput;
     }
 
+    @Override
     public void executeOptionOperation() {
         consoleOutput.display(list());
     }

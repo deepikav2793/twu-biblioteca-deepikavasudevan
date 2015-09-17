@@ -7,7 +7,7 @@ import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class CheckOutMenuOptionTest {
+public class CheckOutMainMenuOptionTest {
 
     @Test
     public void shouldTakeInputFromUserOnWhatIsToBeCheckedOutUsingConsoleInput() {

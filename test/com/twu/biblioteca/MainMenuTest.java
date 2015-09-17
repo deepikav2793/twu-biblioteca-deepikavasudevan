@@ -35,4 +35,14 @@ public class MainMenuTest {
         assertEquals("MAIN MENU\n1. List Books\n2. Checkout Book\n3. Return Book\n4. List Movies\n5. Checkout Movie\n" +
                 "6. Quit\n", mainMenu.mainMenuOptions());
     }
+
+    @Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
+
+    @Test
+    public void shouldExecuteQuitOptionIfQuitOptionIsSelected() {
+        exit.expectSystemExitWithStatus(0);
+        QuitMenuOption quitMenuOption = new QuitMenuOption();
+        mainMenu.executeOption(quitMenuOption);
+    }
 }

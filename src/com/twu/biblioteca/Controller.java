@@ -24,12 +24,17 @@ public class Controller {
         movieLibrary = movieLibraryFactory.createMovieLibrary();
     }
 
+    public void dispatchMenuOption() {
+        MainMenuOption mainMenuOption = parseMenuOption(menuOptionsInput());
+        mainMenu.executeOption(mainMenuOption);
+    }
+
     public void initialiseBibliotecaApplication() {
         displayWelcomeMessage();
 
         for (; ; ) {
             displayMenuOptions();
-            dispatchMenuOption(menuOptionsInput());
+            dispatchMenuOption();
         }
     }
 
@@ -45,28 +50,21 @@ public class Controller {
         return consoleInput.getInput();
     }
 
-    public void dispatchMenuOption(String menuOption) {
+    public MainMenuOption parseMenuOption(String menuOption) {
         if (menuOption.equals("2")) {
-            ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, consoleOutput);
-            listLibraryMenuOption.executeOptionOperation();
+            return new ListLibraryMenuOption(bookLibrary, consoleOutput);
         } else if (menuOption.equals("3")) {
-            CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
-            checkOutMenuOption.executeOptionOperation();
+            return new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
         } else if (menuOption.equals("4")) {
-            ReturnBookMenuOption returnBookMenuOption = new ReturnBookMenuOption(bookLibrary, consoleInput, consoleOutput);
-            returnBookMenuOption.executeOptionOperation();
+            return new ReturnBookMenuOption(bookLibrary, consoleInput, consoleOutput);
         } else if (menuOption.equals("5")) {
-            ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, consoleOutput);
-            listLibraryMenuOption.executeOptionOperation();
+            return new ListLibraryMenuOption(movieLibrary, consoleOutput);
         } else if (menuOption.equals("6")) {
-            CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(movieLibrary, consoleInput, consoleOutput);
-            checkOutMenuOption.executeOptionOperation();
+            return new CheckOutMenuOption(movieLibrary, consoleInput, consoleOutput);
         } else if (menuOption.equals("9")) {
-            QuitMenuOption quitMenuOption = new QuitMenuOption();
-            quitMenuOption.executeOptionOperation();
+            return new QuitMenuOption();
         } else {
-            InvalidMenuOption invalidMenuOption = new InvalidMenuOption(consoleOutput);
-            invalidMenuOption.executeOptionOperation();
+            return new InvalidMenuOption(consoleOutput);
         }
     }
 }

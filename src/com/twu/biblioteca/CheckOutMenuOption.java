@@ -1,7 +1,7 @@
 /*checks out a book from book library or a movie from movie library*/
 package com.twu.biblioteca;
 
-public class CheckOutMenuOption {
+public class CheckOutMenuOption implements MainMenuOption {
     private Library library;
     private ConsoleInput consoleInput;
     private ConsoleOutput consoleOutput;
@@ -12,6 +12,7 @@ public class CheckOutMenuOption {
         this.consoleOutput = consoleOutput;
     }
 
+    @Override
     public void executeOptionOperation() {
         consoleOutput.display("Enter what is to be checked out:");
         String checkOutMessage = library.checkOut(entityToBeCheckedOut());

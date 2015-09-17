@@ -119,7 +119,7 @@ public class ControllerTest {
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
-        controller.dispatchMenuOption("Invalid");
+        controller.parseMenuOption("Invalid");
 
         assertEquals("Select a valid option!\n", outputContent.toString());
     }
@@ -133,7 +133,7 @@ public class ControllerTest {
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
-        controller.dispatchMenuOption("9");
+        controller.parseMenuOption("9");
     }
 
     @Test
@@ -148,7 +148,7 @@ public class ControllerTest {
 
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
-        controller.dispatchMenuOption("6");
+        controller.parseMenuOption("6");
 
         assertEquals("Enter what is to be checked out:\nThank you! Enjoy the movie\n", outputContent.toString());
     }
@@ -162,7 +162,7 @@ public class ControllerTest {
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
-        controller.dispatchMenuOption("5");
+        controller.parseMenuOption("5");
 
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +
                 "Pretty in Pink\t1986\tJohn Hughes\t10\n\n", outputContent.toString());
@@ -179,7 +179,7 @@ public class ControllerTest {
 
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
-        controller.dispatchMenuOption("4");
+        controller.parseMenuOption("4");
 
         assertEquals("Enter book to be returned:\nThat is not a valid book to return\n", outputContent.toString());
     }
@@ -196,7 +196,7 @@ public class ControllerTest {
 
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
-        controller.dispatchMenuOption("3");
+        controller.parseMenuOption("3");
 
         assertEquals("Enter what is to be checked out:\nThank you! Enjoy the book\n", outputContent.toString());
     }
@@ -209,7 +209,7 @@ public class ControllerTest {
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
-        controller.dispatchMenuOption("2");
+        controller.parseMenuOption("2");
 
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn" +
                 "\t2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n\n", outputContent.toString());

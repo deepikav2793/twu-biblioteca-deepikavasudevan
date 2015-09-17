@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.when;
 
-public class ReturnBookMenuOptionTest {
+public class ReturnBookMainMenuOptionTest {
 
     @Test
     public void shouldTakeInputFromUserOnBookToBeReturnedUsingConsoleInput() {
