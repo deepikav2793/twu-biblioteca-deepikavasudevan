@@ -80,4 +80,20 @@ public class LoginMenuOptionTest {
 
         assertEquals("Enter username:\nEnter password:\nLogin Unsuccessful\n", outputContent.toString());
     }
+
+    @Test
+    public void shouldHaveCurrentUser() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInput.getInput()).thenReturn("usr-2489", "password1");
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        ArrayList<User> listOfUsers = new ArrayList<>();
+        listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN));
+        listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
+
+        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers);
+
+        assertEquals(new User("usr-2489", "password1", ROLE.GUEST_USER), loginMenuOption.currentUser());
+    }
 }
