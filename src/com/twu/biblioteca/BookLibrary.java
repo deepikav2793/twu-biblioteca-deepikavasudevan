@@ -21,7 +21,8 @@ public class BookLibrary implements Library {
 
     @Override
     public String list() {
-        String listOfBooks = "NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\n";
+        String listOfBooks = String.format("%-30s%-30s%-15s\n", "NAME OF BOOK", "NAME OF AUTHOR",
+                "YEAR OF PUBLICATION");
         for (Book book : availableBookList) {
             listOfBooks += book.toString() + "\n";
         }
@@ -42,7 +43,7 @@ public class BookLibrary implements Library {
                 break;
             }
         }
-       return checkOutMessage;
+        return checkOutMessage;
     }
 
     public String returnBook(String thatBookName, User currentUser) {
@@ -59,5 +60,15 @@ public class BookLibrary implements Library {
             }
         }
         return returnMessage;
+    }
+
+    public String checkedOutBookListWithUser() {
+        String formattedCheckedOutBookListWithUser = String.format("%-30s%-30s%-15s%-20s\n", "NAME OF BOOK", "NAME OF AUTHOR",
+                "YEAR OF PUBLICATION", "USER LIBRARY NUMBER");
+        for (Book book : checkedOutBookListWithUser.keySet()) {
+            formattedCheckedOutBookListWithUser += String.format("%-75s%-20s\n", book.toString(),
+                    checkedOutBookListWithUser.get(book).getLibraryNumber());
+        }
+        return formattedCheckedOutBookListWithUser;
     }
 }

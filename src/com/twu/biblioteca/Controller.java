@@ -45,7 +45,10 @@ public class Controller {
 
     public MainMenuOption parseMenuOption(String menuOption) {
         if (menuOption.equals("1")) {
-            return new LoginMenuOption(consoleInput, consoleOutput, listOfUsers, currentUser);
+            if (currentUser.getUserRole().equals(ROLE.GUEST_USER))
+                return new LoginMenuOption(consoleInput, consoleOutput, listOfUsers, currentUser);
+            else
+                return new NotAuthorisedMenuOption(consoleOutput, currentUser);
         } else if (menuOption.equals("2")) {
             return new ListLibraryMenuOption(bookLibrary, consoleOutput, currentUser);
         } else if (menuOption.equals("3")) {

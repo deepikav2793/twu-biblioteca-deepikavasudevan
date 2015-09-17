@@ -157,7 +157,7 @@ public class ControllerTest {
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("8");
 
-        assertEquals("NOT AUTHORISED to access this option. Please log in.\n", outputContent.toString());
+        assertEquals("NOT AUTHORISED to use this option. Please try again.\n", outputContent.toString());
     }
 
     @Test
@@ -219,7 +219,7 @@ public class ControllerTest {
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("4");
 
-        assertEquals("NOT AUTHORISED to access this option. Please log in.\n", outputContent.toString());
+        assertEquals("NOT AUTHORISED to use this option. Please try again.\n", outputContent.toString());
     }
 
     @Test
@@ -252,7 +252,7 @@ public class ControllerTest {
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("3");
 
-        assertEquals("NOT AUTHORISED to access this option. Please log in.\n", outputContent.toString());
+        assertEquals("NOT AUTHORISED to use this option. Please try again.\n", outputContent.toString());
     }
 
     @Test
@@ -282,9 +282,12 @@ public class ControllerTest {
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("2");
+        String formattedListOfBooks = String.format("%-30s%-30s%-15s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION")
+                + String.format("%-30s%-30s%-15s\n", "To Kill A Mockingbird", "Harper Lee", 1968)
+                + String.format("%-30s%-30s%-15s\n", "Gone Girl", "Gillian Flynn", 2000)
+                + String.format("%-30s%-30s%-15s\n", "The Scarlett Letter", "Nathaniel Hawthorne", 1850) + "\n";
 
-        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn" +
-                "\t2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n\n", outputContent.toString());
+        assertEquals(formattedListOfBooks, outputContent.toString());
     }
 
     @Test

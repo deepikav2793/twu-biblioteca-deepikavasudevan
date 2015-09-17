@@ -18,9 +18,11 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
-
-        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn\t" +
-                "2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n", bookLibrary.list());
+        String formattedListOfBooks = String.format("%-30s%-30s%-15s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION")
+                + String.format("%-30s%-30s%-15s\n", "To Kill A Mockingbird", "Harper Lee", 1968) +
+                String.format("%-30s%-30s%-15s\n", "Gone Girl", "Gillian Flynn", 2000) +
+                String.format("%-30s%-30s%-15s\n", "The Scarlett Letter", "Nathaniel Hawthorne", 1850);
+        assertEquals(formattedListOfBooks, bookLibrary.list());
     }
 
     @Test
@@ -49,8 +51,10 @@ public class BookLibraryTest {
         User currentUser = new User("Guest User", "No Password", ROLE.AUTHENTICATED_USER);
         bookLibrary.checkOut("Gone Girl", currentUser);
 
-        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
-                "The Scarlett Letter\tNathaniel Hawthorne\t1850\n", bookLibrary.list());
+        String formattedListOfBooks = String.format("%-30s%-30s%-15s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION")
+                + String.format("%-30s%-30s%-15s\n", "To Kill A Mockingbird", "Harper Lee", 1968) +
+                String.format("%-30s%-30s%-15s\n", "The Scarlett Letter", "Nathaniel Hawthorne", 1850);
+        assertEquals(formattedListOfBooks, bookLibrary.list());
     }
 
     @Test
@@ -97,8 +101,12 @@ public class BookLibraryTest {
         User currentUser = new User("Guest User", "No Password", ROLE.AUTHENTICATED_USER);
         bookLibrary.returnBook("Gone Girl", currentUser);
 
-        assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
-                "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n", bookLibrary.list());
+        String formattedListOfBooks = String.format("%-30s%-30s%-15s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION")
+                + String.format("%-30s%-30s%-15s\n", "To Kill A Mockingbird", "Harper Lee", 1968)
+                + String.format("%-30s%-30s%-15s\n", "The Scarlett Letter", "Nathaniel Hawthorne", 1850)
+                + String.format("%-30s%-30s%-15s\n", "Gone Girl", "Gillian Flynn", 2000);
+
+        assertEquals(formattedListOfBooks, bookLibrary.list());
     }
 
     @Test
@@ -145,5 +153,23 @@ public class BookLibraryTest {
         User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER);
 
         assertEquals("That is not a valid book to return", bookLibrary.returnBook("Gone Girl", currentUser));
+    }
+
+    @Test
+    public void shouldReturnCheckedOutBooksWithUserList() {
+        ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        ArrayList<Book> availableBookList = new ArrayList<>();
+        availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
+        availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
+        availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
+        HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
+        checkedOutBookListWithUser.put(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850),
+                new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
+        BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
+
+        String formattedList = String.format("%-30s%-30s%-15s%-20s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION", "USER LIBRARY NUMBER") +
+                String.format("%-30s%-30s%-15s%-20s\n", "The Scarlett Letter", "Nathaniel Hawthorne", 1850, "usr-1001");
+
+        assertEquals(formattedList, bookLibrary.checkedOutBookListWithUser());
     }
 }

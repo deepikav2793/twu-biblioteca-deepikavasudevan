@@ -15,7 +15,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return name + "\t" + authorName + "\t" + yearPublished;
+        return String.format("%-30s%-30s%-15s", name, authorName, yearPublished);
     }
 
     @Override

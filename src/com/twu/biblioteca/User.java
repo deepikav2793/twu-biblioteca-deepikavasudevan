@@ -37,4 +37,8 @@ public class User {
     public ROLE getUserRole() {
         return role;
     }
+
+    public String getLibraryNumber() {
+        return libraryNumber;
+    }
 }

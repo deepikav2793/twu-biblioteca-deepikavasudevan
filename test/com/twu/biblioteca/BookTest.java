@@ -17,7 +17,8 @@ public class BookTest {
 
     @Test
     public void shouldFormatItsDetailsInAColumnFormat() {
-        assertEquals(book.toString(), "Gone Girl\tGillian Flynn\t2000");
+        String formattedBook = String.format("%-30s%-30s%-15s", "Gone Girl", "Gillian Flynn", 2000);
+        assertEquals(book.toString(), formattedBook);
     }
 
     @Test
