@@ -53,7 +53,8 @@ public class Controller {
             CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
             checkOutMenuOption.executeOptionOperation();
         } else if (menuOption.equals("4")) {
-            returnBook();
+            ReturnBookMenuOption returnBookMenuOption = new ReturnBookMenuOption(bookLibrary, consoleInput, consoleOutput);
+            returnBookMenuOption.executeOptionOperation();
         } else if (menuOption.equals("5")) {
             ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, consoleOutput);
             listLibraryMenuOption.executeOptionOperation();
@@ -67,12 +68,5 @@ public class Controller {
             InvalidMenuOption invalidMenuOption = new InvalidMenuOption(consoleOutput);
             invalidMenuOption.executeOptionOperation();
         }
-    }
-
-    private void returnBook() {
-        consoleOutput.display("Enter book to be returned:");
-        String bookToBeReturned = consoleInput.getInput();
-        String returnMessage = bookLibrary.returnBook(bookToBeReturned);
-        consoleOutput.display(returnMessage);
     }
 }
