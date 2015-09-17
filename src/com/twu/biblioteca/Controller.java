@@ -64,7 +64,8 @@ public class Controller {
             QuitMenuOption quitMenuOption = new QuitMenuOption();
             quitMenuOption.executeOptionOperation();
         } else {
-            invalidOption();
+            InvalidMenuOption invalidMenuOption = new InvalidMenuOption(consoleOutput);
+            invalidMenuOption.executeOptionOperation();
         }
     }
 
@@ -73,9 +74,5 @@ public class Controller {
         String bookToBeReturned = consoleInput.getInput();
         String returnMessage = bookLibrary.returnBook(bookToBeReturned);
         consoleOutput.display(returnMessage);
-    }
-
-    private void invalidOption() {
-        consoleOutput.display("Select a valid option!");
     }
 }
