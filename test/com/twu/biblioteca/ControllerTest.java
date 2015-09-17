@@ -228,6 +228,6 @@ public class ControllerTest {
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
         controller.dispatchMenuOption("1");
 
-        assertEquals("Login Unsuccessful\n", outputContent.toString());
+        assertEquals("Enter username:\nEnter password:\nLogin Unsuccessful\n", outputContent.toString());
     }
 }

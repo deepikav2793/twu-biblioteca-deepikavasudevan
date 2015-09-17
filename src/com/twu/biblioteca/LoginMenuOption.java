@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class LoginMenuOption implements MainMenuOption {
 
-    ConsoleInput consoleInput;
-    ConsoleOutput consoleOutput;
-    ArrayList<User> listOfUsers;
-    User currentUser;
+    private ConsoleInput consoleInput;
+    private ConsoleOutput consoleOutput;
+    private ArrayList<User> listOfUsers;
+    private User currentUser;
 
     public LoginMenuOption(ConsoleInput consoleInput, ConsoleOutput consoleOutput, ArrayList<User> listOfUsers) {
         this.consoleInput = consoleInput;
@@ -19,7 +19,7 @@ public class LoginMenuOption implements MainMenuOption {
 
     @Override
     public void executeOptionOperation() {
-        if(isAuthenticatedUser(username(), password()))
+        if(isAuthenticatedUser(currentUser))
             consoleOutput.display("Login Successful");
         else
             consoleOutput.display("Login Unsuccessful");
@@ -35,11 +35,12 @@ public class LoginMenuOption implements MainMenuOption {
         return consoleInput.getInput();
     }
 
-    private boolean isAuthenticatedUser(String username, String password) {
-        User thatUser = new User(username, password, ROLE.GUEST_USER);
+    private boolean isAuthenticatedUser(User thatUser) {
         for(User user : listOfUsers) {
-            if(user.equals(thatUser))
+            if(user.equals(thatUser)) {
+                currentUser = user;
                 return true;
+            }
         }
         return false;
     }

@@ -61,7 +61,7 @@ public class LoginMenuOptionTest {
         LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers);
         loginMenuOption.executeOptionOperation();
 
-        assertEquals("Login Successful\n", outputContent.toString());
+        assertEquals("Enter username:\nEnter password:\nLogin Successful\n", outputContent.toString());
     }
 
     @Test
@@ -78,6 +78,6 @@ public class LoginMenuOptionTest {
         LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers);
         loginMenuOption.executeOptionOperation();
 
-        assertEquals("Login Unsuccessful\n", outputContent.toString());
+        assertEquals("Enter username:\nEnter password:\nLogin Unsuccessful\n", outputContent.toString());
     }
 }
