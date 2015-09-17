@@ -7,27 +7,26 @@ public class Controller {
 
     private ArrayList<User> listOfUsers;
     private Factory factory;
-    private BookLibrary bookLibrary;
-    private MovieLibrary movieLibrary;
-    private Setup setup;
     private ConsoleInput consoleInput;
     private ConsoleOutput consoleOutput;
+    private WelcomeMessage welcomeMessage;
     private MainMenu mainMenu;
+    private BookLibrary bookLibrary;
+    private MovieLibrary movieLibrary;
 
     public Controller(ArrayList<User> listOfUsers, Factory factory, BookLibraryFactory bookLibraryFactory, MainMenuFactory mainMenuFactory,
-                      MovieLibraryFactory movieLibraryFactory) {
+                      MovieLibraryFactory movieLibraryFactory, WelcomeMessageFactory welcomeMessageFactory) {
         this.listOfUsers = listOfUsers;
         this.factory = factory;
         consoleInput = factory.createConsoleInput();
         consoleOutput = factory.createConsoleOutput();
-        setup = new Setup();
+        welcomeMessage = welcomeMessageFactory.createWelcomeMessage();
+        mainMenu = mainMenuFactory.createMainMenu();
         bookLibrary = bookLibraryFactory.createBookLibrary();
         movieLibrary = movieLibraryFactory.createMovieLibrary();
-        mainMenu = mainMenuFactory.createMainMenu();
     }
 
     public void displayWelcomeMessage() {
-        WelcomeMessage welcomeMessage = setup.initialiseWelcomeMessage();
         consoleOutput.display(welcomeMessage.getWelcomeMessage());
     }
 

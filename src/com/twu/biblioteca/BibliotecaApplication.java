@@ -11,7 +11,7 @@ public class BibliotecaApplication {
         listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
 
         Controller controller = new Controller(listOfUsers, new Factory(), new BookLibraryFactory(),
-                new MainMenuFactory(), new MovieLibraryFactory());
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
 
         controller.initialiseBibliotecaApplication();
     }
