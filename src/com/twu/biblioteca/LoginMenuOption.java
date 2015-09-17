@@ -31,6 +31,11 @@ public class LoginMenuOption implements MainMenuOption {
     }
 
     private boolean isAuthenticatedUser(String username, String password) {
-        return true;
+        for(User user : listOfUsers) {
+            if(user.authenticate(username, password))
+                return true;
+        }
+
+        return false;
     }
 }

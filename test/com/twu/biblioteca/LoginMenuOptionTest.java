@@ -12,24 +12,16 @@ import static org.mockito.Mockito.*;
 public class LoginMenuOptionTest {
 
     @Test
-    public void shouldPrintSuccessfulLoginMessageOnSuccessfulLogin(){
-        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputContent));
-        ConsoleInput consoleInput = mock(ConsoleInput.class);
-        ConsoleOutput consoleOutput = new ConsoleOutput();
-        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, new ArrayList<User>());
-        loginMenuOption.executeOptionOperation();
-
-        assertEquals("Login Successful\n", outputContent.toString());
-    }
-
-    @Test
     public void shouldUseConsoleOutputToPrintLoginMessage() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
         ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInput.getInput()).thenReturn("usr-1001", "password1");
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, new ArrayList<User>());
+        ArrayList<User> listOfUsers = new ArrayList<>();
+        listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN));
+        listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
+        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers);
         loginMenuOption.executeOptionOperation();
 
         verify(consoleOutput, times(1)).display("Login Successful");
@@ -50,7 +42,7 @@ public class LoginMenuOptionTest {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
         ConsoleInput consoleInput = mock(ConsoleInput.class);
-        when(consoleInput.getInput()).thenReturn("usr-1000", "password1");
+        when(consoleInput.getInput()).thenReturn("usr-1001", "password1");
         ConsoleOutput consoleOutput = new ConsoleOutput();
         ArrayList<User> listOfUsers = new ArrayList<>();
         listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN));
@@ -58,6 +50,24 @@ public class LoginMenuOptionTest {
 
         LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers);
         loginMenuOption.executeOptionOperation();
+
         assertEquals("Login Successful\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldReturnUnsuccessfulLoginMessageIfAuthenticationWasNotSuccessful() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInput.getInput()).thenReturn("usr-2489", "password1");
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        ArrayList<User> listOfUsers = new ArrayList<>();
+        listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN));
+        listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
+
+        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers);
+        loginMenuOption.executeOptionOperation();
+
+        assertEquals("Login Unsuccessful\n", outputContent.toString());
     }
 }

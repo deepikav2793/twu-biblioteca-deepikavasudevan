@@ -13,10 +13,10 @@ public class User {
         this.role = role;
     }
 
-    public String authenticate(String thatLibraryNumber, String thatPassword) {
+    public boolean authenticate(String thatLibraryNumber, String thatPassword) {
         if(this.libraryNumber.equals(thatLibraryNumber) && this.password.equals(thatPassword))
-            return "Login successful";
+            return true;
         else
-            return "Login unsuccessful";
+            return false;
     }
 }

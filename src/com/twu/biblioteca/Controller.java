@@ -26,7 +26,7 @@ public class Controller {
 
     public void dispatchMenuOption(String menuOption) {
         MainMenuOption mainMenuOption = parseMenuOption(menuOption);
-        mainMenu.executeOption(mainMenuOption);
+         mainMenu.executeOption(mainMenuOption);
     }
 
     public void displayWelcomeMessage() {

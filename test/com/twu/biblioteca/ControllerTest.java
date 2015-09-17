@@ -190,9 +190,9 @@ public class ControllerTest {
         System.setOut(new PrintStream(outputContent));
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
         ConsoleInput consoleInput = mock(ConsoleInput.class);
-        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
         when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
+        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
 
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
@@ -220,11 +220,14 @@ public class ControllerTest {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
+        when(consoleInput.getInput()).thenReturn("usr-1000", "password1");
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
         controller.dispatchMenuOption("1");
 
-        assertEquals("Login Successful\n", outputContent.toString());
+        assertEquals("Login Unsuccessful\n", outputContent.toString());
     }
 }

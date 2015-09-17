@@ -2,7 +2,8 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class UserTest {
 
@@ -10,27 +11,27 @@ public class UserTest {
     public void shouldHaveSuccessfulLoginWhenLibraryNumberAndPasswordsAreEqual() {
         User user = new User("xxx-xxxx", "password", ROLE.GUEST_USER);
 
-        assertEquals("Login successful", user.authenticate("xxx-xxxx", "password"));
+        assertTrue(user.authenticate("xxx-xxxx", "password"));
     }
 
     @Test
     public void shouldHaveUnsuccessfulLoginWhenLibraryNumbersAreNotEqualAndPasswordsAreEqual() {
         User user = new User("xxx-xxxx", "password", ROLE.GUEST_USER);
 
-        assertEquals("Login unsuccessful", user.authenticate("yyy-yyyy", "password"));
+        assertFalse(user.authenticate("yyy-yyyy", "password"));
     }
 
     @Test
     public void shouldHaveUnsuccessfulLoginWhenLibraryNumbersAreEqualAndPasswordsAreEqual() {
         User user = new User("xxx-xxxx", "password", ROLE.GUEST_USER);
 
-        assertEquals("Login unsuccessful", user.authenticate("xxx-xxxx", "pass"));
+        assertFalse(user.authenticate("xxx-xxxx", "pass"));
     }
 
     @Test
     public void shouldHaveUnsuccessfulLoginWhenLibraryNumbersAreNotEqualAndPasswordsAreNotEqual() {
         User user = new User("xxx-xxxx", "password", ROLE.GUEST_USER);
 
-        assertEquals("Login unsuccessful", user.authenticate("yyy-yyyy", "pass"));
+        assertFalse(user.authenticate("yyy-yyyy", "pass"));
     }
 }
