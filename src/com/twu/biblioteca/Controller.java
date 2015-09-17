@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Controller {
 
     private ArrayList<User> listOfUsers;
-    private Factory factory;
     private ConsoleInput consoleInput;
     private ConsoleOutput consoleOutput;
     private WelcomeMessage welcomeMessage;
@@ -14,12 +13,11 @@ public class Controller {
     private BookLibrary bookLibrary;
     private MovieLibrary movieLibrary;
 
-    public Controller(ArrayList<User> listOfUsers, Factory factory, BookLibraryFactory bookLibraryFactory, MainMenuFactory mainMenuFactory,
+    public Controller(ArrayList<User> listOfUsers, ConsoleInputAndOutputFactory consoleInputAndOutputFactory, BookLibraryFactory bookLibraryFactory, MainMenuFactory mainMenuFactory,
                       MovieLibraryFactory movieLibraryFactory, WelcomeMessageFactory welcomeMessageFactory) {
         this.listOfUsers = listOfUsers;
-        this.factory = factory;
-        consoleInput = factory.createConsoleInput();
-        consoleOutput = factory.createConsoleOutput();
+        consoleInput = consoleInputAndOutputFactory.createConsoleInput();
+        consoleOutput = consoleInputAndOutputFactory.createConsoleOutput();
         welcomeMessage = welcomeMessageFactory.createWelcomeMessage();
         mainMenu = mainMenuFactory.createMainMenu();
         bookLibrary = bookLibraryFactory.createBookLibrary();
@@ -65,13 +63,6 @@ public class Controller {
         }
     }
 
-    private void returnBook() {
-        consoleOutput.display("Enter book to be returned:");
-        String bookToBeReturned = consoleInput.getInput();
-        String returnMessage = bookLibrary.returnBook(bookToBeReturned);
-        consoleOutput.display(returnMessage);
-    }
-
     private void list(Library library) {
         String list = library.list();
         consoleOutput.display(list);
@@ -82,6 +73,13 @@ public class Controller {
         String movieToBeCheckedOut = consoleInput.getInput();
         String checkOutMessage = library.checkOut(movieToBeCheckedOut);
         consoleOutput.display(checkOutMessage);
+    }
+
+    private void returnBook() {
+        consoleOutput.display("Enter book to be returned:");
+        String bookToBeReturned = consoleInput.getInput();
+        String returnMessage = bookLibrary.returnBook(bookToBeReturned);
+        consoleOutput.display(returnMessage);
     }
 
     private void quitOption() {

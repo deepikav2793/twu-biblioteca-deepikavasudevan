@@ -24,7 +24,7 @@ public class ControllerTest {
 
     @Test
     public void shouldInitialiseWelcomeMessageAndDisplayIt() {
-        Controller controller = new Controller(new ArrayList<User>(), new Factory(), new BookLibraryFactory(),
+        Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
         controller.displayWelcomeMessage();
 
@@ -36,7 +36,7 @@ public class ControllerTest {
         ByteArrayInputStream inputOption = new ByteArrayInputStream("Invalid".getBytes());
         System.setIn(inputOption);
 
-        Controller controller = new Controller(new ArrayList<User>(), new Factory(), new BookLibraryFactory(),
+        Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
         controller.displayMenuOptions();
 
@@ -46,26 +46,26 @@ public class ControllerTest {
 
     @Test
     public void shouldUseAFactoryToCreateConsoleInput() {
-        Factory factory = mock(Factory.class);
-        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory(),
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
 
-        verify(factory, times(1)).createConsoleInput();
+        verify(consoleInputAndOutputFactory, times(1)).createConsoleInput();
     }
 
     @Test
     public void shouldUseAFactoryToCreateConsoleOutput() {
-        Factory factory = mock(Factory.class);
-        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory(),
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
 
-        verify(factory, times(1)).createConsoleOutput();
+        verify(consoleInputAndOutputFactory, times(1)).createConsoleOutput();
     }
 
     @Test
     public void shouldUseBookLibraryFactoryToCreateBookLibrary() {
         BookLibraryFactory bookLibraryFactory = mock(BookLibraryFactory.class);
-        Controller controller = new Controller(new ArrayList<User>(), new Factory(), bookLibraryFactory,
+        Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), bookLibraryFactory,
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
 
         verify(bookLibraryFactory, times(1)).createBookLibrary();
@@ -74,7 +74,7 @@ public class ControllerTest {
     @Test
     public void shouldUseMovieLibraryFactoryToCreateMovieLibrary() {
         MovieLibraryFactory movieLibraryFactory = mock(MovieLibraryFactory.class);
-        Controller controller = new Controller(new ArrayList<User>(), new Factory(), new BookLibraryFactory(),
+        Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
                 new MainMenuFactory(), movieLibraryFactory, new WelcomeMessageFactory());
 
         verify(movieLibraryFactory, times(1)).createMovieLibrary();
@@ -83,7 +83,7 @@ public class ControllerTest {
     @Test
     public void shouldUseMainMenuFactoryToCreateBookLibrary() {
         MainMenuFactory mainMenuFactory = mock(MainMenuFactory.class);
-        Controller controller = new Controller(new ArrayList<User>(), new Factory(), new BookLibraryFactory(),
+        Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
                 mainMenuFactory, new MovieLibraryFactory(), new WelcomeMessageFactory());
 
         verify(mainMenuFactory, times(1)).createMainMenu();
@@ -92,7 +92,7 @@ public class ControllerTest {
     @Test
     public void shouldUseWelcomeMessageFactoryToCreateWelcomeMessage() {
         WelcomeMessageFactory welcomeMessageFactory = mock(WelcomeMessageFactory.class);
-        Controller controller = new Controller(new ArrayList<User>(), new Factory(), new BookLibraryFactory(),
+        Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), welcomeMessageFactory);
 
         verify(welcomeMessageFactory, times(1)).createWelcomeMessage();
@@ -102,9 +102,9 @@ public class ControllerTest {
     public void shouldUseConsoleInputWhileTakingMenuOptionsAsInputFromConsole() {
         ByteArrayInputStream inputOneOption = new ByteArrayInputStream("1".getBytes());
         System.setIn(inputOneOption);
-        Factory factory = mock(Factory.class);
-        when(factory.createConsoleInput()).thenReturn(new ConsoleInput());
-        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory(),
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(new ConsoleInput());
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
 
         assertEquals("1", controller.menuOptionsInput());
@@ -114,10 +114,10 @@ public class ControllerTest {
     public void shouldDisplayInvalidMessageWhenInvalidOptionIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
-        Factory factory = mock(Factory.class);
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
 
-        when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
-        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory(),
+        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
         controller.dispatchMenuOption("Invalid");
 
@@ -130,8 +130,8 @@ public class ControllerTest {
     @Test
     public void shouldQuitTheApplicationWhenMenuOptionOfNineIsEntered() {
         exit.expectSystemExitWithStatus(0);
-        Factory factory = mock(Factory.class);
-        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory(),
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
         controller.dispatchMenuOption("9");
     }
@@ -140,13 +140,13 @@ public class ControllerTest {
     public void shouldCheckOutAMovieFromMovieLibraryWhenMenuOptionOfSixIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
-        Factory factory = mock(Factory.class);
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
         ConsoleInput consoleInput = mock(ConsoleInput.class);
-        when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
-        when(factory.createConsoleInput()).thenReturn(consoleInput);
+        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("Funny Girl");
 
-        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory(),
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
         controller.dispatchMenuOption("6");
 
@@ -158,9 +158,9 @@ public class ControllerTest {
     public void shouldListMoviesFromMovieLibraryWhenMovieOptionOfFiveIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
-        Factory factory = mock(Factory.class);
-        when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
-        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory(),
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
         controller.dispatchMenuOption("5");
 
@@ -171,13 +171,13 @@ public class ControllerTest {
     @Test
     public void shouldReturnABookToLibraryWhenMenuOptionOfFourIsEntered() {
         System.setOut(new PrintStream(outputContent));
-        Factory factory = mock(Factory.class);
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
         ConsoleInput consoleInput = mock(ConsoleInput.class);
-        when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
-        when(factory.createConsoleInput()).thenReturn(consoleInput);
+        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
 
-        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory(),
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
         controller.dispatchMenuOption("4");
 
@@ -188,13 +188,13 @@ public class ControllerTest {
     public void shouldCheckOutABookFromLibraryWhenMenuOptionOfThreeIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
-        Factory factory = mock(Factory.class);
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
         ConsoleInput consoleInput = mock(ConsoleInput.class);
-        when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
-        when(factory.createConsoleInput()).thenReturn(consoleInput);
+        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
 
-        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory(),
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
         controller.dispatchMenuOption("3");
 
@@ -205,9 +205,9 @@ public class ControllerTest {
     public void shouldListBooksFromBookLibraryWhenMovieOptionOfTwoIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
-        Factory factory = mock(Factory.class);
-        when(factory.createConsoleOutput()).thenReturn(new ConsoleOutput());
-        Controller controller = new Controller(new ArrayList<User>(), factory, new BookLibraryFactory(),
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
         controller.dispatchMenuOption("2");
 

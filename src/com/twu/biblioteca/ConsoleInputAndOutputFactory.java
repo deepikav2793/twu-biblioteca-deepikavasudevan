@@ -1,7 +1,7 @@
 /*creates an instance of console input*/
 package com.twu.biblioteca;
 
-public class Factory {
+public class ConsoleInputAndOutputFactory {
     
     ConsoleInput consoleInput;
     ConsoleOutput consoleOutput;
