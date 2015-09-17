@@ -13,6 +13,8 @@ public class ReturnBookMenuOption {
     }
 
     public void executeOptionOperation() {
+        consoleOutput.display("Enter book to be returned:");
         String bookToBeCheckedOut = consoleInput.getInput();
+        consoleOutput.display(bookLibrary.returnBook(bookToBeCheckedOut));
     }
 }

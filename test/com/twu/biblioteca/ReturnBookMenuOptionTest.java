@@ -2,9 +2,12 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 public class ReturnBookMenuOptionTest {
 
@@ -19,4 +22,19 @@ public class ReturnBookMenuOptionTest {
         verify(consoleInput, times(1)).getInput();
     }
 
+    @Test
+    public void shouldDisplayAPromptMessageForUserToInputBookToBeReturnedAndTheReturnMessageAsWell() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        when(bookLibrary.returnBook("Gone Girl")).thenReturn("This is not a valid book to return");
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        ReturnBookMenuOption returnBookMenuOption = new ReturnBookMenuOption(bookLibrary, consoleInput, consoleOutput);
+        returnBookMenuOption.executeOptionOperation();
+
+        assertEquals("Enter book to be returned:\nThis is not a valid book to return\n", outputContent.toString());
+    }
 }
