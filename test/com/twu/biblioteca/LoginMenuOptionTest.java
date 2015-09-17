@@ -35,4 +35,14 @@ public class LoginMenuOptionTest {
 
         verify(consoleOutput, times(1)).display("Login Successful");
     }
+
+    @Test
+    public void shouldTakeUserNameAndPasswordAsInputFromConsole() {
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
+        LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput);
+        loginMenuOption.executeOptionOperation();
+
+        verify(consoleInput, times(2)).getInput();
+    }
 }
