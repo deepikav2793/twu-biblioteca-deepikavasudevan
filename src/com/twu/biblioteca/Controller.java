@@ -24,14 +24,6 @@ public class Controller {
         movieLibrary = movieLibraryFactory.createMovieLibrary();
     }
 
-    public void displayWelcomeMessage() {
-        consoleOutput.display(welcomeMessage.getWelcomeMessage());
-    }
-
-    public void displayMenuOptions() {
-        consoleOutput.display(mainMenu.mainMenuOptions());
-    }
-
     public void initialiseBibliotecaApplication() {
         displayWelcomeMessage();
 
@@ -41,6 +33,14 @@ public class Controller {
         }
     }
 
+    public void displayWelcomeMessage() {
+        consoleOutput.display(welcomeMessage.getWelcomeMessage());
+    }
+
+    public void displayMenuOptions() {
+        consoleOutput.display(mainMenu.mainMenuOptions());
+    }
+
     protected String menuOptionsInput() {
         return consoleInput.getInput();
     }
@@ -48,14 +48,14 @@ public class Controller {
     public void dispatchMenuOption(String menuOption) {
         if (menuOption.equals("2")) {
             ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, consoleOutput);
-            listLibraryMenuOption.displayList();
+            listLibraryMenuOption.executeOptionOperation();
         } else if (menuOption.equals("3")) {
             checkOut(bookLibrary);
         } else if (menuOption.equals("4")) {
             returnBook();
         } else if (menuOption.equals("5")) {
             ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, consoleOutput);
-            listLibraryMenuOption.displayList();
+            listLibraryMenuOption.executeOptionOperation();
         } else if (menuOption.equals("6")) {
             checkOut(movieLibrary);
         } else if (menuOption.equals("9")) {

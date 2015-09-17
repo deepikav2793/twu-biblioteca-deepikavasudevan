@@ -18,7 +18,7 @@ public class ListLibraryMenuOptionTest {
                 "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n");
         ConsoleOutput consoleOutput = new ConsoleOutput();
         ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, consoleOutput);
-        listLibraryMenuOption.displayList();
+        listLibraryMenuOption.executeOptionOperation();
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
                 "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n\n", outputContent.toString());
     }
@@ -27,7 +27,7 @@ public class ListLibraryMenuOptionTest {
     public void shouldUseBookLibrarysListingToListBooks() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
         ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, new ConsoleOutput());
-        listLibraryMenuOption.displayList();
+        listLibraryMenuOption.executeOptionOperation();
 
         verify(bookLibrary, times(1)).list();
     }
@@ -41,7 +41,7 @@ public class ListLibraryMenuOptionTest {
                 "Funny Girl\t1968\tWilliam Wyler\t8\nPretty in Pink\t1986\tJohn Hughes\t10\n");
         ConsoleOutput consoleOutput = new ConsoleOutput();
         ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, consoleOutput);
-        listLibraryMenuOption.displayList();
+        listLibraryMenuOption.executeOptionOperation();
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\n" +
                 "Funny Girl\t1968\tWilliam Wyler\t8\nPretty in Pink\t1986\tJohn Hughes\t10\n\n", outputContent.toString());
     }
@@ -50,7 +50,7 @@ public class ListLibraryMenuOptionTest {
     public void shouldUseMovieLibrarysListingToListBooks() {
         MovieLibrary movieLibrary = mock(MovieLibrary.class);
         ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(movieLibrary, new ConsoleOutput());
-        listLibraryMenuOption.displayList();
+        listLibraryMenuOption.executeOptionOperation();
 
         verify(movieLibrary, times(1)).list();
     }
@@ -62,7 +62,7 @@ public class ListLibraryMenuOptionTest {
                 "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n");
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
         ListLibraryMenuOption listLibraryMenuOption = new ListLibraryMenuOption(bookLibrary, consoleOutput);
-        listLibraryMenuOption.displayList();
+        listLibraryMenuOption.executeOptionOperation();
 
         verify(consoleOutput, times(1)).display("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
                         "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n");

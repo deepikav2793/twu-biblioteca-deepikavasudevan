@@ -10,7 +10,7 @@ public class ListLibraryMenuOption {
         this.consoleOutput = consoleOutput;
     }
 
-    public void displayList() {
+    public void executeOptionOperation() {
         consoleOutput.display(list());
     }
 

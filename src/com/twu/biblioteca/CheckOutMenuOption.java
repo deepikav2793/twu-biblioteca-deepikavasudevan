@@ -12,8 +12,10 @@ public class CheckOutMenuOption {
         this.consoleOutput = consoleOutput;
     }
 
-    public void checkOut() {
+    public void executeOptionOperation() {
+        consoleOutput.display("Enter what is to be checked out:");
         String checkOutMessage = library.checkOut(entityToBeCheckedOut());
+        consoleOutput.display(checkOutMessage);
     }
 
     private String entityToBeCheckedOut() {
