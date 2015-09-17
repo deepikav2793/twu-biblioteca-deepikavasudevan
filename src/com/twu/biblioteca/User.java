@@ -33,4 +33,8 @@ public class User {
         }
         return hash;
     }
+
+    public ROLE getUserRole() {
+        return role;
+    }
 }

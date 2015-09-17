@@ -69,4 +69,9 @@ public class UserTest {
 
         assertNotEquals(user, user1);
     }
+
+    @Test
+    public void shouldGetRoleOfUser() {
+        assertEquals(user.getUserRole(), ROLE.AUTHENTICATED_USER);
+    }
 }
