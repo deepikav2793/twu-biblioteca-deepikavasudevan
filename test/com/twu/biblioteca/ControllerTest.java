@@ -214,4 +214,17 @@ public class ControllerTest {
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\nGone Girl\tGillian Flynn" +
                 "\t2000\nThe Scarlett Letter\tNathaniel Hawthorne\t1850\n\n", outputContent.toString());
     }
+
+    @Test
+    public void shouldInvokeLoginWhenOptionOneIsEntered() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory());
+        controller.dispatchMenuOption("1");
+
+        assertEquals("Login Successful\n", outputContent.toString());
+    }
 }

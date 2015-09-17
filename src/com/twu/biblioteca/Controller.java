@@ -51,7 +51,9 @@ public class Controller {
     }
 
     public MainMenuOption parseMenuOption(String menuOption) {
-        if (menuOption.equals("2")) {
+        if (menuOption.equals("1")) {
+            return new LoginMenuOption(consoleInput, consoleOutput);
+        } else if (menuOption.equals("2")) {
             return new ListLibraryMenuOption(bookLibrary, consoleOutput);
         } else if (menuOption.equals("3")) {
             return new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
