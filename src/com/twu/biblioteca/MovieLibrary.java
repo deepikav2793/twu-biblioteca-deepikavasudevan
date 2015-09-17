@@ -26,7 +26,7 @@ public class MovieLibrary implements Library {
     }
 
     @Override
-    public String checkOut(String thatMovieName) {
+    public String checkOut(String thatMovieName, User currentUser) {
         Movie thatMovie = new Movie(thatMovieName, NO_YEAR_PUBLISHED, NO_DIRECTOR_NAME, NO_MOVIE_RATING);
         String checkOutMovieMessage = "That movie is not available";
 

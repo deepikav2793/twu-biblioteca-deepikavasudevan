@@ -189,7 +189,7 @@ public class ControllerTest {
         when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
         when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        User currentUser = new User("Guest User","No Password",ROLE.AUTHENTICATED_USER);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("4");
@@ -198,7 +198,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void shouldPrintInvalidOptionIfUserHasNotLoggedInForCheckedOutBook() {
+    public void shouldPrintInvalidOptionIfUserHasNotLoggedInForCheckedOutBookWhenMenuOptionOfThreeIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);

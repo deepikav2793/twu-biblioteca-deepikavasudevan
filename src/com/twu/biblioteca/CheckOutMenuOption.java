@@ -17,7 +17,7 @@ public class CheckOutMenuOption implements MainMenuOption {
     @Override
     public User executeOptionOperation() {
             consoleOutput.display("Enter what is to be checked out:");
-            String checkOutMessage = library.checkOut(entityToBeCheckedOut());
+            String checkOutMessage = library.checkOut(entityToBeCheckedOut(), currentUser);
             consoleOutput.display(checkOutMessage);
 
         return currentUser;

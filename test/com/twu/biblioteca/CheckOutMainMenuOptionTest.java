@@ -11,10 +11,10 @@ public class CheckOutMainMenuOptionTest {
 
     @Test
     public void shouldTakeInputFromUserOnWhatIsToBeCheckedOutUsingConsoleInput() {
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         BookLibrary bookLibrary = mock(BookLibrary.class);
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         checkOutMenuOption.executeOptionOperation();
 
@@ -27,11 +27,11 @@ public class CheckOutMainMenuOptionTest {
         System.setOut(new PrintStream(outputContent));
 
         BookLibrary bookLibrary = mock(BookLibrary.class);
-        when(bookLibrary.checkOut("Gone Girl")).thenReturn("Thank you! Enjoy the book");
+        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        when(bookLibrary.checkOut("Gone Girl", currentUser)).thenReturn("Thank you! Enjoy the book");
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         checkOutMenuOption.executeOptionOperation();
 
@@ -41,11 +41,11 @@ public class CheckOutMainMenuOptionTest {
     @Test
     public void shouldUseConsoleOutputToPrintPromptMessageToTheConsoleAndPrintCheckOutMessage() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
-        when(bookLibrary.checkOut("Gone Girl")).thenReturn("Thank you! Enjoy the book");
+        User currentUser = new User("Guest User","No Password",ROLE.AUTHENTICATED_USER);
+        when(bookLibrary.checkOut("Gone Girl", currentUser)).thenReturn("Thank you! Enjoy the book");
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         checkOutMenuOption.executeOptionOperation();
 
@@ -59,11 +59,11 @@ public class CheckOutMainMenuOptionTest {
         System.setOut(new PrintStream(outputContent));
 
         BookLibrary bookLibrary = mock(BookLibrary.class);
-        when(bookLibrary.checkOut("Goner Girl")).thenReturn("This book is not available");
+        User currentUser = new User("Guest User","No Password",ROLE.AUTHENTICATED_USER);
+        when(bookLibrary.checkOut("Goner Girl", currentUser)).thenReturn("This book is not available");
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("Goner Girl");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         checkOutMenuOption.executeOptionOperation();
 
@@ -74,13 +74,12 @@ public class CheckOutMainMenuOptionTest {
     public void shouldPrintSuccessfulReturnMessageIfMovieCheckOutWasSuccessful() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
-
+        User currentUser = new User("Guest User","No Password",ROLE.AUTHENTICATED_USER);
         MovieLibrary movieLibrary = mock(MovieLibrary.class);
-        when(movieLibrary.checkOut("Funny Girl")).thenReturn("Thank you! Enjoy the movie");
+        when(movieLibrary.checkOut("Funny Girl", currentUser)).thenReturn("Thank you! Enjoy the movie");
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("Funny Girl");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(movieLibrary, consoleInput, consoleOutput, currentUser);
         checkOutMenuOption.executeOptionOperation();
 

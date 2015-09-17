@@ -26,7 +26,7 @@ public class BookLibrary implements Library {
     }
 
     @Override
-    public String checkOut(String thatBookName) {
+    public String checkOut(String thatBookName, User currentUser) {
         String checkOutMessage = "That book is not available";
         Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_PUBLISHED);
 

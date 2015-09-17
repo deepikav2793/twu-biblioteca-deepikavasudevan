@@ -4,5 +4,5 @@ package com.twu.biblioteca;
 public interface Library {
 
     public String list();
-    public String checkOut(String entityToBeCheckedOut);
+    public String checkOut(String entityToBeCheckedOut, User currentUser);
 }
