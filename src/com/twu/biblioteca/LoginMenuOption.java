@@ -47,8 +47,4 @@ public class LoginMenuOption implements MainMenuOption {
         }
         return false;
     }
-
-    public User currentUser() {
-        return currentUser;
-    }
 }
