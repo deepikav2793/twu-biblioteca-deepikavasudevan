@@ -18,7 +18,7 @@ public class ReturnBookMenuOption implements MainMenuOption {
     @Override
     public User executeOptionOperation() {
         consoleOutput.display("Enter book to be returned:");
-        String returnMessage =bookLibrary.returnBook(bookToBeReturned());
+        String returnMessage = bookLibrary.returnBook(bookToBeReturned(), currentUser);
         consoleOutput.display(returnMessage);
         return currentUser;
     }

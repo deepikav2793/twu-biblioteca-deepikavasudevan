@@ -2,6 +2,7 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BookLibraryFactory {
 
@@ -13,8 +14,9 @@ public class BookLibraryFactory {
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
         availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
+        HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
 
-        bookLibrary = new BookLibrary(availableBookList, checkedOutBookList);
+        bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
         return bookLibrary;
     }
 }

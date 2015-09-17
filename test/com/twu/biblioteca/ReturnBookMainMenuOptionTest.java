@@ -27,13 +27,12 @@ public class ReturnBookMainMenuOptionTest {
     public void shouldDisplayAPromptMessageForUserToInputBookToBeReturnedAndTheReturnMessageAsWell() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
-
+        User currentUser = new User("Guest User","No Password",ROLE.AUTHENTICATED_USER);
         BookLibrary bookLibrary = mock(BookLibrary.class);
-        when(bookLibrary.returnBook("Gone Girl")).thenReturn("This is not a valid book to return");
+        when(bookLibrary.returnBook("Gone Girl", currentUser)).thenReturn("This is not a valid book to return");
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         ReturnBookMenuOption returnBookMenuOption = new ReturnBookMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         returnBookMenuOption.executeOptionOperation();
 
@@ -43,11 +42,11 @@ public class ReturnBookMainMenuOptionTest {
     @Test
     public void shouldUseConsoleOutputToPrintPromptMessageToTheConsoleAndPrintReturnMessage() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
-        when(bookLibrary.returnBook("Gone Girl")).thenReturn("This is not a valid book to return");
+        User currentUser = new User("Guest User","No Password",ROLE.AUTHENTICATED_USER);
+        when(bookLibrary.returnBook("Gone Girl", currentUser)).thenReturn("This is not a valid book to return");
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         ReturnBookMenuOption returnBookMenuOption = new ReturnBookMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         returnBookMenuOption.executeOptionOperation();
 
@@ -61,11 +60,11 @@ public class ReturnBookMainMenuOptionTest {
         System.setOut(new PrintStream(outputContent));
 
         BookLibrary bookLibrary = mock(BookLibrary.class);
-        when(bookLibrary.returnBook("Gone Girl")).thenReturn("Thank you for returning the book");
+        User currentUser = new User("Guest User","No Password",ROLE.AUTHENTICATED_USER);
+        when(bookLibrary.returnBook("Gone Girl", currentUser)).thenReturn("Thank you for returning the book");
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("Gone Girl");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
         ReturnBookMenuOption returnBookMenuOption = new ReturnBookMenuOption(bookLibrary, consoleInput, consoleOutput, currentUser);
         returnBookMenuOption.executeOptionOperation();
 

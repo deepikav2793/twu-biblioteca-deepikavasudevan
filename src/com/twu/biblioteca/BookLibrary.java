@@ -2,6 +2,7 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BookLibrary implements Library {
 
@@ -10,10 +11,12 @@ public class BookLibrary implements Library {
 
     private ArrayList<Book> availableBookList = new ArrayList<Book>();
     private ArrayList<Book> checkedBookList = new ArrayList<Book>();
+    private HashMap<Book, User> checkedOutBookListWithUser = new HashMap<>();
 
-    public BookLibrary(ArrayList<Book> availableBookList, ArrayList<Book> checkedBookList) {
+    public BookLibrary(ArrayList<Book> availableBookList, ArrayList<Book> checkedBookList, HashMap<Book, User> checkedOutBookListWithUser) {
         this.availableBookList = availableBookList;
         this.checkedBookList = checkedBookList;
+        this.checkedOutBookListWithUser = checkedOutBookListWithUser;
     }
 
     @Override
@@ -33,6 +36,7 @@ public class BookLibrary implements Library {
         for (Book book : availableBookList) {
             if (book.equals(thatBook)) {
                 checkedBookList.add(book);
+                checkedOutBookListWithUser.put(book, currentUser);
                 availableBookList.remove(book);
                 checkOutMessage = "Thank you! Enjoy the book";
                 break;
@@ -41,13 +45,14 @@ public class BookLibrary implements Library {
        return checkOutMessage;
     }
 
-    public String returnBook(String thatBookName) {
+    public String returnBook(String thatBookName, User currentUser) {
         String returnMessage = "That is not a valid book to return";
         Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_PUBLISHED);
 
         for (Book book : checkedBookList) {
-            if (book.equals(thatBook)) {
+            if (book.equals(thatBook) && currentUser.equals(checkedOutBookListWithUser.get(book))) {
                 availableBookList.add(book);
+                checkedOutBookListWithUser.remove(book);
                 checkedBookList.remove(book);
                 returnMessage = "Thank you for returning the book";
                 break;
