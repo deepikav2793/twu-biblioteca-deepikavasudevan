@@ -12,7 +12,7 @@ public class NotAuthorisedMenuOption implements MainMenuOption {
 
     @Override
     public User executeOptionOperation() {
-        consoleOutput.display("NOT AUTHORISED to access this option. Please log in.");
+        consoleOutput.display("NOT AUTHORISED to use this option. Please try again.");
         return currentUser;
     }
 }

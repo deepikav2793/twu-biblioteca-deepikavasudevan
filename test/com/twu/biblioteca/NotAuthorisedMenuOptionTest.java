@@ -20,7 +20,7 @@ public class NotAuthorisedMenuOptionTest {
         NotAuthorisedMenuOption notAuthorisedMenuOption = new NotAuthorisedMenuOption(consoleOutput, currentUser);
         notAuthorisedMenuOption.executeOptionOperation();
 
-        assertEquals("NOT AUTHORISED to access this option. Please log in.\n", outputContent.toString());
+        assertEquals("NOT AUTHORISED to use this option. Please try again.\n", outputContent.toString());
     }
 
     @Test
@@ -30,6 +30,6 @@ public class NotAuthorisedMenuOptionTest {
         NotAuthorisedMenuOption notAuthorisedMenuOption = new NotAuthorisedMenuOption(consoleOutput, currentUser);
         notAuthorisedMenuOption.executeOptionOperation();
 
-        verify(consoleOutput, times(1)).display("NOT AUTHORISED to access this option. Please log in.");
+        verify(consoleOutput, times(1)).display("NOT AUTHORISED to use this option. Please try again.");
     }
 }
