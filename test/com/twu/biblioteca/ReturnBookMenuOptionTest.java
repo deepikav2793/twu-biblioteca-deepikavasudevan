@@ -37,4 +37,18 @@ public class ReturnBookMenuOptionTest {
 
         assertEquals("Enter book to be returned:\nThis is not a valid book to return\n", outputContent.toString());
     }
+
+    @Test
+    public void shouldUseConsoleOutputToPrintPromptMessageToTheConsoleAndPrintReturnMessage() {
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        when(bookLibrary.returnBook("Gone Girl")).thenReturn("This is not a valid book to return");
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+        ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
+        ReturnBookMenuOption returnBookMenuOption = new ReturnBookMenuOption(bookLibrary, consoleInput, consoleOutput);
+        returnBookMenuOption.executeOptionOperation();
+
+        verify(consoleOutput, times(1)).display("Enter book to be returned:");
+        verify(consoleOutput, times(1)).display("This is not a valid book to return");
+    }
 }
