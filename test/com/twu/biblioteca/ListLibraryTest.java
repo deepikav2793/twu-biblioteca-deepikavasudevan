@@ -5,8 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ListLibraryTest {
 
@@ -22,6 +21,15 @@ public class ListLibraryTest {
         listLibrary.displayList();
         assertEquals("NAME OF BOOK\tNAME OF AUTHOR\tYEAR OF PUBLICATION\nTo Kill A Mockingbird\tHarper Lee\t1968\n" +
                 "The Scarlett Letter\tNathaniel Hawthorne\t1850\nGone Girl\tGillian Flynn\t2000\n\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldUseBookLibrarysListingToListBooks() {
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        ListLibrary listLibrary = new ListLibrary(bookLibrary, new ConsoleOutput());
+        listLibrary.displayList();
+
+        verify(bookLibrary, times(1)).list();
     }
 
     @Test
