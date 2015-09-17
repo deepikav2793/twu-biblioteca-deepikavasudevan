@@ -51,4 +51,20 @@ public class ReturnBookMenuOptionTest {
         verify(consoleOutput, times(1)).display("Enter book to be returned:");
         verify(consoleOutput, times(1)).display("This is not a valid book to return");
     }
+
+    @Test
+    public void shouldPrintSuccessfulReturnMessageIfReturnWasUnsuccessful() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        when(bookLibrary.returnBook("Gone Girl")).thenReturn("Thank you for returning the book");
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInput.getInput()).thenReturn("Gone Girl");
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        ReturnBookMenuOption returnBookMenuOption = new ReturnBookMenuOption(bookLibrary, consoleInput, consoleOutput);
+        returnBookMenuOption.executeOptionOperation();
+
+        assertEquals("Enter book to be returned:\nThank you for returning the book\n", outputContent.toString());
+    }
 }

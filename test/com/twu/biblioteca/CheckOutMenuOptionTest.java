@@ -65,16 +65,4 @@ public class CheckOutMenuOptionTest {
 
         assertEquals("Enter what is to be checked out:\nThis book is not available\n", outputContent.toString());
     }
-
-    @Test
-    public void shouldTakeInputFromUserOnWhatIsToBeCheckedOut() {
-        BookLibrary bookLibrary = mock(BookLibrary.class);
-        ConsoleInput consoleInput = mock(ConsoleInput.class);
-        when(consoleInput.getInput()).thenReturn("Gone Girl");
-        ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
-        checkOutMenuOption.executeOptionOperation();
-
-        verify(consoleInput, times(1)).getInput();
-    }
 }
