@@ -1,6 +1,8 @@
 /*checks out a book from book library or a movie from movie library*/
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
+
 public class CheckOutMenuOption implements MainMenuOption {
     private Library library;
     private ConsoleInput consoleInput;

@@ -24,7 +24,7 @@ public class Movie {
     public boolean equals(Object that) {
         if (that != null && that.getClass() == this.getClass()) {
             Movie thatMovie = (Movie) that;
-            if(this == thatMovie || this.name == thatMovie.name)
+            if(this == thatMovie || this.name.equals(thatMovie.name))
                 return true;
         }
         return false;
