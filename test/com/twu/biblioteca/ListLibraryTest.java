@@ -45,4 +45,13 @@ public class ListLibraryTest {
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\n" +
                 "Funny Girl\t1968\tWilliam Wyler\t8\nPretty in Pink\t1986\tJohn Hughes\t10\n\n", outputContent.toString());
     }
+
+    @Test
+    public void shouldUseMovieLibrarysListingToListBooks() {
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        ListLibrary listLibrary = new ListLibrary(movieLibrary, new ConsoleOutput());
+        listLibrary.displayList();
+
+        verify(movieLibrary, times(1)).list();
+    }
 }
