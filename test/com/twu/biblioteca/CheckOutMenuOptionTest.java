@@ -51,6 +51,22 @@ public class CheckOutMenuOptionTest {
     }
 
     @Test
+    public void shouldPrintUnsuccessfulReturnMessageIfCheckOutWasUnsuccessful() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        when(bookLibrary.checkOut("Goner Girl")).thenReturn("This book is not available");
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInput.getInput()).thenReturn("Goner Girl");
+        ConsoleOutput consoleOutput = new ConsoleOutput();
+        CheckOutMenuOption checkOutMenuOption = new CheckOutMenuOption(bookLibrary, consoleInput, consoleOutput);
+        checkOutMenuOption.executeOptionOperation();
+
+        assertEquals("Enter what is to be checked out:\nThis book is not available\n", outputContent.toString());
+    }
+
+    @Test
     public void shouldTakeInputFromUserOnWhatIsToBeCheckedOut() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
         ConsoleInput consoleInput = mock(ConsoleInput.class);
