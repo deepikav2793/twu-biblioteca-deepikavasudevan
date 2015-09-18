@@ -52,11 +52,13 @@ public class BookLibrary implements Library {
 
         for (Book book : checkedBookList) {
             if (book.equals(thatBook)) {
-                availableBookList.add(book);
-                checkedOutBookListWithUser.remove(book);
-                checkedBookList.remove(book);
-                returnMessage = "Thank you for returning the book";
-                break;
+                if(currentUser.equals(checkedOutBookListWithUser.get(book))) {
+                    availableBookList.add(book);
+                    checkedOutBookListWithUser.remove(book);
+                    checkedBookList.remove(book);
+                    returnMessage = "Thank you for returning the book";
+                    break;
+                }
             }
         }
         return returnMessage;

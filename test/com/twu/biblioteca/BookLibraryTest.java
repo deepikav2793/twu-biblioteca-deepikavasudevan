@@ -124,15 +124,15 @@ public class BookLibraryTest {
     }
 
     @Test
-    public void shouldNotReturnBookIfBookHasNotBeenCheckedOutButUserHasCheckedOutSomeOtherBook() {
+    public void shouldNotReturnBookIfBookHasBeenCheckedOutButUserHasCheckedOutSomeOtherBook() {
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
+        checkedOutBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         ArrayList<Book> availableBookList = new ArrayList<>();
         availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
-        availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
-        checkedOutBookListWithUser.put(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850),
-                new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351));
+        checkedOutBookListWithUser.put(new Book("Gone Girl", "Gillian Flynn", 2000),
+                new User("usr-1000", "password", ROLE.AUTHENTICATED_USER, "Bill", "usr1001@gmail.com", 895643225));
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
         User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351);
 
