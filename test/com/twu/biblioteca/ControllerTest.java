@@ -192,6 +192,9 @@ public class ControllerTest {
         Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
         controller.dispatchMenuOption("8");
+
+        assertEquals("USER INFORMATION\nLibrary Number: lib-1000\nUser Name: Madam Pince\nEmail Address: librarian@hogwarts.com\n" +
+                "Phone Number: 968684524\n", outputContent.toString());
     }
 
     @Test
@@ -360,5 +363,26 @@ public class ControllerTest {
         controller.dispatchMenuOption("1");
 
         assertEquals("Enter username:\nEnter password:\nLogin Unsuccessful\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldPrintWelcomeMessageAtLeastOnceAndDisplayMainMenuWhenBibliotecaApplicationIsInitialised() {
+        exit.expectSystemExitWithStatus(0);
+        WelcomeMessageFactory welcomeMessageFactory = mock(WelcomeMessageFactory.class);
+        WelcomeMessage welcomeMessage = mock(WelcomeMessage.class);
+        when(welcomeMessageFactory.createWelcomeMessage()).thenReturn(welcomeMessage);
+        when(welcomeMessage.getWelcomeMessage()).thenReturn("Hello! Welcome to Bangalore Public Library!");
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
+        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        when(consoleInput.getInput()).thenReturn("10");
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
+                new MainMenuFactory(), new MovieLibraryFactory(), welcomeMessageFactory, currentUser);
+        controller.initialiseBibliotecaApplication();
+
+        assertEquals("Hello! Welcome to Bangalore Public Library!\n\"MAIN MENU\n1. Login\n2. List Books\n3. Checkout Book\n4. Return Book\n5. List Movies\n6. Checkout Movie\n"
+                +"\n7. List Checked Out Books with User's Library Number\n8. User Information\n9. Logout\n10. Quit\n\n", outputContent.toString());
     }
 }
