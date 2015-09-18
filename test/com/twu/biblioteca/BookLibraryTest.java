@@ -124,22 +124,6 @@ public class BookLibraryTest {
     }
 
     @Test
-    public void shouldNotReturnBookIfBookHasBeenCheckedOutButNotByTheSameUser() {
-        ArrayList<Book> checkedOutBookList = new ArrayList<>();
-        ArrayList<Book> availableBookList = new ArrayList<>();
-        availableBookList.add(new Book("To Kill A Mockingbird", "Harper Lee", 1968));
-        availableBookList.add(new Book("Gone Girl", "Gillian Flynn", 2000));
-        availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
-        HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
-        checkedOutBookListWithUser.put(new Book("Gone Girl", "Gillian Flynn", 2000),
-                new User("lib-1000", "password", ROLE.LIBRARIAN, "Madam Pince", "librarian@hogwarts.com", 968684524));
-        BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
-        User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351);
-
-        assertEquals("That is not a valid book to return", bookLibrary.returnBook("Gone Girl", currentUser));
-    }
-
-    @Test
     public void shouldNotReturnBookIfBookHasNotBeenCheckedOutButUserHasCheckedOutSomeOtherBook() {
         ArrayList<Book> checkedOutBookList = new ArrayList<>();
         ArrayList<Book> availableBookList = new ArrayList<>();

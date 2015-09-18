@@ -51,7 +51,7 @@ public class BookLibrary implements Library {
         Book thatBook = new Book(thatBookName, NO_AUTHOR_NAME, NO_YEAR_PUBLISHED);
 
         for (Book book : checkedBookList) {
-            if (book.equals(thatBook) && currentUser.equals(checkedOutBookListWithUser.get(book))) {
+            if (book.equals(thatBook)) {
                 availableBookList.add(book);
                 checkedOutBookListWithUser.remove(book);
                 checkedBookList.remove(book);
