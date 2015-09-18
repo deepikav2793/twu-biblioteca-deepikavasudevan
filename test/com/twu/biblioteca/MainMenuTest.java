@@ -42,7 +42,7 @@ public class MainMenuTest {
     @Test
     public void shouldExecuteQuitOptionIfQuitOptionIsSelected() {
         exit.expectSystemExitWithStatus(0);
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         QuitMenuOption quitMenuOption = new QuitMenuOption(currentUser);
         mainMenu.executeOption(quitMenuOption);
     }

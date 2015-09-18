@@ -28,19 +28,19 @@ public class MovieLibraryTest {
 
     @Test
     public void shouldReturnSuccessfulCheckOutMessageIfMovieIsCheckedOut() {
-        User currentUser = new User("Guest User","No Password",ROLE.AUTHENTICATED_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         assertEquals("Thank you! Enjoy the movie", movieLibrary.checkOut("Funny Girl", currentUser));
     }
 
     @Test
     public void shouldReturnUnsuccessfulCheckOutMessageIfMovieIsNotCheckedOut() {
-        User currentUser = new User("Guest User","No Password",ROLE.AUTHENTICATED_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         assertEquals("That movie is not available", movieLibrary.checkOut("Funny", currentUser));
     }
 
     @Test
     public void shouldNotContainCheckedOutMovieInMovieList() {
-        User currentUser = new User("Guest User","No Password",ROLE.AUTHENTICATED_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         movieLibrary.checkOut("Funny Girl", currentUser);
 
         assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nPretty in Pink\t1986\tJohn Hughes\t10\n", movieLibrary.list());

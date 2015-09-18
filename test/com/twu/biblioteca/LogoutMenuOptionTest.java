@@ -15,7 +15,7 @@ public class LogoutMenuOptionTest {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        User currentUser = new User("Guest User", "No Password", ROLE.GUEST_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         LogoutMenuOption logoutMenuOption = new LogoutMenuOption(consoleOutput, currentUser);
         logoutMenuOption.executeOptionOperation();
 
@@ -25,7 +25,7 @@ public class LogoutMenuOptionTest {
     @Test
     public void shouldUseConsoleOutputToPrintSuccessfulLogOutMessage() {
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        User currentUser = new User("Guest User", "No Password", ROLE.GUEST_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         LogoutMenuOption logoutMenuOption = new LogoutMenuOption(consoleOutput, currentUser);
         logoutMenuOption.executeOptionOperation();
 

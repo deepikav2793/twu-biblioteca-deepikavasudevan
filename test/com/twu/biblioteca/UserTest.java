@@ -12,7 +12,7 @@ public class UserTest {
 
     @Before
     public void setUpUser() {
-        user = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER);
+        user = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Bill", "usr1001@gmail.com", 895643225);
     }
 
     @Test
@@ -32,28 +32,28 @@ public class UserTest {
 
     @Test
     public void shouldBeEqualToAnotherUserWithTheSameUserNameAndPassword() {
-        User user1 = new User("usr-1001", "password1", ROLE.GUEST_USER);
+        User user1 = new User("usr-1001", "password1", ROLE.GUEST_USER, "Bill", "usr1001@gmail.com", 895643225);
 
         assertEquals(user, user1);
     }
 
     @Test
     public void shouldNotBeEqualToAnotherUserWithTheSameUserNameAndDifferentPassword() {
-        User user1 = new User("usr-1001", "password", ROLE.GUEST_USER);
+        User user1 = new User("usr-1001", "password", ROLE.GUEST_USER, "Bill", "usr1001@gmail.com", 895643225);
 
         assertNotEquals(user, user1);
     }
 
     @Test
     public void shouldNotBeEqualToAnotherUserWithADifferentUserNameAndSamePassword() {
-        User user1 = new User("usr-1000", "password1", ROLE.GUEST_USER);
+        User user1 = new User("usr-1000", "password1", ROLE.GUEST_USER, "Bill", "usr1001@gmail.com", 895643225);
 
         assertNotEquals(user, user1);
     }
 
     @Test
     public void shouldNotBeEqualToAnotherUserWithDifferentUserNameAndPassword() {
-        User user1 = new User("usr-1000", "password", ROLE.GUEST_USER);
+        User user1 = new User("usr-1000", "password", ROLE.GUEST_USER, "Bill", "usr1001@gmail.com", 895643225);
 
         assertNotEquals(user, user1);
     }
@@ -65,7 +65,7 @@ public class UserTest {
 
     @Test
     public void shouldNotHaveTheSameHashCodeIfNotTheSameObject() {
-        User user1 = new User("usr-1000", "password", ROLE.GUEST_USER);
+        User user1 = new User("usr-1000", "password", ROLE.GUEST_USER, "Bill", "usr1001@gmail.com", 895643225);
 
         assertNotEquals(user, user1);
     }

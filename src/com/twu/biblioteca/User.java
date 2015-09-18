@@ -6,11 +6,17 @@ public class User {
     private String libraryNumber;
     private String password;
     private ROLE role;
+    private String name;
+    private String emailAddress;
+    private int phoneNumber;
 
-    public User(String libraryNumber, String password, ROLE role) {
+    public User(String libraryNumber, String password, ROLE role, String name, String emailAddress, int phoneNumber) {
         this.libraryNumber = libraryNumber;
         this.password = password;
         this.role = role;
+        this.name = name;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
     }
 
     @Override

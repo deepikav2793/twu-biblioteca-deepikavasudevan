@@ -34,7 +34,7 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
-        User currentUser = new User("Guest User", "No Password", ROLE.AUTHENTICATED_USER);
+        User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351);
 
         assertEquals("Thank you! Enjoy the book", bookLibrary.checkOut("Gone Girl", currentUser));
     }
@@ -48,7 +48,7 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
-        User currentUser = new User("Guest User", "No Password", ROLE.AUTHENTICATED_USER);
+        User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351);
         bookLibrary.checkOut("Gone Girl", currentUser);
 
         String formattedListOfBooks = String.format("%-30s%-30s%-15s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION")
@@ -66,7 +66,7 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
         BookLibrary bookLibrary = new BookLibrary(checkedOutBookList, availableBookList, checkedOutBookListWithUser);
-        User currentUser = new User("Guest User", "No Password", ROLE.AUTHENTICATED_USER);
+        User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351);
 
         assertEquals("That book is not available", bookLibrary.checkOut("Goner Girl", currentUser));
     }
@@ -80,9 +80,9 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
         checkedOutBookListWithUser.put(new Book("Gone Girl", "Gillian Flynn", 2000),
-                new User("Guest User", "No Password", ROLE.AUTHENTICATED_USER));
+                new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351));
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
-        User currentUser = new User("Guest User", "No Password", ROLE.AUTHENTICATED_USER);
+        User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351);
 
         assertEquals("Thank you for returning the book", bookLibrary.returnBook("Gone Girl", currentUser));
     }
@@ -96,9 +96,9 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
         checkedOutBookListWithUser.put(new Book("Gone Girl", "Gillian Flynn", 2000),
-                new User("Guest User", "No Password", ROLE.AUTHENTICATED_USER));
+                new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351));
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
-        User currentUser = new User("Guest User", "No Password", ROLE.AUTHENTICATED_USER);
+        User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351);
         bookLibrary.returnBook("Gone Girl", currentUser);
 
         String formattedListOfBooks = String.format("%-30s%-30s%-15s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION")
@@ -118,7 +118,7 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
-        User currentUser = new User("Guest User", "No Password", ROLE.AUTHENTICATED_USER);
+        User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351);
 
         assertEquals("That is not a valid book to return", bookLibrary.returnBook("Gone Girl", currentUser));
     }
@@ -132,9 +132,9 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
         checkedOutBookListWithUser.put(new Book("Gone Girl", "Gillian Flynn", 2000),
-                new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
+                new User("lib-1000", "password", ROLE.LIBRARIAN, "Madam Pince", "librarian@hogwarts.com", 968684524));
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
-        User currentUser = new User("Guest User", "No Password", ROLE.AUTHENTICATED_USER);
+        User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351);
 
         assertEquals("That is not a valid book to return", bookLibrary.returnBook("Gone Girl", currentUser));
     }
@@ -148,9 +148,9 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
         checkedOutBookListWithUser.put(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850),
-                new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
+                new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351));
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
-        User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER);
+        User currentUser = new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351);
 
         assertEquals("That is not a valid book to return", bookLibrary.returnBook("Gone Girl", currentUser));
     }
@@ -164,7 +164,7 @@ public class BookLibraryTest {
         availableBookList.add(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850));
         HashMap<Book, User> checkedOutBookListWithUser = new HashMap<Book, User>();
         checkedOutBookListWithUser.put(new Book("The Scarlett Letter", "Nathaniel Hawthorne", 1850),
-                new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
+                new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351));
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
 
         String formattedList = String.format("%-30s%-30s%-15s%-20s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION", "USER LIBRARY NUMBER") +

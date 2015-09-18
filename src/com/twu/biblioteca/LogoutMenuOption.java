@@ -12,7 +12,7 @@ public class LogoutMenuOption implements MainMenuOption{
 
     @Override
     public User executeOptionOperation() {
-        currentUser = new User("Guest User", "No Password", ROLE.GUEST_USER);
+        currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         consoleOutput.display("You are logged out");
         return currentUser;
     }

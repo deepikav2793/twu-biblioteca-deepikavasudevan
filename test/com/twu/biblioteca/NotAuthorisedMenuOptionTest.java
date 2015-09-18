@@ -15,7 +15,7 @@ public class NotAuthorisedMenuOptionTest {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
 
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         ConsoleOutput consoleOutput = new ConsoleOutput();
         NotAuthorisedMenuOption notAuthorisedMenuOption = new NotAuthorisedMenuOption(consoleOutput, currentUser);
         notAuthorisedMenuOption.executeOptionOperation();
@@ -25,7 +25,7 @@ public class NotAuthorisedMenuOptionTest {
 
     @Test
     public void shouldUseConsoleOutputToPrintTheMessage() {
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
         NotAuthorisedMenuOption notAuthorisedMenuOption = new NotAuthorisedMenuOption(consoleOutput, currentUser);
         notAuthorisedMenuOption.executeOptionOperation();

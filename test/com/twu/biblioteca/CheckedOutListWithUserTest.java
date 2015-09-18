@@ -19,7 +19,7 @@ public class CheckedOutListWithUserTest {
         String formattedList = String.format("%-30s%-30s%-15s%-20s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION", "USER LIBRARY NUMBER") +
                 String.format("%-30s%-30s%-15s%-20s\n", "The Scarlett Letter", "Nathaniel Hawthorne", 1850, "usr-1001");
         when(bookLibrary.checkedOutBookListWithUser()).thenReturn(formattedList);
-        User currentUser = new User("Guest User", "No Password", ROLE.GUEST_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         CheckedOutListWithUser checkedOutListWithUser = new CheckedOutListWithUser(bookLibrary, consoleOutput, currentUser);
         checkedOutListWithUser.executeOptionOperation();
 
@@ -33,7 +33,7 @@ public class CheckedOutListWithUserTest {
         String formattedList = String.format("%-30s%-30s%-15s%-20s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION", "USER LIBRARY NUMBER") +
                 String.format("%-30s%-30s%-15s%-20s\n", "The Scarlett Letter", "Nathaniel Hawthorne", 1850, "usr-1001");
         when(bookLibrary.checkedOutBookListWithUser()).thenReturn(formattedList);
-        User currentUser = new User("Guest User", "No Password", ROLE.GUEST_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         CheckedOutListWithUser checkedOutListWithUser = new CheckedOutListWithUser(bookLibrary, consoleOutput, currentUser);
         checkedOutListWithUser.executeOptionOperation();
 

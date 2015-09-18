@@ -18,10 +18,10 @@ public class LoginMenuOptionTest {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("usr-1001", "password1");
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         ArrayList<User> listOfUsers = new ArrayList<>();
-        listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN));
-        listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
+        listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN, "Madam Pince", "librarian@hogwarts.com", 968684524));
+        listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351));
         LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers, currentUser);
         loginMenuOption.executeOptionOperation();
 
@@ -32,7 +32,7 @@ public class LoginMenuOptionTest {
     public void shouldTakeUserNameAndPasswordAsInputFromConsole() {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, new ArrayList<User>(), currentUser);
         loginMenuOption.executeOptionOperation();
 
@@ -43,7 +43,7 @@ public class LoginMenuOptionTest {
     public void shouldUseConsoleOutputToPrintPromptMessageForUserNameAndPassword() {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         ConsoleOutput consoleOutput = mock(ConsoleOutput.class);
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, new ArrayList<User>(), currentUser);
         loginMenuOption.executeOptionOperation();
         verify(consoleOutput, times(1)).display("Enter username:");
@@ -57,10 +57,10 @@ public class LoginMenuOptionTest {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("usr-1001", "password1");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         ArrayList<User> listOfUsers = new ArrayList<>();
-        listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN));
-        listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
+        listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN, "Madam Pince", "librarian@hogwarts.com", 968684524));
+        listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351));
 
         LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers, currentUser);
         loginMenuOption.executeOptionOperation();
@@ -75,10 +75,10 @@ public class LoginMenuOptionTest {
         ConsoleInput consoleInput = mock(ConsoleInput.class);
         when(consoleInput.getInput()).thenReturn("usr-2489", "password1");
         ConsoleOutput consoleOutput = new ConsoleOutput();
-        User currentUser = new User("Guest User","No Password",ROLE.GUEST_USER);
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         ArrayList<User> listOfUsers = new ArrayList<>();
-        listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN));
-        listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER));
+        listOfUsers.add(new User("lib-1000", "password", ROLE.LIBRARIAN, "Madam Pince", "librarian@hogwarts.com", 968684524));
+        listOfUsers.add(new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351));
 
         LoginMenuOption loginMenuOption = new LoginMenuOption(consoleInput, consoleOutput, listOfUsers, currentUser);
         loginMenuOption.executeOptionOperation();
