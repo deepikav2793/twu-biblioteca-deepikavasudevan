@@ -139,35 +139,35 @@ public class ControllerTest {
     public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
     @Test
-    public void shouldQuitTheApplicationWhenMenuOptionOfNineIsEntered() {
+    public void shouldQuitTheApplicationWhenMenuOptionOfTenIsEntered() {
         exit.expectSystemExitWithStatus(0);
         ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
         User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
-        controller.dispatchMenuOption("9");
+        controller.dispatchMenuOption("10");
     }
 
     @Test
-    public void shouldNotLogoutTheUserWhenUserIsNotLoggedInWhenMenuOptionEightIsEntered() {
+    public void shouldNotLogoutTheUserWhenUserIsNotLoggedInWhenMenuOptionNineIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
         User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
         Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
-        controller.dispatchMenuOption("8");
+        controller.dispatchMenuOption("9");
 
         assertEquals("NOT AUTHORISED to use this option. Please try again.\n", outputContent.toString());
     }
 
     @Test
-    public void shouldLogoutTheUserWhenMenuOptionEightIsEntered() {
+    public void shouldLogoutTheUserWhenMenuOptionNineIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
         User currentUser = new User("lib-1000", "password", ROLE.LIBRARIAN, "Madam Pince", "librarian@hogwarts.com", 968684524);
         Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
                 new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
-        controller.dispatchMenuOption("8");
+        controller.dispatchMenuOption("9");
 
         assertEquals("You are logged out\n", outputContent.toString());
     }

@@ -70,12 +70,12 @@ public class Controller {
                 return new CheckedOutListWithUser(bookLibrary, consoleOutput, currentUser);
             else
                 return new NotAuthorisedMenuOption(consoleOutput, currentUser);
-        } else if (menuOption.equals("8")) {
+        } else if (menuOption.equals("9")) {
             if (currentUser.getUserRole().equals(ROLE.GUEST_USER))
                 return new NotAuthorisedMenuOption(consoleOutput, currentUser);
             else
                 return new LogoutMenuOption(consoleOutput, currentUser);
-        } else if (menuOption.equals("9")) {
+        } else if (menuOption.equals("10")) {
             return new QuitMenuOption(currentUser);
         } else {
             return new InvalidMenuOption(consoleOutput, currentUser);
