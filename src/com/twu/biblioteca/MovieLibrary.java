@@ -16,10 +16,10 @@ public class MovieLibrary implements Library {
 
     @Override
     public String list() {
-        String listOfMovies = "NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\n";
+        String listOfMovies = String.format("%-30s%-15s%-30s%-15s\n", "NAME OF MOVIE", "YEAR", "DIRECTOR", "MOVIE RATING");
 
         for (Movie movie : movieList) {
-            listOfMovies += movie.toString() + "\n";
+            listOfMovies += movie.toString();
         }
 
         return listOfMovies;

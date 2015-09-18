@@ -18,8 +18,10 @@ public class MovieLibraryFactoryTest {
         MovieLibraryFactory movieLibraryFactory = new MovieLibraryFactory();
 
         MovieLibrary movieLibrary = movieLibraryFactory.createMovieLibrary();
+        String formattedMovieString = String.format("%-30s%-15s%-30s%-15s\n", "NAME OF MOVIE", "YEAR", "DIRECTOR", "MOVIE RATING") +
+                String.format("%-30s%-15s%-30s%-15s\n", "Funny Girl", 1968, "William Wyler", "8") +
+                String.format("%-30s%-15s%-30s%-15s\n", "Pretty in Pink", 1986, "John Hughes", "10");
 
-        assertEquals("NAME OF MOVIE\tYEAR\tDIRECTOR\tMOVIE RATING\nFunny Girl\t1968\tWilliam Wyler\t8\n" +
-                "Pretty in Pink\t1986\tJohn Hughes\t10\n", movieLibrary.list());
+        assertEquals(formattedMovieString, movieLibrary.list());
     }
 }

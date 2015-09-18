@@ -17,7 +17,7 @@ public class MovieTest {
 
     @Test
     public void shouldFormatItsDetailsInColumnFormat() {
-        assertEquals("Funny Girl\t1968\tWilliam Wyler\t8",movie.toString());
+        assertEquals(String.format("%-30s%-15s%-30s%-15s\n", "Funny Girl", 1968, "William Wyler", "8"), movie.toString());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class MovieTest {
 
     @Test
     public void shouldNotHaveTheSameHashCodeIfItIsNotTheSameReference() {
-        Movie movie2 = new Movie("Pretty in Pink", 1967, "John Hughes","10");
+        Movie movie2 = new Movie("Pretty in Pink", 1967, "John Hughes", "10");
 
         assertNotEquals(movie.hashCode(), movie2.hashCode());
     }

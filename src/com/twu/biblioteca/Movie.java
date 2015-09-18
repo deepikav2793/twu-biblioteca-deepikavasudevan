@@ -17,14 +17,14 @@ public class Movie {
 
     @Override
     public String toString() {
-        return name + "\t" + yearOfRelease + "\t" + nameOfDirector + "\t" + movieRating;
+        return String.format("%-30s%-15s%-30s%-15s\n", name, yearOfRelease, nameOfDirector, movieRating);
     }
 
     @Override
     public boolean equals(Object that) {
         if (that != null && that.getClass() == this.getClass()) {
             Movie thatMovie = (Movie) that;
-            if(this == thatMovie || this.name.equals(thatMovie.name))
+            if (this == thatMovie || this.name.equals(thatMovie.name))
                 return true;
         }
         return false;
