@@ -74,4 +74,10 @@ public class UserTest {
     public void shouldGetRoleOfUser() {
         assertEquals(user.getUserRole(), ROLE.AUTHENTICATED_USER);
     }
+
+    @Test
+    public void shouldPrintFormattedUserInformation() {
+        assertEquals("USER INFORMATION\nLibrary Number: usr-1001\nUser Name: Bill\nEmail Address: usr1001@gmail.com"
+                +"\nPhone Number: 895643225", user.toString());
+    }
 }

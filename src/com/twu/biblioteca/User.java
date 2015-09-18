@@ -40,6 +40,14 @@ public class User {
         return hash;
     }
 
+    @Override
+    public String toString() {
+        String formattedUserInformation = "USER INFORMATION\nLibrary Number: " + libraryNumber + "\nUser Name: " + name
+                + "\nEmail Address: " + emailAddress + "\nPhone Number: " + phoneNumber;
+
+        return formattedUserInformation;
+    }
+
     public ROLE getUserRole() {
         return role;
     }
