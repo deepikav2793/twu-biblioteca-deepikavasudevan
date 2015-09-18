@@ -366,6 +366,23 @@ public class ControllerTest {
     }
 
     @Test
+    public void shouldInvokeNotAuthorisedMessageWhenOptionOneIsEnteredAndUserIsNotGuest() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        ConsoleInputAndOutputFactory consoleInputAndOutputFactory = mock(ConsoleInputAndOutputFactory.class);
+        ConsoleInput consoleInput = mock(ConsoleInput.class);
+        when(consoleInputAndOutputFactory.createConsoleInput()).thenReturn(consoleInput);
+        when(consoleInput.getInput()).thenReturn("usr-1000", "password1");
+        when(consoleInputAndOutputFactory.createConsoleOutput()).thenReturn(new ConsoleOutput());
+        User currentUser = new User("lib-1000", "password", ROLE.LIBRARIAN, "Madam Pince", "librarian@hogwarts.com", 968684524);
+        Controller controller = new Controller(new ArrayList<User>(), consoleInputAndOutputFactory, new BookLibraryFactory(),
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
+        controller.dispatchMenuOption("1");
+
+        assertEquals("NOT AUTHORISED to use this option. Please try again.\n", outputContent.toString());
+    }
+
+    @Test
     public void shouldPrintWelcomeMessageAtLeastOnceAndDisplayMainMenuWhenBibliotecaApplicationIsInitialised() {
         exit.expectSystemExitWithStatus(0);
         WelcomeMessageFactory welcomeMessageFactory = mock(WelcomeMessageFactory.class);
