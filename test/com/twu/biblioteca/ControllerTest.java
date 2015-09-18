@@ -185,6 +185,24 @@ public class ControllerTest {
     }
 
     @Test
+    public void shouldDisplayListOfCheckedOutBooksWithUserIfUserIsALibrarianAndOptionSevenIsEntered() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        User currentUser = new User("lib-1000", "password1", ROLE.LIBRARIAN);
+        BookLibraryFactory bookLibraryFactory = mock(BookLibraryFactory.class);
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        when(bookLibraryFactory.createBookLibrary()).thenReturn(bookLibrary);
+        String formattedList = String.format("%-30s%-30s%-15s%-20s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION", "USER LIBRARY NUMBER") +
+                String.format("%-30s%-30s%-15s%-20s\n", "The Scarlett Letter", "Nathaniel Hawthorne", 1850, "usr-1001");
+        when(bookLibrary.checkedOutBookListWithUser()).thenReturn(formattedList);
+        Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), bookLibraryFactory,
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
+        controller.dispatchMenuOption("7");
+
+        assertEquals(formattedList + "\n", outputContent.toString());
+    }
+
+    @Test
     public void shouldCheckOutAMovieFromMovieLibraryWhenMenuOptionOfSixIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
