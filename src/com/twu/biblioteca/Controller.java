@@ -66,7 +66,10 @@ public class Controller {
         } else if (menuOption.equals("6")) {
             return new CheckOutMenuOption(movieLibrary, consoleInput, consoleOutput, currentUser);
         } else if (menuOption.equals("7")) {
-            return new CheckedOutListWithUser(bookLibrary, consoleOutput, currentUser);
+            if (currentUser.getUserRole().equals(ROLE.LIBRARIAN))
+                return new CheckedOutListWithUser(bookLibrary, consoleOutput, currentUser);
+            else
+                return new NotAuthorisedMenuOption(consoleOutput, currentUser);
         } else if (menuOption.equals("8")) {
             if (currentUser.getUserRole().equals(ROLE.GUEST_USER))
                 return new NotAuthorisedMenuOption(consoleOutput, currentUser);

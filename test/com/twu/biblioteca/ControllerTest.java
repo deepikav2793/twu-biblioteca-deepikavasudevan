@@ -173,6 +173,18 @@ public class ControllerTest {
     }
 
     @Test
+    public void shouldNotDisplayListOfCheckedOutItemsWithUserIfUserIsNotALibrarianAndOptionSevenIsEntered() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        User currentUser = new User("Guest User", "No Password", ROLE.GUEST_USER);
+        Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
+        controller.dispatchMenuOption("7");
+
+        assertEquals("NOT AUTHORISED to use this option. Please try again.\n", outputContent.toString());
+    }
+
+    @Test
     public void shouldCheckOutAMovieFromMovieLibraryWhenMenuOptionOfSixIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
