@@ -167,8 +167,8 @@ public class BookLibraryTest {
                 new User("usr-1001", "password1", ROLE.AUTHENTICATED_USER, "Hermione Granger", "hermione@gmail.com", 867546351));
         BookLibrary bookLibrary = new BookLibrary(availableBookList, checkedOutBookList, checkedOutBookListWithUser);
 
-        String formattedList = String.format("%-30s%-30s%-15s%-20s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION", "USER LIBRARY NUMBER") +
-                String.format("%-30s%-30s%-15s%-20s\n", "The Scarlett Letter", "Nathaniel Hawthorne", 1850, "usr-1001");
+        String formattedList = String.format("%-30s%-30s%-15s%-30s\n", "NAME OF BOOK", "NAME OF AUTHOR", "YEAR OF PUBLICATION", "USER LIBRARY NUMBER") +
+                String.format("%-30s%-30s%-15s%-30s\n", "The Scarlett Letter", "Nathaniel Hawthorne", 1850, "usr-1001");
 
         assertEquals(formattedList, bookLibrary.checkedOutBookListWithUser());
     }

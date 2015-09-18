@@ -65,10 +65,10 @@ public class BookLibrary implements Library {
     }
 
     public String checkedOutBookListWithUser() {
-        String formattedCheckedOutBookListWithUser = String.format("%-30s%-30s%-15s%-20s\n", "NAME OF BOOK", "NAME OF AUTHOR",
+        String formattedCheckedOutBookListWithUser = String.format("%-30s%-30s%-15s%-30s\n", "NAME OF BOOK", "NAME OF AUTHOR",
                 "YEAR OF PUBLICATION", "USER LIBRARY NUMBER");
         for (Book book : checkedOutBookListWithUser.keySet()) {
-            formattedCheckedOutBookListWithUser += String.format("%-75s%-20s\n", book.toString(),
+            formattedCheckedOutBookListWithUser += String.format("%-75s%-30s\n", book.toString(),
                     checkedOutBookListWithUser.get(book).getLibraryNumber());
         }
         return formattedCheckedOutBookListWithUser;
