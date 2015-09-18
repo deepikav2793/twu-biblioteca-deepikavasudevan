@@ -71,7 +71,10 @@ public class Controller {
             else
                 return new NotAuthorisedMenuOption(consoleOutput, currentUser);
         } else if (menuOption.equals("8")) {
-            return new UserInformationOption(consoleOutput, currentUser);
+            if (currentUser.getUserRole().equals(ROLE.GUEST_USER))
+                return new NotAuthorisedMenuOption(consoleOutput, currentUser);
+            else
+                return new UserInformationOption(consoleOutput, currentUser);
         } else if (menuOption.equals("9")) {
             if (currentUser.getUserRole().equals(ROLE.GUEST_USER))
                 return new NotAuthorisedMenuOption(consoleOutput, currentUser);

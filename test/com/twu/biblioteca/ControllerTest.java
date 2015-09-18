@@ -173,6 +173,28 @@ public class ControllerTest {
     }
 
     @Test
+    public void shouldDisplayUserInformationWhenMenuOptionEightIsEntered() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        User currentUser = new User("GUEST USER", "NO PASSWORD", ROLE.GUEST_USER, "NO NAME", "NO EMAIL ADDRESS", 0);
+        Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
+        controller.dispatchMenuOption("8");
+
+        assertEquals("NOT AUTHORISED to use this option. Please try again.\n", outputContent.toString());
+    }
+
+    @Test
+    public void shouldNotDisplayUserInformationWhenMenuOptionEightIsEnteredAndUserIsAGuest() {
+        ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputContent));
+        User currentUser = new User("lib-1000", "password", ROLE.LIBRARIAN, "Madam Pince", "librarian@hogwarts.com", 968684524);
+        Controller controller = new Controller(new ArrayList<User>(), new ConsoleInputAndOutputFactory(), new BookLibraryFactory(),
+                new MainMenuFactory(), new MovieLibraryFactory(), new WelcomeMessageFactory(), currentUser);
+        controller.dispatchMenuOption("8");
+    }
+
+    @Test
     public void shouldNotDisplayListOfCheckedOutItemsWithUserIfUserIsNotALibrarianAndOptionSevenIsEntered() {
         ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputContent));
